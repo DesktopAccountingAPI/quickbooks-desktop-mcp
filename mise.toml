@@ -3,12 +3,13 @@
 node = "24.20.0"
 
 [tasks.check]
-description = "Install, typecheck, build, tests (official MCP client over stdio), package smoke test and package contents"
+description = "Install, typecheck, build, tests (official MCP client over stdio), README samples, package smoke test and package contents"
 run = [
   "npm ci --no-audit --no-fund",
   "npm run typecheck",
   "npm run build",
   "npm test",
+  "npm run test:readme",
   "npm run smoke",
   "npm run pack:check",
   "bash scripts/publish.sh --dry-run --skip-check",

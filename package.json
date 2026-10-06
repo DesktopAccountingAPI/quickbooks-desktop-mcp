@@ -1,6 +1,6 @@
 {
   "name": "@desktopaccountingapi/quickbooks-desktop-mcp",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Model Context Protocol (MCP) server for Desktop Accounting API: QuickBooks Desktop for Claude, Cursor, VS Code, Codex and other AI tools.",
   "license": "MIT",
   "author": "Desktop Accounting API",
@@ -53,6 +53,7 @@
     "typecheck": "tsc -p tsconfig.json",
     "test": "node --test \"test/*.test.ts\"",
     "smoke": "node scripts/smoke.mjs",
+    "test:readme": "node scripts/readme-samples.mjs --lang ts",
     "pack:check": "node scripts/check-pack.mjs"
   },
   "devDependencies": {
