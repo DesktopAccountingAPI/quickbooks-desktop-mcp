@@ -1,0 +1,63 @@
+{
+  "name": "@desktopaccountingapi/quickbooks-desktop-mcp",
+  "version": "0.1.0",
+  "description": "Model Context Protocol (MCP) server for Desktop Accounting API: QuickBooks Desktop for Claude, Cursor, VS Code, Codex and other AI tools.",
+  "license": "MIT",
+  "author": "Desktop Accounting API",
+  "homepage": "https://www.desktopaccountingapi.com/docs/guides/mcp/",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/DesktopAccountingAPI/quickbooks-desktop-mcp.git"
+  },
+  "bugs": {
+    "url": "https://github.com/DesktopAccountingAPI/quickbooks-desktop-mcp/issues"
+  },
+  "keywords": [
+    "mcp",
+    "model-context-protocol",
+    "quickbooks",
+    "quickbooks-desktop",
+    "accounting",
+    "ai",
+    "claude",
+    "desktop-accounting-api"
+  ],
+  "type": "module",
+  "bin": {
+    "quickbooks-desktop-mcp": "dist/cli.js"
+  },
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "default": "./dist/index.js"
+    },
+    "./package.json": "./package.json"
+  },
+  "files": [
+    "dist",
+    "README.md",
+    "LICENSE",
+    "CHANGELOG.md"
+  ],
+  "engines": {
+    "node": ">=20"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "scripts": {
+    "build": "node scripts/build.mjs",
+    "prepare": "node scripts/build.mjs",
+    "typecheck": "tsc -p tsconfig.json",
+    "test": "node --test \"test/*.test.ts\"",
+    "smoke": "node scripts/smoke.mjs",
+    "pack:check": "node scripts/check-pack.mjs"
+  },
+  "devDependencies": {
+    "@modelcontextprotocol/sdk": "1.32.1",
+    "@types/node": "24.19.1",
+    "typescript": "7.0.2"
+  }
+}
