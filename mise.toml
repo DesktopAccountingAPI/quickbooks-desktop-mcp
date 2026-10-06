@@ -1,0 +1,23 @@
+# Toolchain and tasks. `mise run check` is what CI runs.
+[tools]
+node = "24.20.0"
+
+[tasks.check]
+description = "Install, typecheck, build, tests (official MCP client over stdio), package smoke test and package contents"
+run = [
+  "npm ci --no-audit --no-fund",
+  "npm run typecheck",
+  "npm run build",
+  "npm test",
+  "npm run smoke",
+  "npm run pack:check",
+  "bash scripts/publish.sh --dry-run --skip-check",
+]
+
+[tasks."test:node"]
+description = "After `npm run build`: the package smoke test (stdio protocol, API call, read-only mode) on another Node.js version (NODE_TEST_VERSION, default 20)"
+run = 'mise exec "node@${NODE_TEST_VERSION:-20}" -- node scripts/smoke.mjs'
+
+[tasks.publish]
+description = "Publish to npm (CI release workflow). Add --dry-run to only build and pack."
+run = "bash scripts/publish.sh"

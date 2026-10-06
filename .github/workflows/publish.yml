@@ -1,0 +1,38 @@
+name: Publish
+
+on:
+  push:
+    tags: ["v*"]
+  workflow_dispatch:
+    inputs:
+      tag:
+        description: "Release tag to publish (for example v0.1.0). Default: the selected ref."
+        required: false
+        type: string
+
+permissions:
+  contents: read
+  id-token: write
+
+concurrency:
+  group: publish-${{ inputs.tag || github.ref_name }}
+  cancel-in-progress: false
+
+jobs:
+  publish:
+    name: Publish to npm
+    runs-on: ubuntu-latest
+    environment: release
+    steps:
+      - uses: actions/checkout@v7
+        with:
+          ref: ${{ inputs.tag || github.ref }}
+      - uses: jdx/mise-action@v5
+      - name: Check, publish, wait for the registry, verify a clean install
+        run: bash scripts/publish.sh
+        env:
+          RELEASE_TAG: ${{ inputs.tag || github.ref_name }}
+          # Empty when the secret is not set: the script then uses npm trusted publishing (OIDC).
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+          # npm rejects provenance for private source repositories.
+          NPM_PROVENANCE: ${{ github.event.repository.private == false }}

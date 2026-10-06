@@ -1,0 +1,39 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+permissions:
+  contents: read
+
+jobs:
+  check:
+    name: mise run check (Node.js 24)
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+      - uses: jdx/mise-action@v5
+      - run: mise run check
+
+  platforms:
+    name: ${{ matrix.os }}, Node.js ${{ matrix.node }}
+    runs-on: ${{ matrix.os }}
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-latest, windows-latest, macos-latest]
+        node: ["20", "22", "24"]
+    steps:
+      - uses: actions/checkout@v7
+      - uses: jdx/mise-action@v5
+      # Build with the pinned toolchain, then run the stdio smoke test (initialize, tools, an API
+      # call against a local mock, read-only mode) on the matrix OS and Node.js version.
+      - run: npm ci --no-audit --no-fund
+      - run: npm run build
+      - run: mise run test:node
+        shell: bash
+        env:
+          NODE_TEST_VERSION: ${{ matrix.node }}
