@@ -66,8 +66,14 @@ TARBALL="$TMP/$(npm pack --ignore-scripts --silent --pack-destination "$TMP" | t
 
 if [[ "$DRY_RUN" == 1 ]]; then
   log "dry run: npm publish would upload $(basename "$TARBALL")"
-  NPM_CONFIG_USERCONFIG="$TMP/readonly.npmrc" npm publish "$TARBALL" --dry-run --access public --ignore-scripts --registry "$REGISTRY" 2>&1 | grep -E 'name:|version:|filename:|package size:|unpacked size:|total files:|\+ '
-  if published; then log "$NAME@$VERSION is already on npm (a release would skip the upload)"; else log "$NAME@$VERSION is not on npm yet (or the registry is unreachable)"; fi
+  if published; then
+    # npm refuses even a dry-run publish of an existing version, so list the packed files instead.
+    log "$NAME@$VERSION is already on npm (a release would skip the upload); packed files:"
+    tar -tzf "$TARBALL" | sed 's/^/  /'
+  else
+    NPM_CONFIG_USERCONFIG="$TMP/readonly.npmrc" npm publish "$TARBALL" --dry-run --access public --ignore-scripts --registry "$REGISTRY" 2>&1 | grep -E 'name:|version:|filename:|package size:|unpacked size:|total files:|\+ '
+    log "$NAME@$VERSION is not on npm yet (or the registry is unreachable)"
+  fi
   exit 0
 fi
 
