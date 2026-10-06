@@ -2,6 +2,7 @@ node_modules/
 dist/
 build/
 *.tgz
+.readme-samples/
 .env
 .env.*
 npm-debug.log*
