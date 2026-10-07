@@ -976,7 +976,7 @@
     {
      "name": "ids",
      "required": false,
-     "description": "Return only the bill check payments with these QuickBooks IDs. Cannot be combined with refNumbers, limit, updatedAfter, updatedBefore, transactionDateFrom, transactionDateTo, transactionDateMacro, vendorIds, accountIds, refNumberStartsWith, refNumberContains, refNumberEndsWith, refNumberFrom, refNumberTo, currencyIds. Returns every match in one page (`nextCursor` is null).",
+     "description": "Return only the bill check payments with these QuickBooks IDs. Cannot be combined with refNumbers, updatedAfter, updatedBefore, transactionDateFrom, transactionDateTo, transactionDateMacro, vendorIds, accountIds, refNumberStartsWith, refNumberContains, refNumberEndsWith, refNumberFrom, refNumberTo, currencyIds. Returns every match in one page (`nextCursor` is null); limit is ignored.",
      "schema": {
       "type": "array",
       "items": {
@@ -991,7 +991,7 @@
     {
      "name": "refNumbers",
      "required": false,
-     "description": "Return only bill check payments with these reference numbers (case-insensitive). Cannot be combined with ids, limit, updatedAfter, updatedBefore, transactionDateFrom, transactionDateTo, transactionDateMacro, vendorIds, accountIds, refNumberStartsWith, refNumberContains, refNumberEndsWith, refNumberFrom, refNumberTo, currencyIds. Returns every match in one page (`nextCursor` is null).",
+     "description": "Return only bill check payments with these reference numbers (case-insensitive). Cannot be combined with ids, updatedAfter, updatedBefore, transactionDateFrom, transactionDateTo, transactionDateMacro, vendorIds, accountIds, refNumberStartsWith, refNumberContains, refNumberEndsWith, refNumberFrom, refNumberTo, currencyIds. Returns every match in one page (`nextCursor` is null); limit is ignored.",
      "schema": {
       "type": "array",
       "items": {
@@ -1004,7 +1004,7 @@
     {
      "name": "limit",
      "required": false,
-     "description": "Maximum number of bill check payments per page, 1 to 150. Cannot be combined with ids, refNumbers.",
+     "description": "Maximum number of bill check payments per page, 1 to 150. Ignored with ids, refNumbers, which return every match in one page.",
      "schema": {
       "type": "integer",
       "minimum": 1,
@@ -1314,7 +1314,7 @@
     {
      "name": "ids",
      "required": false,
-     "description": "Return only the bill credit card payments with these QuickBooks IDs. Cannot be combined with refNumbers, limit, updatedAfter, updatedBefore, transactionDateFrom, transactionDateTo, transactionDateMacro, vendorIds, accountIds, refNumberStartsWith, refNumberContains, refNumberEndsWith, refNumberFrom, refNumberTo, currencyIds. Returns every match in one page (`nextCursor` is null).",
+     "description": "Return only the bill credit card payments with these QuickBooks IDs. Cannot be combined with refNumbers, updatedAfter, updatedBefore, transactionDateFrom, transactionDateTo, transactionDateMacro, vendorIds, accountIds, refNumberStartsWith, refNumberContains, refNumberEndsWith, refNumberFrom, refNumberTo, currencyIds. Returns every match in one page (`nextCursor` is null); limit is ignored.",
      "schema": {
       "type": "array",
       "items": {
@@ -1329,7 +1329,7 @@
     {
      "name": "refNumbers",
      "required": false,
-     "description": "Return only bill credit card payments with these reference numbers (case-insensitive). Cannot be combined with ids, limit, updatedAfter, updatedBefore, transactionDateFrom, transactionDateTo, transactionDateMacro, vendorIds, accountIds, refNumberStartsWith, refNumberContains, refNumberEndsWith, refNumberFrom, refNumberTo, currencyIds. Returns every match in one page (`nextCursor` is null).",
+     "description": "Return only bill credit card payments with these reference numbers (case-insensitive). Cannot be combined with ids, updatedAfter, updatedBefore, transactionDateFrom, transactionDateTo, transactionDateMacro, vendorIds, accountIds, refNumberStartsWith, refNumberContains, refNumberEndsWith, refNumberFrom, refNumberTo, currencyIds. Returns every match in one page (`nextCursor` is null); limit is ignored.",
      "schema": {
       "type": "array",
       "items": {
@@ -1342,7 +1342,7 @@
     {
      "name": "limit",
      "required": false,
-     "description": "Maximum number of bill credit card payments per page, 1 to 150. Cannot be combined with ids, refNumbers.",
+     "description": "Maximum number of bill credit card payments per page, 1 to 150. Ignored with ids, refNumbers, which return every match in one page.",
      "schema": {
       "type": "integer",
       "minimum": 1,
@@ -1620,7 +1620,7 @@
     {
      "name": "ids",
      "required": false,
-     "description": "Return only the bills with these QuickBooks IDs. Cannot be combined with refNumbers, limit, updatedAfter, updatedBefore, transactionDateFrom, transactionDateTo, transactionDateMacro, vendorIds, accountIds, refNumberStartsWith, refNumberContains, refNumberEndsWith, refNumberFrom, refNumberTo, currencyIds, paymentStatus. Returns every match in one page (`nextCursor` is null).",
+     "description": "Return only the bills with these QuickBooks IDs. Cannot be combined with refNumbers, updatedAfter, updatedBefore, transactionDateFrom, transactionDateTo, transactionDateMacro, vendorIds, accountIds, refNumberStartsWith, refNumberContains, refNumberEndsWith, refNumberFrom, refNumberTo, currencyIds, paymentStatus. Returns every match in one page (`nextCursor` is null); limit is ignored.",
      "schema": {
       "type": "array",
       "items": {
@@ -1635,7 +1635,7 @@
     {
      "name": "refNumbers",
      "required": false,
-     "description": "Return only bills with these reference numbers (case-insensitive). Cannot be combined with ids, limit, updatedAfter, updatedBefore, transactionDateFrom, transactionDateTo, transactionDateMacro, vendorIds, accountIds, refNumberStartsWith, refNumberContains, refNumberEndsWith, refNumberFrom, refNumberTo, currencyIds, paymentStatus. Returns every match in one page (`nextCursor` is null).",
+     "description": "Return only bills with these reference numbers (case-insensitive). Cannot be combined with ids, updatedAfter, updatedBefore, transactionDateFrom, transactionDateTo, transactionDateMacro, vendorIds, accountIds, refNumberStartsWith, refNumberContains, refNumberEndsWith, refNumberFrom, refNumberTo, currencyIds, paymentStatus. Returns every match in one page (`nextCursor` is null); limit is ignored.",
      "schema": {
       "type": "array",
       "items": {
@@ -1648,7 +1648,7 @@
     {
      "name": "limit",
      "required": false,
-     "description": "Maximum number of bills per page, 1 to 150. Cannot be combined with ids, refNumbers.",
+     "description": "Maximum number of bills per page, 1 to 150. Ignored with ids, refNumbers, which return every match in one page.",
      "schema": {
       "type": "integer",
       "minimum": 1,
@@ -2035,7 +2035,7 @@
     {
      "name": "ids",
      "required": false,
-     "description": "Return only the build assemblies with these QuickBooks IDs. Cannot be combined with refNumbers, limit, updatedAfter, updatedBefore, transactionDateFrom, transactionDateTo, transactionDateMacro, itemIds, refNumberStartsWith, refNumberContains, refNumberEndsWith, refNumberFrom, refNumberTo, pendingStatus. Returns every match in one page (`nextCursor` is null).",
+     "description": "Return only the build assemblies with these QuickBooks IDs. Cannot be combined with refNumbers, updatedAfter, updatedBefore, transactionDateFrom, transactionDateTo, transactionDateMacro, itemIds, refNumberStartsWith, refNumberContains, refNumberEndsWith, refNumberFrom, refNumberTo, pendingStatus. Returns every match in one page (`nextCursor` is null); limit is ignored.",
      "schema": {
       "type": "array",
       "items": {
@@ -2050,7 +2050,7 @@
     {
      "name": "refNumbers",
      "required": false,
-     "description": "Return only build assemblies with these reference numbers (case-insensitive). Cannot be combined with ids, limit, updatedAfter, updatedBefore, transactionDateFrom, transactionDateTo, transactionDateMacro, itemIds, refNumberStartsWith, refNumberContains, refNumberEndsWith, refNumberFrom, refNumberTo, pendingStatus. Returns every match in one page (`nextCursor` is null).",
+     "description": "Return only build assemblies with these reference numbers (case-insensitive). Cannot be combined with ids, updatedAfter, updatedBefore, transactionDateFrom, transactionDateTo, transactionDateMacro, itemIds, refNumberStartsWith, refNumberContains, refNumberEndsWith, refNumberFrom, refNumberTo, pendingStatus. Returns every match in one page (`nextCursor` is null); limit is ignored.",
      "schema": {
       "type": "array",
       "items": {
@@ -2063,7 +2063,7 @@
     {
      "name": "limit",
      "required": false,
-     "description": "Maximum number of build assemblies per page, 1 to 150. Cannot be combined with ids, refNumbers.",
+     "description": "Maximum number of build assemblies per page, 1 to 150. Ignored with ids, refNumbers, which return every match in one page.",
      "schema": {
       "type": "integer",
       "minimum": 1,
@@ -2324,7 +2324,7 @@
     {
      "name": "ids",
      "required": false,
-     "description": "Return only the checks with these QuickBooks IDs. Cannot be combined with refNumbers, limit, updatedAfter, updatedBefore, transactionDateFrom, transactionDateTo, transactionDateMacro, payeeIds, accountIds, refNumberStartsWith, refNumberContains, refNumberEndsWith, refNumberFrom, refNumberTo, currencyIds. Returns every match in one page (`nextCursor` is null).",
+     "description": "Return only the checks with these QuickBooks IDs. Cannot be combined with refNumbers, updatedAfter, updatedBefore, transactionDateFrom, transactionDateTo, transactionDateMacro, payeeIds, accountIds, refNumberStartsWith, refNumberContains, refNumberEndsWith, refNumberFrom, refNumberTo, currencyIds. Returns every match in one page (`nextCursor` is null); limit is ignored.",
      "schema": {
       "type": "array",
       "items": {
@@ -2339,7 +2339,7 @@
     {
      "name": "refNumbers",
      "required": false,
-     "description": "Return only checks with these reference numbers (case-insensitive). Cannot be combined with ids, limit, updatedAfter, updatedBefore, transactionDateFrom, transactionDateTo, transactionDateMacro, payeeIds, accountIds, refNumberStartsWith, refNumberContains, refNumberEndsWith, refNumberFrom, refNumberTo, currencyIds. Returns every match in one page (`nextCursor` is null).",
+     "description": "Return only checks with these reference numbers (case-insensitive). Cannot be combined with ids, updatedAfter, updatedBefore, transactionDateFrom, transactionDateTo, transactionDateMacro, payeeIds, accountIds, refNumberStartsWith, refNumberContains, refNumberEndsWith, refNumberFrom, refNumberTo, currencyIds. Returns every match in one page (`nextCursor` is null); limit is ignored.",
      "schema": {
       "type": "array",
       "items": {
@@ -2352,7 +2352,7 @@
     {
      "name": "limit",
      "required": false,
-     "description": "Maximum number of checks per page, 1 to 150. Cannot be combined with ids, refNumbers.",
+     "description": "Maximum number of checks per page, 1 to 150. Ignored with ids, refNumbers, which return every match in one page.",
      "schema": {
       "type": "integer",
       "minimum": 1,
@@ -2895,7 +2895,7 @@
     {
      "name": "ids",
      "required": false,
-     "description": "Return only the credit card charges with these QuickBooks IDs. Cannot be combined with refNumbers, limit, updatedAfter, updatedBefore, transactionDateFrom, transactionDateTo, transactionDateMacro, payeeIds, accountIds, refNumberStartsWith, refNumberContains, refNumberEndsWith, refNumberFrom, refNumberTo, currencyIds. Returns every match in one page (`nextCursor` is null).",
+     "description": "Return only the credit card charges with these QuickBooks IDs. Cannot be combined with refNumbers, updatedAfter, updatedBefore, transactionDateFrom, transactionDateTo, transactionDateMacro, payeeIds, accountIds, refNumberStartsWith, refNumberContains, refNumberEndsWith, refNumberFrom, refNumberTo, currencyIds. Returns every match in one page (`nextCursor` is null); limit is ignored.",
      "schema": {
       "type": "array",
       "items": {
@@ -2910,7 +2910,7 @@
     {
      "name": "refNumbers",
      "required": false,
-     "description": "Return only credit card charges with these reference numbers (case-insensitive). Cannot be combined with ids, limit, updatedAfter, updatedBefore, transactionDateFrom, transactionDateTo, transactionDateMacro, payeeIds, accountIds, refNumberStartsWith, refNumberContains, refNumberEndsWith, refNumberFrom, refNumberTo, currencyIds. Returns every match in one page (`nextCursor` is null).",
+     "description": "Return only credit card charges with these reference numbers (case-insensitive). Cannot be combined with ids, updatedAfter, updatedBefore, transactionDateFrom, transactionDateTo, transactionDateMacro, payeeIds, accountIds, refNumberStartsWith, refNumberContains, refNumberEndsWith, refNumberFrom, refNumberTo, currencyIds. Returns every match in one page (`nextCursor` is null); limit is ignored.",
      "schema": {
       "type": "array",
       "items": {
@@ -2923,7 +2923,7 @@
     {
      "name": "limit",
      "required": false,
-     "description": "Maximum number of credit card charges per page, 1 to 150. Cannot be combined with ids, refNumbers.",
+     "description": "Maximum number of credit card charges per page, 1 to 150. Ignored with ids, refNumbers, which return every match in one page.",
      "schema": {
       "type": "integer",
       "minimum": 1,
@@ -3233,7 +3233,7 @@
     {
      "name": "ids",
      "required": false,
-     "description": "Return only the credit card credits with these QuickBooks IDs. Cannot be combined with refNumbers, limit, updatedAfter, updatedBefore, transactionDateFrom, transactionDateTo, transactionDateMacro, payeeIds, accountIds, refNumberStartsWith, refNumberContains, refNumberEndsWith, refNumberFrom, refNumberTo, currencyIds. Returns every match in one page (`nextCursor` is null).",
+     "description": "Return only the credit card credits with these QuickBooks IDs. Cannot be combined with refNumbers, updatedAfter, updatedBefore, transactionDateFrom, transactionDateTo, transactionDateMacro, payeeIds, accountIds, refNumberStartsWith, refNumberContains, refNumberEndsWith, refNumberFrom, refNumberTo, currencyIds. Returns every match in one page (`nextCursor` is null); limit is ignored.",
      "schema": {
       "type": "array",
       "items": {
@@ -3248,7 +3248,7 @@
     {
      "name": "refNumbers",
      "required": false,
-     "description": "Return only credit card credits with these reference numbers (case-insensitive). Cannot be combined with ids, limit, updatedAfter, updatedBefore, transactionDateFrom, transactionDateTo, transactionDateMacro, payeeIds, accountIds, refNumberStartsWith, refNumberContains, refNumberEndsWith, refNumberFrom, refNumberTo, currencyIds. Returns every match in one page (`nextCursor` is null).",
+     "description": "Return only credit card credits with these reference numbers (case-insensitive). Cannot be combined with ids, updatedAfter, updatedBefore, transactionDateFrom, transactionDateTo, transactionDateMacro, payeeIds, accountIds, refNumberStartsWith, refNumberContains, refNumberEndsWith, refNumberFrom, refNumberTo, currencyIds. Returns every match in one page (`nextCursor` is null); limit is ignored.",
      "schema": {
       "type": "array",
       "items": {
@@ -3261,7 +3261,7 @@
     {
      "name": "limit",
      "required": false,
-     "description": "Maximum number of credit card credits per page, 1 to 150. Cannot be combined with ids, refNumbers.",
+     "description": "Maximum number of credit card credits per page, 1 to 150. Ignored with ids, refNumbers, which return every match in one page.",
      "schema": {
       "type": "integer",
       "minimum": 1,
@@ -3571,7 +3571,7 @@
     {
      "name": "ids",
      "required": false,
-     "description": "Return only the credit card refunds with these QuickBooks IDs. Cannot be combined with refNumbers, limit, updatedAfter, updatedBefore, transactionDateFrom, transactionDateTo, transactionDateMacro, customerIds, accountIds, refNumberStartsWith, refNumberContains, refNumberEndsWith, refNumberFrom, refNumberTo, currencyIds. Returns every match in one page (`nextCursor` is null).",
+     "description": "Return only the credit card refunds with these QuickBooks IDs. Cannot be combined with refNumbers, updatedAfter, updatedBefore, transactionDateFrom, transactionDateTo, transactionDateMacro, customerIds, accountIds, refNumberStartsWith, refNumberContains, refNumberEndsWith, refNumberFrom, refNumberTo, currencyIds. Returns every match in one page (`nextCursor` is null); limit is ignored.",
      "schema": {
       "type": "array",
       "items": {
@@ -3586,7 +3586,7 @@
     {
      "name": "refNumbers",
      "required": false,
-     "description": "Return only credit card refunds with these reference numbers (case-insensitive). Cannot be combined with ids, limit, updatedAfter, updatedBefore, transactionDateFrom, transactionDateTo, transactionDateMacro, customerIds, accountIds, refNumberStartsWith, refNumberContains, refNumberEndsWith, refNumberFrom, refNumberTo, currencyIds. Returns every match in one page (`nextCursor` is null).",
+     "description": "Return only credit card refunds with these reference numbers (case-insensitive). Cannot be combined with ids, updatedAfter, updatedBefore, transactionDateFrom, transactionDateTo, transactionDateMacro, customerIds, accountIds, refNumberStartsWith, refNumberContains, refNumberEndsWith, refNumberFrom, refNumberTo, currencyIds. Returns every match in one page (`nextCursor` is null); limit is ignored.",
      "schema": {
       "type": "array",
       "items": {
@@ -3599,7 +3599,7 @@
     {
      "name": "limit",
      "required": false,
-     "description": "Maximum number of credit card refunds per page, 1 to 150. Cannot be combined with ids, refNumbers.",
+     "description": "Maximum number of credit card refunds per page, 1 to 150. Ignored with ids, refNumbers, which return every match in one page.",
      "schema": {
       "type": "integer",
       "minimum": 1,
@@ -3877,7 +3877,7 @@
     {
      "name": "ids",
      "required": false,
-     "description": "Return only the credit memos with these QuickBooks IDs. Cannot be combined with refNumbers, limit, updatedAfter, updatedBefore, transactionDateFrom, transactionDateTo, transactionDateMacro, customerIds, accountIds, refNumberStartsWith, refNumberContains, refNumberEndsWith, refNumberFrom, refNumberTo, currencyIds. Returns every match in one page (`nextCursor` is null).",
+     "description": "Return only the credit memos with these QuickBooks IDs. Cannot be combined with refNumbers, updatedAfter, updatedBefore, transactionDateFrom, transactionDateTo, transactionDateMacro, customerIds, accountIds, refNumberStartsWith, refNumberContains, refNumberEndsWith, refNumberFrom, refNumberTo, currencyIds. Returns every match in one page (`nextCursor` is null); limit is ignored.",
      "schema": {
       "type": "array",
       "items": {
@@ -3892,7 +3892,7 @@
     {
      "name": "refNumbers",
      "required": false,
-     "description": "Return only credit memos with these reference numbers (case-insensitive). Cannot be combined with ids, limit, updatedAfter, updatedBefore, transactionDateFrom, transactionDateTo, transactionDateMacro, customerIds, accountIds, refNumberStartsWith, refNumberContains, refNumberEndsWith, refNumberFrom, refNumberTo, currencyIds. Returns every match in one page (`nextCursor` is null).",
+     "description": "Return only credit memos with these reference numbers (case-insensitive). Cannot be combined with ids, updatedAfter, updatedBefore, transactionDateFrom, transactionDateTo, transactionDateMacro, customerIds, accountIds, refNumberStartsWith, refNumberContains, refNumberEndsWith, refNumberFrom, refNumberTo, currencyIds. Returns every match in one page (`nextCursor` is null); limit is ignored.",
      "schema": {
       "type": "array",
       "items": {
@@ -3905,7 +3905,7 @@
     {
      "name": "limit",
      "required": false,
-     "description": "Maximum number of credit memos per page, 1 to 150. Cannot be combined with ids, refNumbers.",
+     "description": "Maximum number of credit memos per page, 1 to 150. Ignored with ids, refNumbers, which return every match in one page.",
      "schema": {
       "type": "integer",
       "minimum": 1,
@@ -4610,7 +4610,7 @@
     {
      "name": "ids",
      "required": false,
-     "description": "Return only the customers with these QuickBooks IDs. Cannot be combined with fullNames, limit, status, updatedAfter, updatedBefore, nameStartsWith, nameContains, nameEndsWith, nameFrom, nameTo, totalBalance, totalBalanceGreaterThan, totalBalanceGreaterThanOrEqualTo, totalBalanceLessThan, totalBalanceLessThanOrEqualTo, currencyIds, classIds. Returns every match in one page (`nextCursor` is null).",
+     "description": "Return only the customers with these QuickBooks IDs. Cannot be combined with fullNames, status, updatedAfter, updatedBefore, nameStartsWith, nameContains, nameEndsWith, nameFrom, nameTo, totalBalance, totalBalanceGreaterThan, totalBalanceGreaterThanOrEqualTo, totalBalanceLessThan, totalBalanceLessThanOrEqualTo, currencyIds, classIds. Returns every match in one page (`nextCursor` is null); limit is ignored.",
      "schema": {
       "type": "array",
       "items": {
@@ -4625,7 +4625,7 @@
     {
      "name": "fullNames",
      "required": false,
-     "description": "Return only the customers with these full names (case-insensitive, including parent names separated by colons). Cannot be combined with ids, limit, status, updatedAfter, updatedBefore, nameStartsWith, nameContains, nameEndsWith, nameFrom, nameTo, totalBalance, totalBalanceGreaterThan, totalBalanceGreaterThanOrEqualTo, totalBalanceLessThan, totalBalanceLessThanOrEqualTo, currencyIds, classIds. Returns every match in one page (`nextCursor` is null).",
+     "description": "Return only the customers with these full names (case-insensitive, including parent names separated by colons). Cannot be combined with ids, status, updatedAfter, updatedBefore, nameStartsWith, nameContains, nameEndsWith, nameFrom, nameTo, totalBalance, totalBalanceGreaterThan, totalBalanceGreaterThanOrEqualTo, totalBalanceLessThan, totalBalanceLessThanOrEqualTo, currencyIds, classIds. Returns every match in one page (`nextCursor` is null); limit is ignored.",
      "schema": {
       "type": "array",
       "items": {
@@ -4638,7 +4638,7 @@
     {
      "name": "limit",
      "required": false,
-     "description": "Maximum number of customers per page, 1 to 150. Cannot be combined with ids, fullNames.",
+     "description": "Maximum number of customers per page, 1 to 150. Ignored with ids, fullNames, which return every match in one page.",
      "schema": {
       "type": "integer",
       "minimum": 1,
@@ -5192,7 +5192,7 @@
     {
      "name": "ids",
      "required": false,
-     "description": "Return only the deposits with these QuickBooks IDs. Cannot be combined with limit, updatedAfter, updatedBefore, transactionDateFrom, transactionDateTo, transactionDateMacro, entityIds, accountIds, currencyIds. Returns every match in one page (`nextCursor` is null).",
+     "description": "Return only the deposits with these QuickBooks IDs. Cannot be combined with updatedAfter, updatedBefore, transactionDateFrom, transactionDateTo, transactionDateMacro, entityIds, accountIds, currencyIds. Returns every match in one page (`nextCursor` is null); limit is ignored.",
      "schema": {
       "type": "array",
       "items": {
@@ -5207,7 +5207,7 @@
     {
      "name": "limit",
      "required": false,
-     "description": "Maximum number of deposits per page, 1 to 150. Cannot be combined with ids.",
+     "description": "Maximum number of deposits per page, 1 to 150. Ignored with ids, which return every match in one page.",
      "schema": {
       "type": "integer",
       "minimum": 1,
@@ -5484,7 +5484,7 @@
     {
      "name": "ids",
      "required": false,
-     "description": "Return only the discount items with these QuickBooks IDs. Cannot be combined with fullNames, limit, status, updatedAfter, updatedBefore, nameStartsWith, nameContains, nameEndsWith, nameFrom, nameTo, classIds. Returns every match in one page (`nextCursor` is null).",
+     "description": "Return only the discount items with these QuickBooks IDs. Cannot be combined with fullNames, status, updatedAfter, updatedBefore, nameStartsWith, nameContains, nameEndsWith, nameFrom, nameTo, classIds. Returns every match in one page (`nextCursor` is null); limit is ignored.",
      "schema": {
       "type": "array",
       "items": {
@@ -5499,7 +5499,7 @@
     {
      "name": "fullNames",
      "required": false,
-     "description": "Return only the discount items with these full names (case-insensitive, including parent names separated by colons). Cannot be combined with ids, limit, status, updatedAfter, updatedBefore, nameStartsWith, nameContains, nameEndsWith, nameFrom, nameTo, classIds. Returns every match in one page (`nextCursor` is null).",
+     "description": "Return only the discount items with these full names (case-insensitive, including parent names separated by colons). Cannot be combined with ids, status, updatedAfter, updatedBefore, nameStartsWith, nameContains, nameEndsWith, nameFrom, nameTo, classIds. Returns every match in one page (`nextCursor` is null); limit is ignored.",
      "schema": {
       "type": "array",
       "items": {
@@ -5512,7 +5512,7 @@
     {
      "name": "limit",
      "required": false,
-     "description": "Maximum number of discount items per page, 1 to 150. Cannot be combined with ids, fullNames.",
+     "description": "Maximum number of discount items per page, 1 to 150. Ignored with ids, fullNames, which return every match in one page.",
      "schema": {
       "type": "integer",
       "minimum": 1,
@@ -5927,7 +5927,7 @@
     {
      "name": "ids",
      "required": false,
-     "description": "Return only the estimates with these QuickBooks IDs. Cannot be combined with refNumbers, limit, updatedAfter, updatedBefore, transactionDateFrom, transactionDateTo, transactionDateMacro, customerIds, accountIds, refNumberStartsWith, refNumberContains, refNumberEndsWith, refNumberFrom, refNumberTo, currencyIds. Returns every match in one page (`nextCursor` is null).",
+     "description": "Return only the estimates with these QuickBooks IDs. Cannot be combined with refNumbers, updatedAfter, updatedBefore, transactionDateFrom, transactionDateTo, transactionDateMacro, customerIds, accountIds, refNumberStartsWith, refNumberContains, refNumberEndsWith, refNumberFrom, refNumberTo, currencyIds. Returns every match in one page (`nextCursor` is null); limit is ignored.",
      "schema": {
       "type": "array",
       "items": {
@@ -5942,7 +5942,7 @@
     {
      "name": "refNumbers",
      "required": false,
-     "description": "Return only estimates with these reference numbers (case-insensitive). Cannot be combined with ids, limit, updatedAfter, updatedBefore, transactionDateFrom, transactionDateTo, transactionDateMacro, customerIds, accountIds, refNumberStartsWith, refNumberContains, refNumberEndsWith, refNumberFrom, refNumberTo, currencyIds. Returns every match in one page (`nextCursor` is null).",
+     "description": "Return only estimates with these reference numbers (case-insensitive). Cannot be combined with ids, updatedAfter, updatedBefore, transactionDateFrom, transactionDateTo, transactionDateMacro, customerIds, accountIds, refNumberStartsWith, refNumberContains, refNumberEndsWith, refNumberFrom, refNumberTo, currencyIds. Returns every match in one page (`nextCursor` is null); limit is ignored.",
      "schema": {
       "type": "array",
       "items": {
@@ -5955,7 +5955,7 @@
     {
      "name": "limit",
      "required": false,
-     "description": "Maximum number of estimates per page, 1 to 150. Cannot be combined with ids, refNumbers.",
+     "description": "Maximum number of estimates per page, 1 to 150. Ignored with ids, refNumbers, which return every match in one page.",
      "schema": {
       "type": "integer",
       "minimum": 1,
@@ -6575,7 +6575,7 @@
     {
      "name": "ids",
      "required": false,
-     "description": "Return only the inventory assembly items with these QuickBooks IDs. Cannot be combined with fullNames, limit, status, updatedAfter, updatedBefore, nameStartsWith, nameContains, nameEndsWith, nameFrom, nameTo, classIds. Returns every match in one page (`nextCursor` is null).",
+     "description": "Return only the inventory assembly items with these QuickBooks IDs. Cannot be combined with fullNames, status, updatedAfter, updatedBefore, nameStartsWith, nameContains, nameEndsWith, nameFrom, nameTo, classIds. Returns every match in one page (`nextCursor` is null); limit is ignored.",
      "schema": {
       "type": "array",
       "items": {
@@ -6590,7 +6590,7 @@
     {
      "name": "fullNames",
      "required": false,
-     "description": "Return only the inventory assembly items with these full names (case-insensitive, including parent names separated by colons). Cannot be combined with ids, limit, status, updatedAfter, updatedBefore, nameStartsWith, nameContains, nameEndsWith, nameFrom, nameTo, classIds. Returns every match in one page (`nextCursor` is null).",
+     "description": "Return only the inventory assembly items with these full names (case-insensitive, including parent names separated by colons). Cannot be combined with ids, status, updatedAfter, updatedBefore, nameStartsWith, nameContains, nameEndsWith, nameFrom, nameTo, classIds. Returns every match in one page (`nextCursor` is null); limit is ignored.",
      "schema": {
       "type": "array",
       "items": {
@@ -6603,7 +6603,7 @@
     {
      "name": "limit",
      "required": false,
-     "description": "Maximum number of inventory assembly items per page, 1 to 150. Cannot be combined with ids, fullNames.",
+     "description": "Maximum number of inventory assembly items per page, 1 to 150. Ignored with ids, fullNames, which return every match in one page.",
      "schema": {
       "type": "integer",
       "minimum": 1,
@@ -6809,7 +6809,7 @@
     {
      "name": "ids",
      "required": false,
-     "description": "Return only the inventory items with these QuickBooks IDs. Cannot be combined with fullNames, limit, status, updatedAfter, updatedBefore, nameStartsWith, nameContains, nameEndsWith, nameFrom, nameTo, classIds. Returns every match in one page (`nextCursor` is null).",
+     "description": "Return only the inventory items with these QuickBooks IDs. Cannot be combined with fullNames, status, updatedAfter, updatedBefore, nameStartsWith, nameContains, nameEndsWith, nameFrom, nameTo, classIds. Returns every match in one page (`nextCursor` is null); limit is ignored.",
      "schema": {
       "type": "array",
       "items": {
@@ -6824,7 +6824,7 @@
     {
      "name": "fullNames",
      "required": false,
-     "description": "Return only the inventory items with these full names (case-insensitive, including parent names separated by colons). Cannot be combined with ids, limit, status, updatedAfter, updatedBefore, nameStartsWith, nameContains, nameEndsWith, nameFrom, nameTo, classIds. Returns every match in one page (`nextCursor` is null).",
+     "description": "Return only the inventory items with these full names (case-insensitive, including parent names separated by colons). Cannot be combined with ids, status, updatedAfter, updatedBefore, nameStartsWith, nameContains, nameEndsWith, nameFrom, nameTo, classIds. Returns every match in one page (`nextCursor` is null); limit is ignored.",
      "schema": {
       "type": "array",
       "items": {
@@ -6837,7 +6837,7 @@
     {
      "name": "limit",
      "required": false,
-     "description": "Maximum number of inventory items per page, 1 to 150. Cannot be combined with ids, fullNames.",
+     "description": "Maximum number of inventory items per page, 1 to 150. Ignored with ids, fullNames, which return every match in one page.",
      "schema": {
       "type": "integer",
       "minimum": 1,
@@ -7243,7 +7243,7 @@
     {
      "name": "ids",
      "required": false,
-     "description": "Return only the invoices with these QuickBooks IDs. Cannot be combined with refNumbers, limit, updatedAfter, updatedBefore, transactionDateFrom, transactionDateTo, transactionDateMacro, customerIds, accountIds, refNumberStartsWith, refNumberContains, refNumberEndsWith, refNumberFrom, refNumberTo, currencyIds, paymentStatus. Returns every match in one page (`nextCursor` is null).",
+     "description": "Return only the invoices with these QuickBooks IDs. Cannot be combined with refNumbers, updatedAfter, updatedBefore, transactionDateFrom, transactionDateTo, transactionDateMacro, customerIds, accountIds, refNumberStartsWith, refNumberContains, refNumberEndsWith, refNumberFrom, refNumberTo, currencyIds, paymentStatus. Returns every match in one page (`nextCursor` is null); limit is ignored.",
      "schema": {
       "type": "array",
       "items": {
@@ -7258,7 +7258,7 @@
     {
      "name": "refNumbers",
      "required": false,
-     "description": "Return only invoices with these reference numbers (case-insensitive). Cannot be combined with ids, limit, updatedAfter, updatedBefore, transactionDateFrom, transactionDateTo, transactionDateMacro, customerIds, accountIds, refNumberStartsWith, refNumberContains, refNumberEndsWith, refNumberFrom, refNumberTo, currencyIds, paymentStatus. Returns every match in one page (`nextCursor` is null).",
+     "description": "Return only invoices with these reference numbers (case-insensitive). Cannot be combined with ids, updatedAfter, updatedBefore, transactionDateFrom, transactionDateTo, transactionDateMacro, customerIds, accountIds, refNumberStartsWith, refNumberContains, refNumberEndsWith, refNumberFrom, refNumberTo, currencyIds, paymentStatus. Returns every match in one page (`nextCursor` is null); limit is ignored.",
      "schema": {
       "type": "array",
       "items": {
@@ -7271,7 +7271,7 @@
     {
      "name": "limit",
      "required": false,
-     "description": "Maximum number of invoices per page, 1 to 150. Cannot be combined with ids, refNumbers.",
+     "description": "Maximum number of invoices per page, 1 to 150. Ignored with ids, refNumbers, which return every match in one page.",
      "schema": {
       "type": "integer",
       "minimum": 1,
@@ -7605,7 +7605,7 @@
     {
      "name": "ids",
      "required": false,
-     "description": "Return only the item groups with these QuickBooks IDs. Cannot be combined with names, limit, status, updatedAfter, updatedBefore, nameStartsWith, nameContains, nameEndsWith, nameFrom, nameTo. Returns every match in one page (`nextCursor` is null).",
+     "description": "Return only the item groups with these QuickBooks IDs. Cannot be combined with names, status, updatedAfter, updatedBefore, nameStartsWith, nameContains, nameEndsWith, nameFrom, nameTo. Returns every match in one page (`nextCursor` is null); limit is ignored.",
      "schema": {
       "type": "array",
       "items": {
@@ -7620,7 +7620,7 @@
     {
      "name": "names",
      "required": false,
-     "description": "Return only the item groups with these names (case-insensitive). Cannot be combined with ids, limit, status, updatedAfter, updatedBefore, nameStartsWith, nameContains, nameEndsWith, nameFrom, nameTo. Returns every match in one page (`nextCursor` is null).",
+     "description": "Return only the item groups with these names (case-insensitive). Cannot be combined with ids, status, updatedAfter, updatedBefore, nameStartsWith, nameContains, nameEndsWith, nameFrom, nameTo. Returns every match in one page (`nextCursor` is null); limit is ignored.",
      "schema": {
       "type": "array",
       "items": {
@@ -7633,7 +7633,7 @@
     {
      "name": "limit",
      "required": false,
-     "description": "Maximum number of item groups per page, 1 to 150. Cannot be combined with ids, names.",
+     "description": "Maximum number of item groups per page, 1 to 150. Ignored with ids, names, which return every match in one page.",
      "schema": {
       "type": "integer",
       "minimum": 1,
@@ -7824,7 +7824,7 @@
     {
      "name": "ids",
      "required": false,
-     "description": "Return only the item receipts with these QuickBooks IDs. Cannot be combined with refNumbers, limit, updatedAfter, updatedBefore, transactionDateFrom, transactionDateTo, transactionDateMacro, vendorIds, accountIds, refNumberStartsWith, refNumberContains, refNumberEndsWith, refNumberFrom, refNumberTo, currencyIds. Returns every match in one page (`nextCursor` is null).",
+     "description": "Return only the item receipts with these QuickBooks IDs. Cannot be combined with refNumbers, updatedAfter, updatedBefore, transactionDateFrom, transactionDateTo, transactionDateMacro, vendorIds, accountIds, refNumberStartsWith, refNumberContains, refNumberEndsWith, refNumberFrom, refNumberTo, currencyIds. Returns every match in one page (`nextCursor` is null); limit is ignored.",
      "schema": {
       "type": "array",
       "items": {
@@ -7839,7 +7839,7 @@
     {
      "name": "refNumbers",
      "required": false,
-     "description": "Return only item receipts with these reference numbers (case-insensitive). Cannot be combined with ids, limit, updatedAfter, updatedBefore, transactionDateFrom, transactionDateTo, transactionDateMacro, vendorIds, accountIds, refNumberStartsWith, refNumberContains, refNumberEndsWith, refNumberFrom, refNumberTo, currencyIds. Returns every match in one page (`nextCursor` is null).",
+     "description": "Return only item receipts with these reference numbers (case-insensitive). Cannot be combined with ids, updatedAfter, updatedBefore, transactionDateFrom, transactionDateTo, transactionDateMacro, vendorIds, accountIds, refNumberStartsWith, refNumberContains, refNumberEndsWith, refNumberFrom, refNumberTo, currencyIds. Returns every match in one page (`nextCursor` is null); limit is ignored.",
      "schema": {
       "type": "array",
       "items": {
@@ -7852,7 +7852,7 @@
     {
      "name": "limit",
      "required": false,
-     "description": "Maximum number of item receipts per page, 1 to 150. Cannot be combined with ids, refNumbers.",
+     "description": "Maximum number of item receipts per page, 1 to 150. Ignored with ids, refNumbers, which return every match in one page.",
      "schema": {
       "type": "integer",
       "minimum": 1,
@@ -8301,7 +8301,7 @@
     {
      "name": "ids",
      "required": false,
-     "description": "Return only the journal entries with these QuickBooks IDs. Cannot be combined with refNumbers, limit, updatedAfter, updatedBefore, transactionDateFrom, transactionDateTo, transactionDateMacro, entityIds, accountIds, refNumberStartsWith, refNumberContains, refNumberEndsWith, refNumberFrom, refNumberTo, currencyIds. Returns every match in one page (`nextCursor` is null).",
+     "description": "Return only the journal entries with these QuickBooks IDs. Cannot be combined with refNumbers, updatedAfter, updatedBefore, transactionDateFrom, transactionDateTo, transactionDateMacro, entityIds, accountIds, refNumberStartsWith, refNumberContains, refNumberEndsWith, refNumberFrom, refNumberTo, currencyIds. Returns every match in one page (`nextCursor` is null); limit is ignored.",
      "schema": {
       "type": "array",
       "items": {
@@ -8316,7 +8316,7 @@
     {
      "name": "refNumbers",
      "required": false,
-     "description": "Return only journal entries with these reference numbers (case-insensitive). Cannot be combined with ids, limit, updatedAfter, updatedBefore, transactionDateFrom, transactionDateTo, transactionDateMacro, entityIds, accountIds, refNumberStartsWith, refNumberContains, refNumberEndsWith, refNumberFrom, refNumberTo, currencyIds. Returns every match in one page (`nextCursor` is null).",
+     "description": "Return only journal entries with these reference numbers (case-insensitive). Cannot be combined with ids, updatedAfter, updatedBefore, transactionDateFrom, transactionDateTo, transactionDateMacro, entityIds, accountIds, refNumberStartsWith, refNumberContains, refNumberEndsWith, refNumberFrom, refNumberTo, currencyIds. Returns every match in one page (`nextCursor` is null); limit is ignored.",
      "schema": {
       "type": "array",
       "items": {
@@ -8329,7 +8329,7 @@
     {
      "name": "limit",
      "required": false,
-     "description": "Maximum number of journal entries per page, 1 to 150. Cannot be combined with ids, refNumbers.",
+     "description": "Maximum number of journal entries per page, 1 to 150. Ignored with ids, refNumbers, which return every match in one page.",
      "schema": {
       "type": "integer",
       "minimum": 1,
@@ -8639,7 +8639,7 @@
     {
      "name": "ids",
      "required": false,
-     "description": "Return only the non-inventory items with these QuickBooks IDs. Cannot be combined with fullNames, limit, status, updatedAfter, updatedBefore, nameStartsWith, nameContains, nameEndsWith, nameFrom, nameTo, classIds. Returns every match in one page (`nextCursor` is null).",
+     "description": "Return only the non-inventory items with these QuickBooks IDs. Cannot be combined with fullNames, status, updatedAfter, updatedBefore, nameStartsWith, nameContains, nameEndsWith, nameFrom, nameTo, classIds. Returns every match in one page (`nextCursor` is null); limit is ignored.",
      "schema": {
       "type": "array",
       "items": {
@@ -8654,7 +8654,7 @@
     {
      "name": "fullNames",
      "required": false,
-     "description": "Return only the non-inventory items with these full names (case-insensitive, including parent names separated by colons). Cannot be combined with ids, limit, status, updatedAfter, updatedBefore, nameStartsWith, nameContains, nameEndsWith, nameFrom, nameTo, classIds. Returns every match in one page (`nextCursor` is null).",
+     "description": "Return only the non-inventory items with these full names (case-insensitive, including parent names separated by colons). Cannot be combined with ids, status, updatedAfter, updatedBefore, nameStartsWith, nameContains, nameEndsWith, nameFrom, nameTo, classIds. Returns every match in one page (`nextCursor` is null); limit is ignored.",
      "schema": {
       "type": "array",
       "items": {
@@ -8667,7 +8667,7 @@
     {
      "name": "limit",
      "required": false,
-     "description": "Maximum number of non-inventory items per page, 1 to 150. Cannot be combined with ids, fullNames.",
+     "description": "Maximum number of non-inventory items per page, 1 to 150. Ignored with ids, fullNames, which return every match in one page.",
      "schema": {
       "type": "integer",
       "minimum": 1,
@@ -8873,7 +8873,7 @@
     {
      "name": "ids",
      "required": false,
-     "description": "Return only the other charge items with these QuickBooks IDs. Cannot be combined with fullNames, limit, status, updatedAfter, updatedBefore, nameStartsWith, nameContains, nameEndsWith, nameFrom, nameTo, classIds. Returns every match in one page (`nextCursor` is null).",
+     "description": "Return only the other charge items with these QuickBooks IDs. Cannot be combined with fullNames, status, updatedAfter, updatedBefore, nameStartsWith, nameContains, nameEndsWith, nameFrom, nameTo, classIds. Returns every match in one page (`nextCursor` is null); limit is ignored.",
      "schema": {
       "type": "array",
       "items": {
@@ -8888,7 +8888,7 @@
     {
      "name": "fullNames",
      "required": false,
-     "description": "Return only the other charge items with these full names (case-insensitive, including parent names separated by colons). Cannot be combined with ids, limit, status, updatedAfter, updatedBefore, nameStartsWith, nameContains, nameEndsWith, nameFrom, nameTo, classIds. Returns every match in one page (`nextCursor` is null).",
+     "description": "Return only the other charge items with these full names (case-insensitive, including parent names separated by colons). Cannot be combined with ids, status, updatedAfter, updatedBefore, nameStartsWith, nameContains, nameEndsWith, nameFrom, nameTo, classIds. Returns every match in one page (`nextCursor` is null); limit is ignored.",
      "schema": {
       "type": "array",
       "items": {
@@ -8901,7 +8901,7 @@
     {
      "name": "limit",
      "required": false,
-     "description": "Maximum number of other charge items per page, 1 to 150. Cannot be combined with ids, fullNames.",
+     "description": "Maximum number of other charge items per page, 1 to 150. Ignored with ids, fullNames, which return every match in one page.",
      "schema": {
       "type": "integer",
       "minimum": 1,
@@ -9950,7 +9950,7 @@
     {
      "name": "ids",
      "required": false,
-     "description": "Return only the purchase orders with these QuickBooks IDs. Cannot be combined with refNumbers, limit, updatedAfter, updatedBefore, transactionDateFrom, transactionDateTo, transactionDateMacro, vendorIds, accountIds, refNumberStartsWith, refNumberContains, refNumberEndsWith, refNumberFrom, refNumberTo, currencyIds. Returns every match in one page (`nextCursor` is null).",
+     "description": "Return only the purchase orders with these QuickBooks IDs. Cannot be combined with refNumbers, updatedAfter, updatedBefore, transactionDateFrom, transactionDateTo, transactionDateMacro, vendorIds, accountIds, refNumberStartsWith, refNumberContains, refNumberEndsWith, refNumberFrom, refNumberTo, currencyIds. Returns every match in one page (`nextCursor` is null); limit is ignored.",
      "schema": {
       "type": "array",
       "items": {
@@ -9965,7 +9965,7 @@
     {
      "name": "refNumbers",
      "required": false,
-     "description": "Return only purchase orders with these reference numbers (case-insensitive). Cannot be combined with ids, limit, updatedAfter, updatedBefore, transactionDateFrom, transactionDateTo, transactionDateMacro, vendorIds, accountIds, refNumberStartsWith, refNumberContains, refNumberEndsWith, refNumberFrom, refNumberTo, currencyIds. Returns every match in one page (`nextCursor` is null).",
+     "description": "Return only purchase orders with these reference numbers (case-insensitive). Cannot be combined with ids, updatedAfter, updatedBefore, transactionDateFrom, transactionDateTo, transactionDateMacro, vendorIds, accountIds, refNumberStartsWith, refNumberContains, refNumberEndsWith, refNumberFrom, refNumberTo, currencyIds. Returns every match in one page (`nextCursor` is null); limit is ignored.",
      "schema": {
       "type": "array",
       "items": {
@@ -9978,7 +9978,7 @@
     {
      "name": "limit",
      "required": false,
-     "description": "Maximum number of purchase orders per page, 1 to 150. Cannot be combined with ids, refNumbers.",
+     "description": "Maximum number of purchase orders per page, 1 to 150. Ignored with ids, refNumbers, which return every match in one page.",
      "schema": {
       "type": "integer",
       "minimum": 1,
@@ -10270,7 +10270,7 @@
     {
      "name": "ids",
      "required": false,
-     "description": "Return only the received payments with these QuickBooks IDs. Cannot be combined with refNumbers, limit, updatedAfter, updatedBefore, transactionDateFrom, transactionDateTo, transactionDateMacro, customerIds, accountIds, refNumberStartsWith, refNumberContains, refNumberEndsWith, refNumberFrom, refNumberTo, currencyIds. Returns every match in one page (`nextCursor` is null).",
+     "description": "Return only the received payments with these QuickBooks IDs. Cannot be combined with refNumbers, updatedAfter, updatedBefore, transactionDateFrom, transactionDateTo, transactionDateMacro, customerIds, accountIds, refNumberStartsWith, refNumberContains, refNumberEndsWith, refNumberFrom, refNumberTo, currencyIds. Returns every match in one page (`nextCursor` is null); limit is ignored.",
      "schema": {
       "type": "array",
       "items": {
@@ -10285,7 +10285,7 @@
     {
      "name": "refNumbers",
      "required": false,
-     "description": "Return only received payments with these reference numbers (case-insensitive). Cannot be combined with ids, limit, updatedAfter, updatedBefore, transactionDateFrom, transactionDateTo, transactionDateMacro, customerIds, accountIds, refNumberStartsWith, refNumberContains, refNumberEndsWith, refNumberFrom, refNumberTo, currencyIds. Returns every match in one page (`nextCursor` is null).",
+     "description": "Return only received payments with these reference numbers (case-insensitive). Cannot be combined with ids, updatedAfter, updatedBefore, transactionDateFrom, transactionDateTo, transactionDateMacro, customerIds, accountIds, refNumberStartsWith, refNumberContains, refNumberEndsWith, refNumberFrom, refNumberTo, currencyIds. Returns every match in one page (`nextCursor` is null); limit is ignored.",
      "schema": {
       "type": "array",
       "items": {
@@ -10298,7 +10298,7 @@
     {
      "name": "limit",
      "required": false,
-     "description": "Maximum number of received payments per page, 1 to 150. Cannot be combined with ids, refNumbers.",
+     "description": "Maximum number of received payments per page, 1 to 150. Ignored with ids, refNumbers, which return every match in one page.",
      "schema": {
       "type": "integer",
       "minimum": 1,
@@ -13270,7 +13270,7 @@
     {
      "name": "ids",
      "required": false,
-     "description": "Return only the sales orders with these QuickBooks IDs. Cannot be combined with refNumbers, limit, updatedAfter, updatedBefore, transactionDateFrom, transactionDateTo, transactionDateMacro, customerIds, refNumberStartsWith, refNumberContains, refNumberEndsWith, refNumberFrom, refNumberTo, currencyIds. Returns every match in one page (`nextCursor` is null).",
+     "description": "Return only the sales orders with these QuickBooks IDs. Cannot be combined with refNumbers, updatedAfter, updatedBefore, transactionDateFrom, transactionDateTo, transactionDateMacro, customerIds, refNumberStartsWith, refNumberContains, refNumberEndsWith, refNumberFrom, refNumberTo, currencyIds. Returns every match in one page (`nextCursor` is null); limit is ignored.",
      "schema": {
       "type": "array",
       "items": {
@@ -13285,7 +13285,7 @@
     {
      "name": "refNumbers",
      "required": false,
-     "description": "Return only sales orders with these reference numbers (case-insensitive). Cannot be combined with ids, limit, updatedAfter, updatedBefore, transactionDateFrom, transactionDateTo, transactionDateMacro, customerIds, refNumberStartsWith, refNumberContains, refNumberEndsWith, refNumberFrom, refNumberTo, currencyIds. Returns every match in one page (`nextCursor` is null).",
+     "description": "Return only sales orders with these reference numbers (case-insensitive). Cannot be combined with ids, updatedAfter, updatedBefore, transactionDateFrom, transactionDateTo, transactionDateMacro, customerIds, refNumberStartsWith, refNumberContains, refNumberEndsWith, refNumberFrom, refNumberTo, currencyIds. Returns every match in one page (`nextCursor` is null); limit is ignored.",
      "schema": {
       "type": "array",
       "items": {
@@ -13298,7 +13298,7 @@
     {
      "name": "limit",
      "required": false,
-     "description": "Maximum number of sales orders per page, 1 to 150. Cannot be combined with ids, refNumbers.",
+     "description": "Maximum number of sales orders per page, 1 to 150. Ignored with ids, refNumbers, which return every match in one page.",
      "schema": {
       "type": "integer",
       "minimum": 1,
@@ -13575,7 +13575,7 @@
     {
      "name": "ids",
      "required": false,
-     "description": "Return only the sales receipts with these QuickBooks IDs. Cannot be combined with refNumbers, limit, updatedAfter, updatedBefore, transactionDateFrom, transactionDateTo, transactionDateMacro, customerIds, accountIds, refNumberStartsWith, refNumberContains, refNumberEndsWith, refNumberFrom, refNumberTo, currencyIds. Returns every match in one page (`nextCursor` is null).",
+     "description": "Return only the sales receipts with these QuickBooks IDs. Cannot be combined with refNumbers, updatedAfter, updatedBefore, transactionDateFrom, transactionDateTo, transactionDateMacro, customerIds, accountIds, refNumberStartsWith, refNumberContains, refNumberEndsWith, refNumberFrom, refNumberTo, currencyIds. Returns every match in one page (`nextCursor` is null); limit is ignored.",
      "schema": {
       "type": "array",
       "items": {
@@ -13590,7 +13590,7 @@
     {
      "name": "refNumbers",
      "required": false,
-     "description": "Return only sales receipts with these reference numbers (case-insensitive). Cannot be combined with ids, limit, updatedAfter, updatedBefore, transactionDateFrom, transactionDateTo, transactionDateMacro, customerIds, accountIds, refNumberStartsWith, refNumberContains, refNumberEndsWith, refNumberFrom, refNumberTo, currencyIds. Returns every match in one page (`nextCursor` is null).",
+     "description": "Return only sales receipts with these reference numbers (case-insensitive). Cannot be combined with ids, updatedAfter, updatedBefore, transactionDateFrom, transactionDateTo, transactionDateMacro, customerIds, accountIds, refNumberStartsWith, refNumberContains, refNumberEndsWith, refNumberFrom, refNumberTo, currencyIds. Returns every match in one page (`nextCursor` is null); limit is ignored.",
      "schema": {
       "type": "array",
       "items": {
@@ -13603,7 +13603,7 @@
     {
      "name": "limit",
      "required": false,
-     "description": "Maximum number of sales receipts per page, 1 to 150. Cannot be combined with ids, refNumbers.",
+     "description": "Maximum number of sales receipts per page, 1 to 150. Ignored with ids, refNumbers, which return every match in one page.",
      "schema": {
       "type": "integer",
       "minimum": 1,
@@ -14331,7 +14331,7 @@
     {
      "name": "ids",
      "required": false,
-     "description": "Return only the sales tax group items with these QuickBooks IDs. Cannot be combined with names, limit, status, updatedAfter, updatedBefore, nameStartsWith, nameContains, nameEndsWith, nameFrom, nameTo. Returns every match in one page (`nextCursor` is null).",
+     "description": "Return only the sales tax group items with these QuickBooks IDs. Cannot be combined with names, status, updatedAfter, updatedBefore, nameStartsWith, nameContains, nameEndsWith, nameFrom, nameTo. Returns every match in one page (`nextCursor` is null); limit is ignored.",
      "schema": {
       "type": "array",
       "items": {
@@ -14346,7 +14346,7 @@
     {
      "name": "names",
      "required": false,
-     "description": "Return only the sales tax group items with these names (case-insensitive). Cannot be combined with ids, limit, status, updatedAfter, updatedBefore, nameStartsWith, nameContains, nameEndsWith, nameFrom, nameTo. Returns every match in one page (`nextCursor` is null).",
+     "description": "Return only the sales tax group items with these names (case-insensitive). Cannot be combined with ids, status, updatedAfter, updatedBefore, nameStartsWith, nameContains, nameEndsWith, nameFrom, nameTo. Returns every match in one page (`nextCursor` is null); limit is ignored.",
      "schema": {
       "type": "array",
       "items": {
@@ -14359,7 +14359,7 @@
     {
      "name": "limit",
      "required": false,
-     "description": "Maximum number of sales tax group items per page, 1 to 150. Cannot be combined with ids, names.",
+     "description": "Maximum number of sales tax group items per page, 1 to 150. Ignored with ids, names, which return every match in one page.",
      "schema": {
       "type": "integer",
       "minimum": 1,
@@ -14550,7 +14550,7 @@
     {
      "name": "ids",
      "required": false,
-     "description": "Return only the sales tax items with these QuickBooks IDs. Cannot be combined with names, limit, status, updatedAfter, updatedBefore, nameStartsWith, nameContains, nameEndsWith, nameFrom, nameTo, classIds. Returns every match in one page (`nextCursor` is null).",
+     "description": "Return only the sales tax items with these QuickBooks IDs. Cannot be combined with names, status, updatedAfter, updatedBefore, nameStartsWith, nameContains, nameEndsWith, nameFrom, nameTo, classIds. Returns every match in one page (`nextCursor` is null); limit is ignored.",
      "schema": {
       "type": "array",
       "items": {
@@ -14565,7 +14565,7 @@
     {
      "name": "names",
      "required": false,
-     "description": "Return only the sales tax items with these names (case-insensitive). Cannot be combined with ids, limit, status, updatedAfter, updatedBefore, nameStartsWith, nameContains, nameEndsWith, nameFrom, nameTo, classIds. Returns every match in one page (`nextCursor` is null).",
+     "description": "Return only the sales tax items with these names (case-insensitive). Cannot be combined with ids, status, updatedAfter, updatedBefore, nameStartsWith, nameContains, nameEndsWith, nameFrom, nameTo, classIds. Returns every match in one page (`nextCursor` is null); limit is ignored.",
      "schema": {
       "type": "array",
       "items": {
@@ -14578,7 +14578,7 @@
     {
      "name": "limit",
      "required": false,
-     "description": "Maximum number of sales tax items per page, 1 to 150. Cannot be combined with ids, names.",
+     "description": "Maximum number of sales tax items per page, 1 to 150. Ignored with ids, names, which return every match in one page.",
      "schema": {
       "type": "integer",
       "minimum": 1,
@@ -14784,7 +14784,7 @@
     {
      "name": "ids",
      "required": false,
-     "description": "Return only the sales tax payment checks with these QuickBooks IDs. Cannot be combined with refNumbers, limit, updatedAfter, updatedBefore, transactionDateFrom, transactionDateTo, transactionDateMacro, vendorIds, accountIds, itemIds, refNumberStartsWith, refNumberContains, refNumberEndsWith, refNumberFrom, refNumberTo. Returns every match in one page (`nextCursor` is null).",
+     "description": "Return only the sales tax payment checks with these QuickBooks IDs. Cannot be combined with refNumbers, updatedAfter, updatedBefore, transactionDateFrom, transactionDateTo, transactionDateMacro, vendorIds, accountIds, itemIds, refNumberStartsWith, refNumberContains, refNumberEndsWith, refNumberFrom, refNumberTo. Returns every match in one page (`nextCursor` is null); limit is ignored.",
      "schema": {
       "type": "array",
       "items": {
@@ -14799,7 +14799,7 @@
     {
      "name": "refNumbers",
      "required": false,
-     "description": "Return only sales tax payment checks with these reference numbers (case-insensitive). Cannot be combined with ids, limit, updatedAfter, updatedBefore, transactionDateFrom, transactionDateTo, transactionDateMacro, vendorIds, accountIds, itemIds, refNumberStartsWith, refNumberContains, refNumberEndsWith, refNumberFrom, refNumberTo. Returns every match in one page (`nextCursor` is null).",
+     "description": "Return only sales tax payment checks with these reference numbers (case-insensitive). Cannot be combined with ids, updatedAfter, updatedBefore, transactionDateFrom, transactionDateTo, transactionDateMacro, vendorIds, accountIds, itemIds, refNumberStartsWith, refNumberContains, refNumberEndsWith, refNumberFrom, refNumberTo. Returns every match in one page (`nextCursor` is null); limit is ignored.",
      "schema": {
       "type": "array",
       "items": {
@@ -14812,7 +14812,7 @@
     {
      "name": "limit",
      "required": false,
-     "description": "Maximum number of sales tax payment checks per page, 1 to 150. Cannot be combined with ids, refNumbers.",
+     "description": "Maximum number of sales tax payment checks per page, 1 to 150. Ignored with ids, refNumbers, which return every match in one page.",
      "schema": {
       "type": "integer",
       "minimum": 1,
@@ -15095,7 +15095,7 @@
     {
      "name": "ids",
      "required": false,
-     "description": "Return only the service items with these QuickBooks IDs. Cannot be combined with fullNames, limit, status, updatedAfter, updatedBefore, nameStartsWith, nameContains, nameEndsWith, nameFrom, nameTo, classIds. Returns every match in one page (`nextCursor` is null).",
+     "description": "Return only the service items with these QuickBooks IDs. Cannot be combined with fullNames, status, updatedAfter, updatedBefore, nameStartsWith, nameContains, nameEndsWith, nameFrom, nameTo, classIds. Returns every match in one page (`nextCursor` is null); limit is ignored.",
      "schema": {
       "type": "array",
       "items": {
@@ -15110,7 +15110,7 @@
     {
      "name": "fullNames",
      "required": false,
-     "description": "Return only the service items with these full names (case-insensitive, including parent names separated by colons). Cannot be combined with ids, limit, status, updatedAfter, updatedBefore, nameStartsWith, nameContains, nameEndsWith, nameFrom, nameTo, classIds. Returns every match in one page (`nextCursor` is null).",
+     "description": "Return only the service items with these full names (case-insensitive, including parent names separated by colons). Cannot be combined with ids, status, updatedAfter, updatedBefore, nameStartsWith, nameContains, nameEndsWith, nameFrom, nameTo, classIds. Returns every match in one page (`nextCursor` is null); limit is ignored.",
      "schema": {
       "type": "array",
       "items": {
@@ -15123,7 +15123,7 @@
     {
      "name": "limit",
      "required": false,
-     "description": "Maximum number of service items per page, 1 to 150. Cannot be combined with ids, fullNames.",
+     "description": "Maximum number of service items per page, 1 to 150. Ignored with ids, fullNames, which return every match in one page.",
      "schema": {
       "type": "integer",
       "minimum": 1,
@@ -15683,7 +15683,7 @@
     {
      "name": "ids",
      "required": false,
-     "description": "Return only the subtotal items with these QuickBooks IDs. Cannot be combined with names, limit, status, updatedAfter, updatedBefore, nameStartsWith, nameContains, nameEndsWith, nameFrom, nameTo. Returns every match in one page (`nextCursor` is null).",
+     "description": "Return only the subtotal items with these QuickBooks IDs. Cannot be combined with names, status, updatedAfter, updatedBefore, nameStartsWith, nameContains, nameEndsWith, nameFrom, nameTo. Returns every match in one page (`nextCursor` is null); limit is ignored.",
      "schema": {
       "type": "array",
       "items": {
@@ -15698,7 +15698,7 @@
     {
      "name": "names",
      "required": false,
-     "description": "Return only the subtotal items with these names (case-insensitive). Cannot be combined with ids, limit, status, updatedAfter, updatedBefore, nameStartsWith, nameContains, nameEndsWith, nameFrom, nameTo. Returns every match in one page (`nextCursor` is null).",
+     "description": "Return only the subtotal items with these names (case-insensitive). Cannot be combined with ids, status, updatedAfter, updatedBefore, nameStartsWith, nameContains, nameEndsWith, nameFrom, nameTo. Returns every match in one page (`nextCursor` is null); limit is ignored.",
      "schema": {
       "type": "array",
       "items": {
@@ -15711,7 +15711,7 @@
     {
      "name": "limit",
      "required": false,
-     "description": "Maximum number of subtotal items per page, 1 to 150. Cannot be combined with ids, names.",
+     "description": "Maximum number of subtotal items per page, 1 to 150. Ignored with ids, names, which return every match in one page.",
      "schema": {
       "type": "integer",
       "minimum": 1,
@@ -15917,7 +15917,7 @@
     {
      "name": "ids",
      "required": false,
-     "description": "Return only the time tracking activities with these QuickBooks IDs. Cannot be combined with limit, updatedAfter, updatedBefore, transactionDateFrom, transactionDateTo, transactionDateMacro, entityIds. Returns every match in one page (`nextCursor` is null).",
+     "description": "Return only the time tracking activities with these QuickBooks IDs. Cannot be combined with updatedAfter, updatedBefore, transactionDateFrom, transactionDateTo, transactionDateMacro, entityIds. Returns every match in one page (`nextCursor` is null); limit is ignored.",
      "schema": {
       "type": "array",
       "items": {
@@ -15932,7 +15932,7 @@
     {
      "name": "limit",
      "required": false,
-     "description": "Maximum number of time tracking activities per page, 1 to 150. Cannot be combined with ids.",
+     "description": "Maximum number of time tracking activities per page, 1 to 150. Ignored with ids, which return every match in one page.",
      "schema": {
       "type": "integer",
       "minimum": 1,
@@ -16143,7 +16143,7 @@
     {
      "name": "ids",
      "required": false,
-     "description": "Return only the transactions with these QuickBooks IDs. Cannot be combined with limit, refNumbers, refNumberStartsWith, refNumberContains, refNumberEndsWith, refNumberFrom, refNumberTo, updatedAfter, updatedBefore, updatedDateMacro, transactionDateFrom, transactionDateTo, transactionDateMacro, entityType, entityIds, accountType, accountIds, itemType, itemIds, classIds, transactionTypes, detailLevel, postingStatus, paymentStatus, currencyIds. Returns every match in one page (`nextCursor` is null).",
+     "description": "Return only the transactions with these QuickBooks IDs. Cannot be combined with refNumbers, refNumberStartsWith, refNumberContains, refNumberEndsWith, refNumberFrom, refNumberTo, updatedAfter, updatedBefore, updatedDateMacro, transactionDateFrom, transactionDateTo, transactionDateMacro, entityType, entityIds, accountType, accountIds, itemType, itemIds, classIds, transactionTypes, detailLevel, postingStatus, paymentStatus, currencyIds. Returns every match in one page (`nextCursor` is null); limit is ignored.",
      "schema": {
       "type": "array",
       "items": {
@@ -16158,7 +16158,7 @@
     {
      "name": "limit",
      "required": false,
-     "description": "Maximum number of transactions per page, 1 to 150. Cannot be combined with ids.",
+     "description": "Maximum number of transactions per page, 1 to 150. Ignored with ids, which return every match in one page.",
      "schema": {
       "type": "integer",
       "minimum": 1,
@@ -16508,7 +16508,7 @@
     {
      "name": "ids",
      "required": false,
-     "description": "Return only the transfers with these QuickBooks IDs. Cannot be combined with limit, updatedAfter, updatedBefore, transactionDateFrom, transactionDateTo, transactionDateMacro. Returns every match in one page (`nextCursor` is null).",
+     "description": "Return only the transfers with these QuickBooks IDs. Cannot be combined with updatedAfter, updatedBefore, transactionDateFrom, transactionDateTo, transactionDateMacro. Returns every match in one page (`nextCursor` is null); limit is ignored.",
      "schema": {
       "type": "array",
       "items": {
@@ -16523,7 +16523,7 @@
     {
      "name": "limit",
      "required": false,
-     "description": "Maximum number of transfers per page, 1 to 150. Cannot be combined with ids.",
+     "description": "Maximum number of transfers per page, 1 to 150. Ignored with ids, which return every match in one page.",
      "schema": {
       "type": "integer",
       "minimum": 1,
@@ -16869,7 +16869,7 @@
     {
      "name": "ids",
      "required": false,
-     "description": "Return only the vendor credits with these QuickBooks IDs. Cannot be combined with refNumbers, limit, updatedAfter, updatedBefore, transactionDateFrom, transactionDateTo, transactionDateMacro, vendorIds, accountIds, refNumberStartsWith, refNumberContains, refNumberEndsWith, refNumberFrom, refNumberTo, currencyIds. Returns every match in one page (`nextCursor` is null).",
+     "description": "Return only the vendor credits with these QuickBooks IDs. Cannot be combined with refNumbers, updatedAfter, updatedBefore, transactionDateFrom, transactionDateTo, transactionDateMacro, vendorIds, accountIds, refNumberStartsWith, refNumberContains, refNumberEndsWith, refNumberFrom, refNumberTo, currencyIds. Returns every match in one page (`nextCursor` is null); limit is ignored.",
      "schema": {
       "type": "array",
       "items": {
@@ -16884,7 +16884,7 @@
     {
      "name": "refNumbers",
      "required": false,
-     "description": "Return only vendor credits with these reference numbers (case-insensitive). Cannot be combined with ids, limit, updatedAfter, updatedBefore, transactionDateFrom, transactionDateTo, transactionDateMacro, vendorIds, accountIds, refNumberStartsWith, refNumberContains, refNumberEndsWith, refNumberFrom, refNumberTo, currencyIds. Returns every match in one page (`nextCursor` is null).",
+     "description": "Return only vendor credits with these reference numbers (case-insensitive). Cannot be combined with ids, updatedAfter, updatedBefore, transactionDateFrom, transactionDateTo, transactionDateMacro, vendorIds, accountIds, refNumberStartsWith, refNumberContains, refNumberEndsWith, refNumberFrom, refNumberTo, currencyIds. Returns every match in one page (`nextCursor` is null); limit is ignored.",
      "schema": {
       "type": "array",
       "items": {
@@ -16897,7 +16897,7 @@
     {
      "name": "limit",
      "required": false,
-     "description": "Maximum number of vendor credits per page, 1 to 150. Cannot be combined with ids, refNumbers.",
+     "description": "Maximum number of vendor credits per page, 1 to 150. Ignored with ids, refNumbers, which return every match in one page.",
      "schema": {
       "type": "integer",
       "minimum": 1,
@@ -17216,7 +17216,7 @@
     {
      "name": "ids",
      "required": false,
-     "description": "Return only the vendors with these QuickBooks IDs. Cannot be combined with names, limit, status, updatedAfter, updatedBefore, nameStartsWith, nameContains, nameEndsWith, nameFrom, nameTo, totalBalance, totalBalanceGreaterThan, totalBalanceGreaterThanOrEqualTo, totalBalanceLessThan, totalBalanceLessThanOrEqualTo, currencyIds, classIds. Returns every match in one page (`nextCursor` is null).",
+     "description": "Return only the vendors with these QuickBooks IDs. Cannot be combined with names, status, updatedAfter, updatedBefore, nameStartsWith, nameContains, nameEndsWith, nameFrom, nameTo, totalBalance, totalBalanceGreaterThan, totalBalanceGreaterThanOrEqualTo, totalBalanceLessThan, totalBalanceLessThanOrEqualTo, currencyIds, classIds. Returns every match in one page (`nextCursor` is null); limit is ignored.",
      "schema": {
       "type": "array",
       "items": {
@@ -17231,7 +17231,7 @@
     {
      "name": "names",
      "required": false,
-     "description": "Return only the vendors with these names (case-insensitive). Cannot be combined with ids, limit, status, updatedAfter, updatedBefore, nameStartsWith, nameContains, nameEndsWith, nameFrom, nameTo, totalBalance, totalBalanceGreaterThan, totalBalanceGreaterThanOrEqualTo, totalBalanceLessThan, totalBalanceLessThanOrEqualTo, currencyIds, classIds. Returns every match in one page (`nextCursor` is null).",
+     "description": "Return only the vendors with these names (case-insensitive). Cannot be combined with ids, status, updatedAfter, updatedBefore, nameStartsWith, nameContains, nameEndsWith, nameFrom, nameTo, totalBalance, totalBalanceGreaterThan, totalBalanceGreaterThanOrEqualTo, totalBalanceLessThan, totalBalanceLessThanOrEqualTo, currencyIds, classIds. Returns every match in one page (`nextCursor` is null); limit is ignored.",
      "schema": {
       "type": "array",
       "items": {
@@ -17244,7 +17244,7 @@
     {
      "name": "limit",
      "required": false,
-     "description": "Maximum number of vendors per page, 1 to 150. Cannot be combined with ids, names.",
+     "description": "Maximum number of vendors per page, 1 to 150. Ignored with ids, names, which return every match in one page.",
      "schema": {
       "type": "integer",
       "minimum": 1,
