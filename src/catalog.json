@@ -17785,7 +17785,7 @@
     "revisionNumber": {
      "type": "string",
      "maxLength": 16,
-     "description": "Current revision of this account. Send it unchanged when updating; a stale value is rejected."
+     "description": "Current revision of this account. Send it unchanged when updating; a stale value is rejected. QuickBooks changes it at most once per second, so a second edit within the same second keeps the same value. This API spaces its own consecutive writes to one object by over a second; edits made elsewhere in the same second are not detected."
     },
     "name": {
      "type": "string",
@@ -18439,7 +18439,7 @@
     "revisionNumber": {
      "type": "string",
      "maxLength": 16,
-     "description": "Current revision of this bill check payment. Send it unchanged when updating; a stale value is rejected."
+     "description": "Current revision of this bill check payment. Send it unchanged when updating; a stale value is rejected. QuickBooks changes it at most once per second, so a second edit within the same second keeps the same value. This API spaces its own consecutive writes to one object by over a second; edits made elsewhere in the same second are not detected."
     },
     "transactionDate": {
      "type": "string",
@@ -18668,7 +18668,7 @@
     "revisionNumber": {
      "type": "string",
      "maxLength": 16,
-     "description": "Current revision of this bill. Send it unchanged when updating; a stale value is rejected."
+     "description": "Current revision of this bill. Send it unchanged when updating; a stale value is rejected. QuickBooks changes it at most once per second, so a second edit within the same second keeps the same value. This API spaces its own consecutive writes to one object by over a second; edits made elsewhere in the same second are not detected."
     },
     "vendorId": {
      "type": "string",
@@ -18867,7 +18867,7 @@
     "revisionNumber": {
      "type": "string",
      "maxLength": 16,
-     "description": "Current revision of this build assembly. Send it unchanged when updating; a stale value is rejected."
+     "description": "Current revision of this build assembly. Send it unchanged when updating; a stale value is rejected. QuickBooks changes it at most once per second, so a second edit within the same second keeps the same value. This API spaces its own consecutive writes to one object by over a second; edits made elsewhere in the same second are not detected."
     },
     "inventorySiteId": {
      "type": "string",
@@ -19051,7 +19051,7 @@
     "revisionNumber": {
      "type": "string",
      "maxLength": 16,
-     "description": "Current revision of this check. Send it unchanged when updating; a stale value is rejected."
+     "description": "Current revision of this check. Send it unchanged when updating; a stale value is rejected. QuickBooks changes it at most once per second, so a second edit within the same second keeps the same value. This API spaces its own consecutive writes to one object by over a second; edits made elsewhere in the same second are not detected."
     },
     "bankAccountId": {
      "type": "string",
@@ -19184,7 +19184,7 @@
     "revisionNumber": {
      "type": "string",
      "maxLength": 16,
-     "description": "Current revision of this class. Send it unchanged when updating; a stale value is rejected."
+     "description": "Current revision of this class. Send it unchanged when updating; a stale value is rejected. QuickBooks changes it at most once per second, so a second edit within the same second keeps the same value. This API spaces its own consecutive writes to one object by over a second; edits made elsewhere in the same second are not detected."
     },
     "name": {
      "type": "string",
@@ -19276,7 +19276,7 @@
       "null"
      ],
      "maxLength": 16,
-     "description": "Current revision of this contacts. Send it unchanged when updating; a stale value is rejected.",
+     "description": "Current revision of this contacts. Send it unchanged when updating; a stale value is rejected. QuickBooks changes it at most once per second, so a second edit within the same second keeps the same value. This API spaces its own consecutive writes to one object by over a second; edits made elsewhere in the same second are not detected.",
      "x-daapi-clearable": true
     },
     "salutation": {
@@ -19410,7 +19410,7 @@
     "revisionNumber": {
      "type": "string",
      "maxLength": 16,
-     "description": "Current revision of this credit card charge. Send it unchanged when updating; a stale value is rejected."
+     "description": "Current revision of this credit card charge. Send it unchanged when updating; a stale value is rejected. QuickBooks changes it at most once per second, so a second edit within the same second keeps the same value. This API spaces its own consecutive writes to one object by over a second; edits made elsewhere in the same second are not detected."
     },
     "accountId": {
      "type": "string",
@@ -19603,7 +19603,7 @@
     "revisionNumber": {
      "type": "string",
      "maxLength": 16,
-     "description": "Current revision of this credit card credit. Send it unchanged when updating; a stale value is rejected."
+     "description": "Current revision of this credit card credit. Send it unchanged when updating; a stale value is rejected. QuickBooks changes it at most once per second, so a second edit within the same second keeps the same value. This API spaces its own consecutive writes to one object by over a second; edits made elsewhere in the same second are not detected."
     },
     "accountId": {
      "type": "string",
@@ -20418,7 +20418,7 @@
     "revisionNumber": {
      "type": "string",
      "maxLength": 16,
-     "description": "Current revision of this credit memo. Send it unchanged when updating; a stale value is rejected."
+     "description": "Current revision of this credit memo. Send it unchanged when updating; a stale value is rejected. QuickBooks changes it at most once per second, so a second edit within the same second keeps the same value. This API spaces its own consecutive writes to one object by over a second; edits made elsewhere in the same second are not detected."
     },
     "customerId": {
      "type": "string",
@@ -20685,7 +20685,7 @@
     "revisionNumber": {
      "type": "string",
      "maxLength": 16,
-     "description": "Current revision of this currency. Send it unchanged when updating; a stale value is rejected."
+     "description": "Current revision of this currency. Send it unchanged when updating; a stale value is rejected. QuickBooks changes it at most once per second, so a second edit within the same second keeps the same value. This API spaces its own consecutive writes to one object by over a second; edits made elsewhere in the same second are not detected."
     },
     "name": {
      "type": "string",
@@ -21103,7 +21103,7 @@
     "revisionNumber": {
      "type": "string",
      "maxLength": 16,
-     "description": "Current revision of this customer. Send it unchanged when updating; a stale value is rejected."
+     "description": "Current revision of this customer. Send it unchanged when updating; a stale value is rejected. QuickBooks changes it at most once per second, so a second edit within the same second keeps the same value. This API spaces its own consecutive writes to one object by over a second; edits made elsewhere in the same second are not detected."
     },
     "name": {
      "type": "string",
@@ -21894,7 +21894,7 @@
     "revisionNumber": {
      "type": "string",
      "maxLength": 16,
-     "description": "Current revision of this deposit. Send it unchanged when updating; a stale value is rejected."
+     "description": "Current revision of this deposit. Send it unchanged when updating; a stale value is rejected. QuickBooks changes it at most once per second, so a second edit within the same second keeps the same value. This API spaces its own consecutive writes to one object by over a second; edits made elsewhere in the same second are not detected."
     },
     "transactionDate": {
      "type": "string",
@@ -22034,7 +22034,7 @@
     "revisionNumber": {
      "type": "string",
      "maxLength": 16,
-     "description": "Current revision of this discount item. Send it unchanged when updating; a stale value is rejected."
+     "description": "Current revision of this discount item. Send it unchanged when updating; a stale value is rejected. QuickBooks changes it at most once per second, so a second edit within the same second keeps the same value. This API spaces its own consecutive writes to one object by over a second; edits made elsewhere in the same second are not detected."
     },
     "name": {
      "type": "string",
@@ -22578,7 +22578,7 @@
     "revisionNumber": {
      "type": "string",
      "maxLength": 16,
-     "description": "Current revision of this employee. Send it unchanged when updating; a stale value is rejected."
+     "description": "Current revision of this employee. Send it unchanged when updating; a stale value is rejected. QuickBooks changes it at most once per second, so a second edit within the same second keeps the same value. This API spaces its own consecutive writes to one object by over a second; edits made elsewhere in the same second are not detected."
     },
     "isActive": {
      "type": "boolean",
@@ -23456,7 +23456,7 @@
     "revisionNumber": {
      "type": "string",
      "maxLength": 16,
-     "description": "Current revision of this estimate. Send it unchanged when updating; a stale value is rejected."
+     "description": "Current revision of this estimate. Send it unchanged when updating; a stale value is rejected. QuickBooks changes it at most once per second, so a second edit within the same second keeps the same value. This API spaces its own consecutive writes to one object by over a second; edits made elsewhere in the same second are not detected."
     },
     "customerId": {
      "type": "string",
@@ -24088,7 +24088,7 @@
     "revisionNumber": {
      "type": "string",
      "maxLength": 16,
-     "description": "Current revision of this inventory adjustment. Send it unchanged when updating; a stale value is rejected."
+     "description": "Current revision of this inventory adjustment. Send it unchanged when updating; a stale value is rejected. QuickBooks changes it at most once per second, so a second edit within the same second keeps the same value. This API spaces its own consecutive writes to one object by over a second; edits made elsewhere in the same second are not detected."
     },
     "accountId": {
      "type": "string",
@@ -24310,7 +24310,7 @@
     "revisionNumber": {
      "type": "string",
      "maxLength": 16,
-     "description": "Current revision of this inventory assembly item. Send it unchanged when updating; a stale value is rejected."
+     "description": "Current revision of this inventory assembly item. Send it unchanged when updating; a stale value is rejected. QuickBooks changes it at most once per second, so a second edit within the same second keeps the same value. This API spaces its own consecutive writes to one object by over a second; edits made elsewhere in the same second are not detected."
     },
     "name": {
      "type": "string",
@@ -24607,7 +24607,7 @@
     "revisionNumber": {
      "type": "string",
      "maxLength": 16,
-     "description": "Current revision of this inventory item. Send it unchanged when updating; a stale value is rejected."
+     "description": "Current revision of this inventory item. Send it unchanged when updating; a stale value is rejected. QuickBooks changes it at most once per second, so a second edit within the same second keeps the same value. This API spaces its own consecutive writes to one object by over a second; edits made elsewhere in the same second are not detected."
     },
     "name": {
      "type": "string",
@@ -24810,7 +24810,7 @@
     "revisionNumber": {
      "type": "string",
      "maxLength": 16,
-     "description": "Current revision of this inventory site. Send it unchanged when updating; a stale value is rejected."
+     "description": "Current revision of this inventory site. Send it unchanged when updating; a stale value is rejected. QuickBooks changes it at most once per second, so a second edit within the same second keeps the same value. This API spaces its own consecutive writes to one object by over a second; edits made elsewhere in the same second are not detected."
     },
     "name": {
      "type": "string",
@@ -25482,7 +25482,7 @@
     "revisionNumber": {
      "type": "string",
      "maxLength": 16,
-     "description": "Current revision of this invoice. Send it unchanged when updating; a stale value is rejected."
+     "description": "Current revision of this invoice. Send it unchanged when updating; a stale value is rejected. QuickBooks changes it at most once per second, so a second edit within the same second keeps the same value. This API spaces its own consecutive writes to one object by over a second; edits made elsewhere in the same second are not detected."
     },
     "customerId": {
      "type": "string",
@@ -25892,7 +25892,7 @@
     "revisionNumber": {
      "type": "string",
      "maxLength": 16,
-     "description": "Current revision of this item group. Send it unchanged when updating; a stale value is rejected."
+     "description": "Current revision of this item group. Send it unchanged when updating; a stale value is rejected. QuickBooks changes it at most once per second, so a second edit within the same second keeps the same value. This API spaces its own consecutive writes to one object by over a second; edits made elsewhere in the same second are not detected."
     },
     "name": {
      "type": "string",
@@ -26300,7 +26300,7 @@
     "revisionNumber": {
      "type": "string",
      "maxLength": 16,
-     "description": "Current revision of this item receipt. Send it unchanged when updating; a stale value is rejected."
+     "description": "Current revision of this item receipt. Send it unchanged when updating; a stale value is rejected. QuickBooks changes it at most once per second, so a second edit within the same second keeps the same value. This API spaces its own consecutive writes to one object by over a second; edits made elsewhere in the same second are not detected."
     },
     "vendorId": {
      "type": "string",
@@ -26586,7 +26586,7 @@
     "revisionNumber": {
      "type": "string",
      "maxLength": 16,
-     "description": "Current revision of this journal entry. Send it unchanged when updating; a stale value is rejected."
+     "description": "Current revision of this journal entry. Send it unchanged when updating; a stale value is rejected. QuickBooks changes it at most once per second, so a second edit within the same second keeps the same value. This API spaces its own consecutive writes to one object by over a second; edits made elsewhere in the same second are not detected."
     },
     "transactionDate": {
      "type": "string",
@@ -26831,7 +26831,7 @@
     "revisionNumber": {
      "type": "string",
      "maxLength": 16,
-     "description": "Current revision of this non-inventory item. Send it unchanged when updating; a stale value is rejected."
+     "description": "Current revision of this non-inventory item. Send it unchanged when updating; a stale value is rejected. QuickBooks changes it at most once per second, so a second edit within the same second keeps the same value. This API spaces its own consecutive writes to one object by over a second; edits made elsewhere in the same second are not detected."
     },
     "name": {
      "type": "string",
@@ -27074,7 +27074,7 @@
     "revisionNumber": {
      "type": "string",
      "maxLength": 16,
-     "description": "Current revision of this other charge item. Send it unchanged when updating; a stale value is rejected."
+     "description": "Current revision of this other charge item. Send it unchanged when updating; a stale value is rejected. QuickBooks changes it at most once per second, so a second edit within the same second keeps the same value. This API spaces its own consecutive writes to one object by over a second; edits made elsewhere in the same second are not detected."
     },
     "name": {
      "type": "string",
@@ -27248,7 +27248,7 @@
     "revisionNumber": {
      "type": "string",
      "maxLength": 16,
-     "description": "Current revision of this other name. Send it unchanged when updating; a stale value is rejected."
+     "description": "Current revision of this other name. Send it unchanged when updating; a stale value is rejected. QuickBooks changes it at most once per second, so a second edit within the same second keeps the same value. This API spaces its own consecutive writes to one object by over a second; edits made elsewhere in the same second are not detected."
     },
     "name": {
      "type": "string",
@@ -27627,7 +27627,7 @@
     "revisionNumber": {
      "type": "string",
      "maxLength": 16,
-     "description": "Current revision of this price level. Send it unchanged when updating; a stale value is rejected."
+     "description": "Current revision of this price level. Send it unchanged when updating; a stale value is rejected. QuickBooks changes it at most once per second, so a second edit within the same second keeps the same value. This API spaces its own consecutive writes to one object by over a second; edits made elsewhere in the same second are not detected."
     },
     "name": {
      "type": "string",
@@ -28180,7 +28180,7 @@
     "revisionNumber": {
      "type": "string",
      "maxLength": 16,
-     "description": "Current revision of this purchase order. Send it unchanged when updating; a stale value is rejected."
+     "description": "Current revision of this purchase order. Send it unchanged when updating; a stale value is rejected. QuickBooks changes it at most once per second, so a second edit within the same second keeps the same value. This API spaces its own consecutive writes to one object by over a second; edits made elsewhere in the same second are not detected."
     },
     "vendorId": {
      "type": "string",
@@ -28456,7 +28456,7 @@
     "revisionNumber": {
      "type": "string",
      "maxLength": 16,
-     "description": "Current revision of this received payment. Send it unchanged when updating; a stale value is rejected."
+     "description": "Current revision of this received payment. Send it unchanged when updating; a stale value is rejected. QuickBooks changes it at most once per second, so a second edit within the same second keeps the same value. This API spaces its own consecutive writes to one object by over a second; edits made elsewhere in the same second are not detected."
     },
     "customerId": {
      "type": "string",
@@ -29758,7 +29758,7 @@
     "revisionNumber": {
      "type": "string",
      "maxLength": 16,
-     "description": "Current revision of this sales order. Send it unchanged when updating; a stale value is rejected."
+     "description": "Current revision of this sales order. Send it unchanged when updating; a stale value is rejected. QuickBooks changes it at most once per second, so a second edit within the same second keeps the same value. This API spaces its own consecutive writes to one object by over a second; edits made elsewhere in the same second are not detected."
     },
     "customerId": {
      "type": "string",
@@ -30561,7 +30561,7 @@
     "revisionNumber": {
      "type": "string",
      "maxLength": 16,
-     "description": "Current revision of this sales receipt. Send it unchanged when updating; a stale value is rejected."
+     "description": "Current revision of this sales receipt. Send it unchanged when updating; a stale value is rejected. QuickBooks changes it at most once per second, so a second edit within the same second keeps the same value. This API spaces its own consecutive writes to one object by over a second; edits made elsewhere in the same second are not detected."
     },
     "customerId": {
      "type": "string",
@@ -30786,7 +30786,7 @@
     "revisionNumber": {
      "type": "string",
      "maxLength": 16,
-     "description": "Current revision of this sales representative. Send it unchanged when updating; a stale value is rejected."
+     "description": "Current revision of this sales representative. Send it unchanged when updating; a stale value is rejected. QuickBooks changes it at most once per second, so a second edit within the same second keeps the same value. This API spaces its own consecutive writes to one object by over a second; edits made elsewhere in the same second are not detected."
     },
     "initial": {
      "type": [
@@ -30850,7 +30850,7 @@
     "revisionNumber": {
      "type": "string",
      "maxLength": 16,
-     "description": "Current revision of this sales tax code. Send it unchanged when updating; a stale value is rejected."
+     "description": "Current revision of this sales tax code. Send it unchanged when updating; a stale value is rejected. QuickBooks changes it at most once per second, so a second edit within the same second keeps the same value. This API spaces its own consecutive writes to one object by over a second; edits made elsewhere in the same second are not detected."
     },
     "name": {
      "type": "string",
@@ -30938,7 +30938,7 @@
     "revisionNumber": {
      "type": "string",
      "maxLength": 16,
-     "description": "Current revision of this sales tax group item. Send it unchanged when updating; a stale value is rejected."
+     "description": "Current revision of this sales tax group item. Send it unchanged when updating; a stale value is rejected. QuickBooks changes it at most once per second, so a second edit within the same second keeps the same value. This API spaces its own consecutive writes to one object by over a second; edits made elsewhere in the same second are not detected."
     },
     "name": {
      "type": "string",
@@ -31051,7 +31051,7 @@
     "revisionNumber": {
      "type": "string",
      "maxLength": 16,
-     "description": "Current revision of this sales tax item. Send it unchanged when updating; a stale value is rejected."
+     "description": "Current revision of this sales tax item. Send it unchanged when updating; a stale value is rejected. QuickBooks changes it at most once per second, so a second edit within the same second keeps the same value. This API spaces its own consecutive writes to one object by over a second; edits made elsewhere in the same second are not detected."
     },
     "name": {
      "type": "string",
@@ -31205,7 +31205,7 @@
     "revisionNumber": {
      "type": "string",
      "maxLength": 16,
-     "description": "Current revision of this sales tax payment check. Send it unchanged when updating; a stale value is rejected."
+     "description": "Current revision of this sales tax payment check. Send it unchanged when updating; a stale value is rejected. QuickBooks changes it at most once per second, so a second edit within the same second keeps the same value. This API spaces its own consecutive writes to one object by over a second; edits made elsewhere in the same second are not detected."
     },
     "transactionDate": {
      "type": "string",
@@ -31383,7 +31383,7 @@
     "revisionNumber": {
      "type": "string",
      "maxLength": 16,
-     "description": "Current revision of this service item. Send it unchanged when updating; a stale value is rejected."
+     "description": "Current revision of this service item. Send it unchanged when updating; a stale value is rejected. QuickBooks changes it at most once per second, so a second edit within the same second keeps the same value. This API spaces its own consecutive writes to one object by over a second; edits made elsewhere in the same second are not detected."
     },
     "name": {
      "type": "string",
@@ -31928,7 +31928,7 @@
     "revisionNumber": {
      "type": "string",
      "maxLength": 16,
-     "description": "Current revision of this subtotal item. Send it unchanged when updating; a stale value is rejected."
+     "description": "Current revision of this subtotal item. Send it unchanged when updating; a stale value is rejected. QuickBooks changes it at most once per second, so a second edit within the same second keeps the same value. This API spaces its own consecutive writes to one object by over a second; edits made elsewhere in the same second are not detected."
     },
     "name": {
      "type": "string",
@@ -32127,7 +32127,7 @@
     "revisionNumber": {
      "type": "string",
      "maxLength": 16,
-     "description": "Current revision of this time tracking activity. Send it unchanged when updating; a stale value is rejected."
+     "description": "Current revision of this time tracking activity. Send it unchanged when updating; a stale value is rejected. QuickBooks changes it at most once per second, so a second edit within the same second keeps the same value. This API spaces its own consecutive writes to one object by over a second; edits made elsewhere in the same second are not detected."
     },
     "transactionDate": {
      "type": "string",
@@ -32307,7 +32307,7 @@
     "revisionNumber": {
      "type": "string",
      "maxLength": 16,
-     "description": "Current revision of this transfer. Send it unchanged when updating; a stale value is rejected."
+     "description": "Current revision of this transfer. Send it unchanged when updating; a stale value is rejected. QuickBooks changes it at most once per second, so a second edit within the same second keeps the same value. This API spaces its own consecutive writes to one object by over a second; edits made elsewhere in the same second are not detected."
     },
     "transactionDate": {
      "type": "string",
@@ -32753,7 +32753,7 @@
     "revisionNumber": {
      "type": "string",
      "maxLength": 16,
-     "description": "Current revision of this vendor credit. Send it unchanged when updating; a stale value is rejected."
+     "description": "Current revision of this vendor credit. Send it unchanged when updating; a stale value is rejected. QuickBooks changes it at most once per second, so a second edit within the same second keeps the same value. This API spaces its own consecutive writes to one object by over a second; edits made elsewhere in the same second are not detected."
     },
     "vendorId": {
      "type": "string",
@@ -32839,7 +32839,7 @@
     "revisionNumber": {
      "type": "string",
      "maxLength": 16,
-     "description": "Current revision of this vendor. Send it unchanged when updating; a stale value is rejected."
+     "description": "Current revision of this vendor. Send it unchanged when updating; a stale value is rejected. QuickBooks changes it at most once per second, so a second edit within the same second keeps the same value. This API spaces its own consecutive writes to one object by over a second; edits made elsewhere in the same second are not detected."
     },
     "name": {
      "type": "string",
