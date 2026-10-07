@@ -6,7 +6,7 @@
 - Writes carry an idempotency key and are never retried blindly. Read-only keys are enforced by the API itself.
 - Runs over stdio with Node.js 20 or later on Windows, macOS and Linux, with no runtime dependencies.
 
-The current version is **0.1.1**. [MCP guide](https://www.desktopaccountingapi.com/docs/guides/mcp/) · [Documentation](https://www.desktopaccountingapi.com/docs/) · [Changelog](CHANGELOG.md) · [Status](https://status.desktopaccountingapi.com)
+The current version is **0.2.0**. [MCP guide](https://www.desktopaccountingapi.com/docs/guides/mcp/) · [Documentation](https://www.desktopaccountingapi.com/docs/) · [Changelog](CHANGELOG.md) · [Status](https://status.desktopaccountingapi.com)
 
 ## Hosted server or local package
 
@@ -37,14 +37,14 @@ Open **Settings > Developer > Edit Config** (`claude_desktop_config.json`) and a
   "mcpServers": {
     "quickbooks-desktop": {
       "command": "npx",
-      "args": ["-y", "@desktopaccountingapi/quickbooks-desktop-mcp@0.1.1"],
+      "args": ["-y", "@desktopaccountingapi/quickbooks-desktop-mcp@0.2.0"],
       "env": { "DAAPI_SECRET_KEY": "sk_live_..." }
     }
   }
 }
 ```
 
-If the file already has an `mcpServers` section, add the `quickbooks-desktop` entry inside it, then restart Claude Desktop. Drop `@0.1.1` from the package name to always run the latest version.
+If the file already has an `mcpServers` section, add the `quickbooks-desktop` entry inside it, then restart Claude Desktop. Drop `@0.2.0` from the package name to always run the latest version.
 
 ### Claude Code
 
@@ -118,6 +118,8 @@ Ask the agent: "List my QuickBooks Desktop end users and show the 5 most recent 
 | `--version` | | Print the version. |
 | `--help` | | Print the options. |
 
+We recommend a **read-only** secret key for AI tools. The API rejects every write made with it (`403 API_KEY_READ_ONLY`), whatever the client does, and the server detects such a key and hides write operations without `--read-only`. QuickBooks data in tool results is wrapped in `<untrusted-data>` with a note telling the model not to follow instructions found inside it.
+
 ## Tools
 
 | Tool | What it does |
@@ -140,7 +142,7 @@ With `--resources`, each operation of those resources also becomes its own tool,
 
 ## Read-only access
 
-Create a **read-only** secret key in the dashboard and use it in the setup above. The API enforces it for every client: a read-only key can call every `GET` operation and passthrough requests that contain only queries, and any other call returns `403 API_KEY_READ_ONLY` before anything reaches QuickBooks. Add `--read-only` (or `DAAPI_MCP_READ_ONLY=true`) to also hide write tools from the agent; the read-only key is what guarantees writes cannot happen.
+Create a **read-only** secret key in the dashboard and use it in the setup above. The API enforces it for every client: a read-only key can call every `GET` operation and passthrough requests that contain only queries, and any other call returns `403 API_KEY_READ_ONLY` before anything reaches QuickBooks. The server recognizes a read-only key and hides write tools from the agent on its own. Add `--read-only` (or `DAAPI_MCP_READ_ONLY=true`) to hide them for a full-access key too; the read-only key is what guarantees writes cannot happen.
 
 ## Use as a library
 
@@ -171,7 +173,7 @@ Clients send their own secret key as `Authorization: Bearer sk_...`; the server 
 ## Versioning and changelog
 
 - The package follows [semantic versioning](https://semver.org/) and is released together with the [Node.js](https://github.com/DesktopAccountingAPI/quickbooks-desktop-node), [Python](https://github.com/DesktopAccountingAPI/quickbooks-desktop-python), [.NET](https://github.com/DesktopAccountingAPI/quickbooks-desktop-dotnet) and [Java](https://github.com/DesktopAccountingAPI/quickbooks-desktop-java) SDKs, with the same version number.
-- It is generated from the Desktop Accounting API contract (sha256 `1cc3058cecb5...` for this release) by the same pipeline as the SDKs.
+- It is generated from the Desktop Accounting API contract (sha256 `6f5ac28d7c33...` for this release) by the same pipeline as the SDKs.
 - Every release is listed in [CHANGELOG.md](CHANGELOG.md) and tagged `v<version>` on GitHub.
 
 ## Support
