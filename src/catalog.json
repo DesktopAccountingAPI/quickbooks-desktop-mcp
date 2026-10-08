@@ -11490,13 +11490,10 @@
     },
     {
      "name": "fiscalYear",
-     "required": false,
+     "required": true,
      "description": "Filter by fiscal year.",
      "schema": {
-      "type": [
-       "integer",
-       "null"
-      ]
+      "type": "integer"
      }
     },
     {
@@ -33128,14 +33125,15 @@
        "request.outcome_unknown",
        "request.outcome_resolved",
        "connection.setup_completed",
-       "connection.status_changed"
+       "connection.status_changed",
+       "connection.company_file_remarked"
       ],
-      "description": "`request.succeeded`, `request.failed`, `request.canceled`: a request reached that status. `request.outcome_unknown`: a write was sent without a confirmed result. `request.outcome_resolved`: such a write was resolved. `connection.setup_completed`: an end user finished setup and the first check passed. `connection.status_changed`: the derived connection status changed (offline is announced after it holds for 30 seconds).",
+      "description": "`request.succeeded`, `request.failed`, `request.canceled`: a request reached that status. `request.outcome_unknown`: a write was sent without a confirmed result. `request.outcome_resolved`: such a write was resolved. `connection.setup_completed`: an end user finished setup and the first check passed. `connection.status_changed`: the derived connection status changed (offline is announced after it holds for 30 seconds). `connection.company_file_remarked`: the private marker that identifies the connected company file was created, written back after the file lost it (for example a restored backup) or adopted from the file; `data.reason` is `marker_created`, `marker_restored` or `marker_adopted`.",
       "x-daapi-open-enum": true,
       "example": "request.succeeded"
      },
      "minItems": 1,
-     "maxItems": 7,
+     "maxItems": 8,
      "description": "Event types to deliver. At least one."
     },
     "description": {
@@ -33182,14 +33180,15 @@
        "request.outcome_unknown",
        "request.outcome_resolved",
        "connection.setup_completed",
-       "connection.status_changed"
+       "connection.status_changed",
+       "connection.company_file_remarked"
       ],
-      "description": "`request.succeeded`, `request.failed`, `request.canceled`: a request reached that status. `request.outcome_unknown`: a write was sent without a confirmed result. `request.outcome_resolved`: such a write was resolved. `connection.setup_completed`: an end user finished setup and the first check passed. `connection.status_changed`: the derived connection status changed (offline is announced after it holds for 30 seconds).",
+      "description": "`request.succeeded`, `request.failed`, `request.canceled`: a request reached that status. `request.outcome_unknown`: a write was sent without a confirmed result. `request.outcome_resolved`: such a write was resolved. `connection.setup_completed`: an end user finished setup and the first check passed. `connection.status_changed`: the derived connection status changed (offline is announced after it holds for 30 seconds). `connection.company_file_remarked`: the private marker that identifies the connected company file was created, written back after the file lost it (for example a restored backup) or adopted from the file; `data.reason` is `marker_created`, `marker_restored` or `marker_adopted`.",
       "x-daapi-open-enum": true,
       "example": "request.succeeded"
      },
      "minItems": 1,
-     "maxItems": 7,
+     "maxItems": 8,
      "description": "Event types to deliver. At least one."
     },
     "description": {
