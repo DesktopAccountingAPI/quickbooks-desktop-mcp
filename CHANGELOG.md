@@ -2,7 +2,7 @@
 
 ## 0.1.0
 
-First release of `@desktopaccountingapi/quickbooks-desktop-mcp`, generated from API contract sha256 `79b06eb20083` (API version 1.0.0, 275 operations).
+First release of `@desktopaccountingapi/quickbooks-desktop-mcp`, generated from API contract sha256 `68a0d76d6b51` (API version 1.0.0, 275 operations).
 
 - Local MCP server over stdio: `npx -y @desktopaccountingapi/quickbooks-desktop-mcp`. Node.js 20 or later on Windows, macOS and Linux; no other runtime and no runtime dependencies.
 - Tools: `list_end_users`, `list_api_endpoints`, `get_api_endpoint_schema`, `invoke_api_endpoint`, `search_docs`; optional one tool per operation with `--resources`.
