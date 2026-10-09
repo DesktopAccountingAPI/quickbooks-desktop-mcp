@@ -4,10 +4,6 @@
   {
    "url": "https://api.desktopaccountingapi.com",
    "description": "Production"
-  },
-  {
-   "url": "https://api-staging.desktopaccountingapi.com",
-   "description": "Staging"
   }
  ],
  "endpoints": [
@@ -159,7 +155,7 @@
    "tag": "End users",
    "group": "Platform",
    "summary": "Reset the company file",
-   "description": "Re-binds the connection after the company file was moved or renamed (`mode: path`) or the company itself was renamed (`mode: identity`), which otherwise leaves the connection in `company_file_mismatch` or `QBD_COMPANY_FILE_NOT_FOUND`. Ask the end user to open the correct company file in QuickBooks first. The connection checks the file at the next Web Connector check-in. Queued requests stay queued.",
+   "description": "Re-binds the connection after the company file was moved or renamed (`mode: path`) or the company itself was renamed (`mode: identity`), which otherwise leaves the connection in `company_file_mismatch` or `QBD_COMPANY_FILE_NOT_FOUND`. Ask the end user to open the correct company file in QuickBooks first. The connection checks the file at the next Web Connector check-in. With `mode: identity`, the reset is refused with `409 COMPANY_FILE_RESET_BUSY` while a request is in flight (sent to QuickBooks, not finished): wait for it to finish, then retry. When it goes through, every request queued but not yet sent to QuickBooks is canceled with `REQUEST_CANCELED` (`details.reason: company_file_reset`), so a request accepted for one company file never runs against another; send them again after the reset. Requests already sent keep their usual outcome. With `mode: path`, queued requests stay queued.",
    "write": true,
    "endUser": false,
    "idempotent": true,
