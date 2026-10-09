@@ -91,6 +91,9 @@ else
   else
     log "no NODE_AUTH_TOKEN: publishing through npm trusted publishing (OIDC)"
     [[ -n "${ACTIONS_ID_TOKEN_REQUEST_URL:-}" ]] || fail "no token and no GitHub OIDC environment (needs permissions: id-token: write)"
+    npm_version=$(npm --version)
+    [[ "$(printf '%s\n' 11.5.1 "$npm_version" | sort -V | head -n1)" == "11.5.1" ]] || fail "npm $npm_version is too old for trusted publishing (needs 11.5.1 or later)"
+    log "npm $npm_version; the npm trusted publisher for this package must name this repository, publish.yml and the release environment"
     NPM_CONFIG_USERCONFIG="$TMP/readonly.npmrc" npm publish "$TARBALL" "${PUBLISH_ARGS[@]}"
   fi
 fi
