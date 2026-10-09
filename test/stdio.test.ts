@@ -63,6 +63,9 @@ test("stdio server with the official MCP client", async (t) => {
       const { tools } = await client.listTools();
       assert.equal(tools.length, 5);
       assert.match(text(await client.callTool({ name: "list_api_endpoints", arguments: { search: "invoice", kind: "read" } })), /qbd\.invoices\.list/);
+      // The searches the tool description and server instructions suggest find their operation.
+      assert.match(text(await client.callTool({ name: "list_api_endpoints", arguments: { search: "profit and loss" } })), /^qbd\.reports\.generalSummary .*profit_and_loss_standard/m);
+      assert.match(text(await client.callTool({ name: "list_api_endpoints", arguments: { search: "open invoices" } })), /^qbd\.reports\.generalDetail .*open_invoices/m);
       const schema = JSON.parse(text(await client.callTool({ name: "get_api_endpoint_schema", arguments: { endpoint: "qbd.invoices.create" } })));
       assert.equal(schema.changesData, true);
       assert.ok(schema.args.properties.body.$ref || schema.args.properties.body.type);
