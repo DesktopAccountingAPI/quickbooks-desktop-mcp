@@ -6,7 +6,7 @@
 - Writes carry an idempotency key and are never retried blindly. Read-only keys are enforced by the API itself.
 - Runs over stdio with Node.js 20 or later on Windows, macOS and Linux, with no runtime dependencies.
 
-The current version is **0.5.2**. [MCP guide](https://www.desktopaccountingapi.com/docs/guides/mcp/) · [Documentation](https://www.desktopaccountingapi.com/docs/) · [Changelog](CHANGELOG.md) · [Status](https://status.desktopaccountingapi.com)
+The current version is **0.5.3**. [MCP guide](https://www.desktopaccountingapi.com/docs/guides/mcp/) · [Documentation](https://www.desktopaccountingapi.com/docs/) · [Changelog](CHANGELOG.md) · [Status](https://status.desktopaccountingapi.com)
 
 ## Hosted server or local package
 
@@ -37,14 +37,14 @@ Open **Settings > Developer > Edit Config** (`claude_desktop_config.json`) and a
   "mcpServers": {
     "quickbooks-desktop": {
       "command": "npx",
-      "args": ["-y", "@desktopaccountingapi/quickbooks-desktop-mcp@0.5.2"],
+      "args": ["-y", "@desktopaccountingapi/quickbooks-desktop-mcp@0.5.3"],
       "env": { "DAAPI_SECRET_KEY": "sk_live_..." }
     }
   }
 }
 ```
 
-If the file already has an `mcpServers` section, add the `quickbooks-desktop` entry inside it, then restart Claude Desktop. Drop `@0.5.2` from the package name to always run the latest version.
+If the file already has an `mcpServers` section, add the `quickbooks-desktop` entry inside it, then restart Claude Desktop. Drop `@0.5.3` from the package name to always run the latest version.
 
 ### Claude Code
 
