@@ -6,7 +6,7 @@
 - Writes carry an idempotency key and are never retried blindly. Read-only keys are enforced by the API itself.
 - Runs over stdio with Node.js 20 or later on Windows, macOS and Linux, with no runtime dependencies.
 
-The current version is **0.5.3**. [MCP guide](https://www.desktopaccountingapi.com/docs/guides/mcp/) · [Documentation](https://www.desktopaccountingapi.com/docs/) · [Changelog](CHANGELOG.md) · [Status](https://status.desktopaccountingapi.com)
+The current version is **0.5.4**. [MCP guide](https://www.desktopaccountingapi.com/docs/guides/mcp/) · [Documentation](https://www.desktopaccountingapi.com/docs/) · [Changelog](CHANGELOG.md) · [Status](https://status.desktopaccountingapi.com)
 
 ## Hosted server or local package
 
@@ -37,14 +37,14 @@ Open **Settings > Developer > Edit Config** (`claude_desktop_config.json`) and a
   "mcpServers": {
     "quickbooks-desktop": {
       "command": "npx",
-      "args": ["-y", "@desktopaccountingapi/quickbooks-desktop-mcp@0.5.3"],
+      "args": ["-y", "@desktopaccountingapi/quickbooks-desktop-mcp@0.5.4"],
       "env": { "DAAPI_SECRET_KEY": "sk_live_..." }
     }
   }
 }
 ```
 
-If the file already has an `mcpServers` section, add the `quickbooks-desktop` entry inside it, then restart Claude Desktop. Drop `@0.5.3` from the package name to always run the latest version.
+If the file already has an `mcpServers` section, add the `quickbooks-desktop` entry inside it, then restart Claude Desktop. Drop `@0.5.4` from the package name to always run the latest version.
 
 ### Claude Code
 
@@ -173,7 +173,7 @@ Clients send their own secret key as `Authorization: Bearer sk_...`; the server 
 ## Versioning and changelog
 
 - The package follows [semantic versioning](https://semver.org/) and is released together with the [Node.js](https://github.com/DesktopAccountingAPI/quickbooks-desktop-node), [Python](https://github.com/DesktopAccountingAPI/quickbooks-desktop-python), [.NET](https://github.com/DesktopAccountingAPI/quickbooks-desktop-dotnet) and [Java](https://github.com/DesktopAccountingAPI/quickbooks-desktop-java) SDKs, with the same version number. Before 1.0, a minor version may contain breaking changes; they are marked Breaking in the [CHANGELOG](https://github.com/DesktopAccountingAPI/quickbooks-desktop-mcp/blob/main/CHANGELOG.md).
-- It is generated from the Desktop Accounting API contract (sha256 `09aa9517f466...` for this release) by the same pipeline as the SDKs.
+- It is generated from the Desktop Accounting API contract (sha256 `d4adaec794b6...` for this release) by the same pipeline as the SDKs.
 - Every release is listed in [CHANGELOG.md](CHANGELOG.md) and tagged `v<version>` on GitHub.
 
 ## Support
