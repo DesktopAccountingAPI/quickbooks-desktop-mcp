@@ -2,6 +2,11 @@
 
 ## Unreleased
 
+## 0.6.0 (2026-10-12)
+
+- `webhook_endpoints_rotate_secret` works: the API honors the idempotency key the server sends and answers an unknown endpoint with `404 RESOURCE_MISSING`.
+- A `QBD_OBJECT_IN_USE` error that is not retryable (a deletion of an object other records still use) tells the agent not to retry the call and to deactivate the object instead.
+
 ## 0.5.4 (2026-10-09)
 
 - Released in lockstep with the other Desktop Accounting API packages; no entries for this package.
