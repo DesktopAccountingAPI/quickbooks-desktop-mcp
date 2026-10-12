@@ -2,6 +2,12 @@
 
 ## Unreleased
 
+## 0.7.0 (2026-10-12)
+
+- `qbd.batch` runs up to 25 typed QuickBooks Desktop operations in one call through `invoke_api_endpoint`. Its schema stays compact: each member names its `operationId` and carries that operation's `pathParams`, `query` and `body` (`get_api_endpoint_schema` of the member's operation describes them). A read-only connection keeps `qbd.batch` for reads and refuses a batch with a write member before sending it.
+- A recovered `qbd.batch` (lost response, every create found in QuickBooks by its `externalId`) gives each create member's QuickBooks ID in `recoveredObjectId`; the agent retrieves the record by that ID instead of resending.
+- Change feed subscription tools: `change_feed_subscriptions_create`, `_list`, `_retrieve`, `_update` and `_delete`. A subscription polls the project's connected end users for changed and deleted records and sends `data.changed` webhooks with their IDs.
+
 ## 0.6.0 (2026-10-12)
 
 - `webhook_endpoints_rotate_secret` works: the API honors the idempotency key the server sends and answers an unknown endpoint with `404 RESOURCE_MISSING`.
