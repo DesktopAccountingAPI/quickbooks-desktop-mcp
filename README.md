@@ -1,12 +1,12 @@
 # Desktop Accounting API MCP server
 
-`@desktopaccountingapi/quickbooks-desktop-mcp` connects Claude, Cursor, VS Code, Codex and other AI tools to QuickBooks Desktop through [Desktop Accounting API](https://www.desktopaccountingapi.com/) and the [Model Context Protocol](https://modelcontextprotocol.io). Ask in plain English for overdue invoices, a vendor's payment history or last month's profit and loss, and the agent finds the operation, calls the API and answers from the company file.
+Connect an AI client with a read-only key to inspect a company's QuickBooks records. Start with a question such as "Which invoices for Harbor Parts still have a balance?" The server lets the agent choose an end user, find the operation and read its input schema before making the call. If QuickBooks cannot answer, the result includes the request ID and actions for the person who can resolve the problem.
 
-- Covers all 439 operations of API 1.0.0 through five compact tools, so it does not fill the agent's context.
+- Covers all 438 operations of API 1.0.0 through five compact tools, so it does not fill the agent's context.
 - Writes carry an idempotency key and are never retried blindly. Read-only keys are enforced by the API itself.
 - Runs over stdio with Node.js 20 or later on Windows, macOS and Linux, with no runtime dependencies.
 
-The current version is **0.7.0**. [MCP guide](https://www.desktopaccountingapi.com/docs/guides/mcp/) · [Documentation](https://www.desktopaccountingapi.com/docs/) · [Changelog](CHANGELOG.md) · [Status](https://status.desktopaccountingapi.com)
+The current version is **0.8.0**. [MCP guide](https://www.desktopaccountingapi.com/docs/guides/mcp/) · [Documentation](https://www.desktopaccountingapi.com/docs/) · [Changelog](CHANGELOG.md) · [Status](https://status.desktopaccountingapi.com)
 
 ## Hosted server or local package
 
@@ -22,13 +22,43 @@ Both expose the same tools and call the same API with your secret key:
 ## Before you start
 
 - Create a secret key in the [dashboard](https://www.desktopaccountingapi.com/dashboard) under **API keys**. Use a separate key per person or tool, so you can revoke one without affecting the rest. For tools that should only look things up, choose **Read-only** (see [Read-only access](#read-only-access)). Test projects issue `sk_test_...` keys, production projects `sk_live_...` keys.
-- Connect at least one end user's QuickBooks Desktop company file. QuickBooks must be open on that computer for data requests to succeed.
+- Connect at least one end user's QuickBooks Desktop company file. The Web Connector must be running on the connected Windows computer. QuickBooks can stay closed if the Admin granted access when QuickBooks is not running; otherwise leave the connected company file open. See [How the Web Connector opens QuickBooks](https://www.desktopaccountingapi.com/docs/help/guides/no-company-open/).
 
 Replace `sk_live_...` below with your key. Keep it in your client's configuration only, never in shared documents, chat or a repository.
 
+## Read-only access
+
+Create a **read-only** secret key in the dashboard and use it in the setup below. The API enforces it for every client: a read-only key can call GET operations, query-only passthrough and typed batches containing only reads. Any attempt to change data returns `403 API_KEY_READ_ONLY` before anything reaches QuickBooks. The server recognizes a read-only key and hides write tools from the agent on its own. Add `--read-only` (or `DAAPI_MCP_READ_ONLY=true`) to hide them for a full-access key too; the read-only key is what guarantees writes cannot happen.
+
+Confirm that write operations are absent from the tool list. A direct write with this key is refused by the API with `API_KEY_READ_ONLY`.
+
+## Verify it works
+
+Ask the agent: "List my QuickBooks Desktop end users and show the 5 most recent invoices for the first one." If it returns real data from the company file, you are set up. The key is checked when the agent first requests data, so a "connected" indicator alone does not prove the key works.
+
 ## Setup
 
-### Claude Desktop
+### Remote HTTP
+
+For remote MCP clients, configure `https://mcp.desktopaccountingapi.com/` and its `Authorization: Bearer sk_live_...` header. The hosted server needs no local process.
+
+#### Claude Code
+
+```sh
+claude mcp add --transport http quickbooks-desktop https://mcp.desktopaccountingapi.com/ --header "Authorization: Bearer sk_live_..."
+```
+
+Include `--scope user` to register this server for your user account across projects.
+
+#### Other remote clients
+
+Cursor, VS Code and Codex HTTP configurations are in the [MCP guide](https://www.desktopaccountingapi.com/docs/guides/mcp/#remote-http).
+
+### Local stdio
+
+The package runs as a local process with `DAAPI_SECRET_KEY`.
+
+#### Claude Desktop
 
 Open **Settings > Developer > Edit Config** (`claude_desktop_config.json`) and add:
 
@@ -37,30 +67,23 @@ Open **Settings > Developer > Edit Config** (`claude_desktop_config.json`) and a
   "mcpServers": {
     "quickbooks-desktop": {
       "command": "npx",
-      "args": ["-y", "@desktopaccountingapi/quickbooks-desktop-mcp@0.7.0"],
+      "args": ["-y", "@desktopaccountingapi/quickbooks-desktop-mcp@0.8.0"],
       "env": { "DAAPI_SECRET_KEY": "sk_live_..." }
     }
   }
 }
 ```
 
-If the file already has an `mcpServers` section, add the `quickbooks-desktop` entry inside it, then restart Claude Desktop. Drop `@0.7.0` from the package name to always run the latest version.
+Keep your existing server definitions. Insert a new `quickbooks-desktop` property under `mcpServers`, using the object shown above, then restart Claude Desktop to load the updated configuration. Drop `@0.8.0` from the package name to always run the latest version.
 
-### Claude Code
+
+#### Claude Code
 
 ```sh
 claude mcp add quickbooks-desktop --env DAAPI_SECRET_KEY=sk_live_... -- npx -y @desktopaccountingapi/quickbooks-desktop-mcp
 ```
 
-Or the hosted server:
-
-```sh
-claude mcp add --transport http quickbooks-desktop https://mcp.desktopaccountingapi.com/ --header "Authorization: Bearer sk_live_..."
-```
-
-Add `--scope user` to make it available in all your projects.
-
-### Cursor
+#### Cursor
 
 In `~/.cursor/mcp.json`, or `.cursor/mcp.json` inside a project:
 
@@ -76,11 +99,9 @@ In `~/.cursor/mcp.json`, or `.cursor/mcp.json` inside a project:
 }
 ```
 
-For the hosted server, replace `command`, `args` and `env` with `"url": "https://mcp.desktopaccountingapi.com/"` and `"headers": { "Authorization": "Bearer sk_live_..." }`.
+#### VS Code
 
-### VS Code
-
-Run **MCP: Open User Configuration** from the Command Palette, or use `.vscode/mcp.json` in a workspace. The top-level key is `servers`:
+Open the Command Palette and select **MCP: Open User Configuration**. For a project-specific setup, put the server definition in that project's `.vscode/mcp.json`. VS Code expects the definitions under `servers`.
 
 ```json
 {
@@ -98,13 +119,10 @@ Run **MCP: Open User Configuration** from the Command Palette, or use `.vscode/m
 
 VS Code asks for the key once and stores it securely, so it never sits in the file.
 
-### Other clients
 
-Any stdio client: run `npx -y @desktopaccountingapi/quickbooks-desktop-mcp` with `DAAPI_SECRET_KEY` set. Any client that supports remote servers with custom headers can use `https://mcp.desktopaccountingapi.com/` with `Authorization: Bearer sk_live_...`. Setup for Codex CLI and more clients is in the [MCP guide](https://www.desktopaccountingapi.com/docs/guides/mcp/).
+#### Other clients
 
-### Verify it works
-
-Ask the agent: "List my QuickBooks Desktop end users and show the 5 most recent invoices for the first one." If it returns real data from the company file, you are set up. The key is checked when the agent first requests data, so a "connected" indicator alone does not prove the key works.
+Run `npx -y @desktopaccountingapi/quickbooks-desktop-mcp` with `DAAPI_SECRET_KEY` set in the process environment.
 
 ## Options
 
@@ -135,14 +153,19 @@ With `--resources`, each operation of those resources also becomes its own tool,
 ## Writes and safety
 
 - By default the agent can read and write. The server instructs agents to describe each write and get your confirmation first.
-- Every write carries an `Idempotency-Key`, and the result shows it. Repeating a call with the same key returns the original result instead of writing twice.
+- Every write carries an `Idempotency-Key`, and the result shows it. Within the key's seven-day retention period, a completed or uncertain call is not sent again with the same key. After expiry, verify the earlier outcome before retrying old work.
 - Nothing is retried automatically. When a write's outcome is unknown, the result tells the agent not to resend it and how to check the request instead.
 - Errors include the `userFacingMessage` and `fixes` from the [error catalog](https://www.desktopaccountingapi.com/docs/errors/), so the agent can tell you what to do.
 - Every call appears in the dashboard's request log, like any other API call.
+- Tool annotations come from the API contract (`x-daapi-effect`, `x-daapi-idempotent`): deletes, voids, merges, passthrough, a company file identity reset and a secret rotation are `destructiveHint: true`; creates, updates, custom field values and cleared status are not. Your MCP client decides how to use the hints; keep approval enabled for write tools. `idempotentHint` is true for reads and for writes that only set a state (disabling or enabling a connection, canceling a queued request, a transaction's cleared status).
 
-## Read-only access
+### Deletes, merges and custom fields
 
-Create a **read-only** secret key in the dashboard and use it in the setup above. The API enforces it for every client: a read-only key can call every `GET` operation and passthrough requests that contain only queries, and any other call returns `403 API_KEY_READ_ONLY` before anything reaches QuickBooks. The server recognizes a read-only key and hides write tools from the agent on its own. Add `--read-only` (or `DAAPI_MCP_READ_ONLY=true`) to hide them for a full-access key too; the read-only key is what guarantees writes cannot happen.
+- **Confirm.** List-record deletes, merges and custom field definition deletes need `confirm: true`; transaction deletes and voids do not. For a delete it is a query argument at the top level of `args`; for a merge it is a field of `body`. Without it the server refuses the call before sending anything (and the API answers `400 INVALID_PARAMETER`). Boolean query arguments go out as `true` or `false`; the strings `"true"` and `"false"` are accepted too. Ask the user before you set it.
+- **What a list delete returns.** QuickBooks Desktop can accept a delete of a list record (a customer, an item, a class) and keep the record, inactive and readable by its ID. The result says which: `deleted: true` only when QuickBooks no longer returns the record; otherwise `deleted: false` with `deactivated` and `isActive`.
+- **Custom field values.** The `*_set_custom_field` operations take `body.operation`: `update` writes a value (use it for public fields, whether or not the record has one), `add` gives a record its first value of a private field, `delete` clears the value on that record and keeps the field.
+- **Owner IDs.** `ownerId` `"0"` is a public custom field, the kind people see in QuickBooks. A GUID is a private field owned by an application. A public definition can be assigned only to customers, vendors, employees and items, and cannot be deleted through the API. A custom field definition is addressed by `definitionName` in the path (its current name), so it never clashes with the `name` field of a body.
+- **Required arguments.** Required path and query arguments (for example `definitionName`, `confirm`, `ownerId` on a definition delete) are checked before the call, and a missing one returns an error naming it.
 
 ## Use as a library
 
@@ -173,7 +196,7 @@ Clients send their own secret key as `Authorization: Bearer sk_...`; the server 
 ## Versioning and changelog
 
 - The package follows [semantic versioning](https://semver.org/) and is released together with the [Node.js](https://github.com/DesktopAccountingAPI/quickbooks-desktop-node), [Python](https://github.com/DesktopAccountingAPI/quickbooks-desktop-python), [.NET](https://github.com/DesktopAccountingAPI/quickbooks-desktop-dotnet) and [Java](https://github.com/DesktopAccountingAPI/quickbooks-desktop-java) SDKs, with the same version number. Before 1.0, a minor version may contain breaking changes; they are marked Breaking in the [CHANGELOG](https://github.com/DesktopAccountingAPI/quickbooks-desktop-mcp/blob/main/CHANGELOG.md).
-- It is generated from the Desktop Accounting API contract (sha256 `f4cd9b5c733e...` for this release) by the same pipeline as the SDKs.
+- It is generated from the Desktop Accounting API contract (sha256 `149fc7b0599d...` for this release) by the same pipeline as the SDKs.
 - Every release is listed in [CHANGELOG.md](CHANGELOG.md) and tagged `v<version>` on GitHub.
 
 ## Support
