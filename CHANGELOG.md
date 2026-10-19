@@ -2,6 +2,10 @@
 
 ## Unreleased
 
+## 0.9.0 (2026-10-19)
+
+- Released in lockstep with the other Desktop Accounting API packages; no entries for this package.
+
 ## 0.8.0 (2026-10-13)
 
 - `invoke_api_endpoint` checks required query arguments before calling, like path arguments: a delete without `confirm` or a custom field definition delete without `ownerId` returns an error naming the argument and sends nothing. A boolean query argument must be `true`, `false`, `"true"` or `"false"`.
