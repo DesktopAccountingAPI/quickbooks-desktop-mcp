@@ -276,6 +276,44 @@
    "body": null
   },
   {
+   "name": "endUsers.removeConnectionInstall",
+   "method": "POST",
+   "path": "/v1/end-users/{id}/connection/installs/{installId}/remove",
+   "tag": "End users",
+   "group": "Platform",
+   "summary": "Remove a Web Connector install",
+   "description": "Stops one Web Connector install (one computer) from serving the connection; the connection's other installs keep serving it. Its next check-in is refused. If that computer has a session open, a request already in QuickBooks finishes and the session then ends; queued requests are served by the other installs. A write whose outcome became unknown on that computer keeps later writes waiting for up to 15 minutes, because QuickBooks there may still be applying it. Removing the last active install makes the connection offline at once (synchronous requests fail with `INTEGRATION_CONNECTION_NOT_ACTIVE`) until a new auth session adds one. Removing a removed or replaced install changes nothing. To add a computer, create an auth session with `installMode: \"add\"`.",
+   "write": true,
+   "endUser": false,
+   "idempotent": true,
+   "effect": "destructive",
+   "repeatable": true,
+   "pathParams": [
+    {
+     "name": "id",
+     "required": true,
+     "description": "Unique identifier for the end user.",
+     "schema": {
+      "type": "string",
+      "pattern": "^eu_[0-9a-hjkmnp-tv-z]{26}$",
+      "example": "eu_01j9x4m6v4c8k2t7q0r5s3w1zb"
+     }
+    },
+    {
+     "name": "installId",
+     "required": true,
+     "description": "Unique identifier for the Web Connector install (one connector file).",
+     "schema": {
+      "type": "string",
+      "pattern": "^ctr_[0-9a-hjkmnp-tv-z]{26}$",
+      "example": "ctr_01j9x4m6v4c8k2t7q0r5s3w1zg"
+     }
+    }
+   ],
+   "queryParams": [],
+   "body": null
+  },
+  {
    "name": "authSessions.create",
    "method": "POST",
    "path": "/v1/auth-sessions",
@@ -365,7 +403,7 @@
    "tag": "Batch",
    "group": "Platform",
    "summary": "Run several operations in one round trip",
-   "description": "Runs up to 25 typed QuickBooks Desktop operations together: they go to QuickBooks as one qbXML message set in one Web Connector round trip, in order, and the response holds one typed result per member. Each member is validated exactly like its own endpoint before anything is queued; an invalid member fails the whole call with `400` and `param` naming it (for example `requests[2].body.name`).\n\nWith `onError: stopOnError` (the default) QuickBooks skips every member after the first failure (`not_processed`); with `continueOnError` every member runs. A list member runs as one query of at most `limit` records (`cursor` is not accepted). A read-only key may batch reads only.\n\nWrites: send one `Idempotency-Key` for the whole batch. If the response from QuickBooks is lost, the call fails with `QBD_WRITE_OUTCOME_UNKNOWN` and `details.members` lists every member: each write member is `unknown` (never resend it blindly), and a read member never proves that a write applied. Billing counts the batch like the same requests sent one by one. See [Batch requests](https://www.desktopaccountingapi.com/docs/guides/batch/).",
+   "description": "Runs up to 25 typed QuickBooks Desktop operations together: they go to QuickBooks as one qbXML message set in one Web Connector round trip, in order, and the response holds one typed result per member. Each member is validated exactly like its own endpoint before anything is queued; an invalid member fails the whole call with `400` and `param` naming it (for example `requests[2].body.name`).\n\nWith `onError: stopOnError` (the default) QuickBooks skips every member after the first member it answers with an error (`not_processed`). A member QuickBooks answers with a warning, such as a query for an ID that does not exist, does not stop the batch, even when its result is `failed`. With `continueOnError` every member runs. A list member runs as one query of at most `limit` records (`cursor` is not accepted). A read-only key may batch reads only.\n\nWrites: send one `Idempotency-Key` for the whole batch. If the response from QuickBooks is lost, the call fails with `QBD_WRITE_OUTCOME_UNKNOWN` and `details.members` lists every member: each write member is `unknown` (never resend it blindly), and a read member never proves that a write applied. Billing counts the batch like the same requests sent one by one. See [Batch requests](https://www.desktopaccountingapi.com/docs/guides/batch/).",
    "write": true,
    "endUser": true,
    "idempotent": true,
@@ -389,7 +427,7 @@
         "stopOnError",
         "continueOnError"
        ],
-       "description": "`stopOnError` (default): when a member fails, QuickBooks skips every later member (`not_processed`). `continueOnError`: every member runs regardless of earlier failures.",
+       "description": "`stopOnError` (default): after a member QuickBooks answers with an error (status severity `Error`), QuickBooks skips every later member (`not_processed`). A member QuickBooks answers with a warning does not stop the batch, even when its result is `failed` (for example a query for an ID that does not exist: QuickBooks status 500, severity `Warn`, mapped to `QBD_OBJECT_NOT_FOUND`). `continueOnError`: every member runs regardless of earlier failures.",
        "example": "stopOnError"
       },
       "requests": {
@@ -1316,7 +1354,7 @@
         "canceled",
         "outcome_unknown"
        ],
-       "description": "`queued`: accepted and waiting for its turn or the next Web Connector check-in. `waiting_for_connection`: async request waiting for an offline connection. `sent`: handed to QuickBooks; it can no longer be canceled. `succeeded` and `failed` are final. `canceled`: canceled before it was sent. `outcome_unknown`: a write was sent and its result could not be confirmed.",
+       "description": "`queued`: accepted and waiting for its turn or the next Web Connector check-in. `waiting_for_connection`: async request waiting for an offline connection. `sent`: handed to QuickBooks; it can no longer be canceled. If the connector of a sent write goes silent, its `outcome` is `unknown` and its error explains the silence while the session remains open. `succeeded` and `failed` are final. `canceled`: canceled before it was sent. `outcome_unknown`: a write was sent and its result could not be confirmed.",
        "x-daapi-open-enum": true
       },
       "maxItems": 100
@@ -26196,6 +26234,17 @@
      "format": "uri",
      "description": "Absolute `https` URL to return the end user to when they finish (`?authSessionId=...&status=completed`) or stop (`status=canceled`), or when the link expires before setup completes (`status=expired`). Test projects may also use `http://localhost`.",
      "example": "https://app.example.com/quickbooks/connected"
+    },
+    "installMode": {
+     "type": "string",
+     "enum": [
+      "replace",
+      "add"
+     ],
+     "default": "replace",
+     "description": "What the Web Connector install this link creates does to the connection's other installs. `replace` (default): when setup finishes, the older installs are replaced and stop serving; use it for the first setup and when the end user moves to a new computer. `add`: the link adds another computer (up to 5 active installs) and the existing installs keep serving; the new install must open the same company file. `add` needs a connection that finished setup (otherwise `409 INTEGRATION_CONNECTION_NOT_SET_UP`).",
+     "example": "replace",
+     "x-daapi-open-enum": true
     }
    },
    "required": [
