@@ -2,6 +2,10 @@
 
 ## Unreleased
 
+## 0.9.1 (2026-10-21)
+
+- Merge tools describe `QBD_MERGE_NOT_ALLOWED`: QuickBooks refused the merge (status 3500) without naming a cause, nothing changed, and the merge must not be retried automatically. See the API changelog.
+
 ## 0.9.0 (2026-10-19)
 
 - Released in lockstep with the other Desktop Accounting API packages; no entries for this package.
