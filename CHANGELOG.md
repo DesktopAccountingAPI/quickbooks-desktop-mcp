@@ -2,6 +2,11 @@
 
 ## Unreleased
 
+## 0.10.0 (2026-10-27)
+
+- `invoke_api_endpoint` with the `requests.retrieve` operation returns `recoveredObjectId`: the id of the object a write created or changed when the platform recovered that write after a lost acknowledgement. Such a request shows `succeeded`, `applied` and `recovered: true` with `result` null; read the object by this id. Null for every other request.
+- A list you keep reading keeps its QuickBooks session open for up to 10 minutes. The 2-minute session cap ended longer list reads with `410 CURSOR_EXPIRED` (`session_ended`). See the API changelog.
+
 ## 0.9.1 (2026-10-21)
 
 - Merge tools describe `QBD_MERGE_NOT_ALLOWED`: QuickBooks refused the merge (status 3500) without naming a cause, nothing changed, and the merge must not be retried automatically. See the API changelog.
