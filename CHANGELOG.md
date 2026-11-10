@@ -2,6 +2,13 @@
 
 ## Unreleased
 
+## 0.11.0 (2026-11-10)
+
+- A list page too large for one tool result comes in parts, and no row is skipped. For a QuickBooks list, `nextCursor` first holds an MCP cursor (`mcp1.`) that returns the rest of the same page from its stored request result; the API's own `nextCursor` comes with the page's last rows. A platform list (end users, requests, webhooks) is read again with a smaller `limit`, so its `nextCursor` continues right after the last row shown. The note under the result says how many rows of the page remain and how to get them.
+- Every per-operation QuickBooks list tool declares `cursor` in its input schema, also for a list without a cursor of its own, so strict clients can send the `mcp1.` cursor. A large list page read through `requests.retrieve` (the next step after a `504`) also comes in parts. An `mcp1.` cursor works only for the end user its page was read for; for another end user the tool answers with an error.
+- `list_end_users` says when it stopped after 1,000 end users and more exist, and takes `cursor` to read the next 1,000. Before, a search could answer with no match when the end user was past the first 1,000.
+- `qbd.priceLevels.list` takes `itemId`, an alias of `itemIds` with Conductor's name for this filter. Both take one item ID; both with different values return `400 INVALID_PARAMETER`.
+
 ## 0.10.0 (2026-10-27)
 
 - `invoke_api_endpoint` with the `requests.retrieve` operation returns `recoveredObjectId`: the id of the object a write created or changed when the platform recovered that write after a lost acknowledgement. Such a request shows `succeeded`, `applied` and `recovered: true` with `result` null; read the object by this id. Null for every other request.

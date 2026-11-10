@@ -15789,6 +15789,16 @@
       "minItems": 1,
       "maxItems": 100
      }
+    },
+    {
+     "name": "itemId",
+     "required": false,
+     "description": "Alias of itemIds, the name Conductor uses for this filter. Return price levels for this item ID. Cannot be combined with ids, names. Send either name; both with different values return 400 INVALID_PARAMETER.",
+     "schema": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 36
+     }
     }
    ],
    "body": null
