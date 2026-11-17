@@ -15,6 +15,7 @@
 
 import type { Catalog } from './catalog.ts';
 import { McpServer, PROTOCOL_VERSIONS, type JsonRpcMessage } from './server.ts';
+import type { SignInOptions } from './tools.ts';
 
 export interface HttpOptions {
   catalog: Catalog;
@@ -27,9 +28,31 @@ export interface HttpOptions {
   apiHeaders?: Record<string, string>;
   /** Where GET from a browser goes (the setup guide). */
   guideUrl?: string;
+  /**
+   * Set only by the hosted Worker for its read-only URL and for sign-ins. `true`: read-only
+   * whatever the request asks. `false`: the credential is known to allow writes, so no read-only
+   * probe is sent (`read_only=true` and the Conductor header still apply). Unset: as before.
+   */
+  readOnly?: boolean;
+  /** Set only by the hosted Worker: the default end user fixed by the credential, over the request's. */
+  endUserId?: string;
+  /** Set only by the hosted Worker: the bearer is an AI tool sign-in (ToolOptions.signIn). */
+  signIn?: SignInOptions;
 }
 
 const MAX_BODY = 1_000_000;
+/**
+ * AI tool sign-ins only (hosted Worker): most JSON-RPC messages in one batch. A sign-in's request
+ * cap is 100 per 10 s (apps/api/src/ratelimit.ts SIGN_IN_GRANT_LIMIT): one batch may use a fifth of
+ * it, more than any client batches (2025-03-26 clients send a few calls at a time).
+ */
+export const SIGN_IN_MAX_BATCH = 20;
+/**
+ * AI tool sign-ins only: most API calls in flight at once for one HTTP request. QuickBooks answers
+ * one request at a time per company file and a connection holds at most 50 waiting synchronous
+ * callers, so one batch takes at most four of them.
+ */
+export const SIGN_IN_API_CONCURRENCY = 4;
 // No CORS headers (security review F9): MCP clients are desktop apps, command-line tools and
 // servers, which do not need them. Web pages cannot call this server from a browser, matching the
 // API, which accepts browser requests only from the docs "Try it" panel (apps/api/src/cors.ts), so
@@ -42,12 +65,29 @@ function json(body: unknown, status = 200, extra: Record<string, string> = {}): 
 
 const rpcError = (status: number, code: number, message: string) => json({ jsonrpc: '2.0', id: null, error: { code, message } }, status);
 
+/** `f` with at most `limit` calls in flight; the rest wait in order. */
+function bounded(f: typeof fetch, limit: number): typeof fetch {
+  let active = 0;
+  const waiting: (() => void)[] = [];
+  return (async (input: RequestInfo | URL, init?: RequestInit) => {
+    if (active >= limit) await new Promise<void>((resolve) => waiting.push(resolve));
+    else active++;
+    try {
+      return await f(input, init);
+    } finally {
+      const next = waiting.shift();
+      if (next) next();
+      else active--;
+    }
+  }) as typeof fetch;
+}
+
 const truthy = (v: string | null | undefined) => !!v && /^(1|true|yes|on)$/i.test(v);
 
 export async function handleMcpRequest(request: Request, o: HttpOptions): Promise<Response> {
   const url = new URL(request.url);
   if (request.method === 'OPTIONS') return new Response(null, { status: 204, headers: { Allow: 'POST, GET, OPTIONS' } });
-  if (request.method === 'GET' && !(request.headers.get('Accept') ?? '').includes('text/event-stream') && o.guideUrl) {
+  if (request.method === 'GET' && (request.headers.get('Accept') ?? '').includes('text/html') && o.guideUrl) {
     return new Response(null, { status: 302, headers: { Location: o.guideUrl, 'Cache-Control': 'no-store' } });
   }
   if (request.method !== 'POST') return json({ jsonrpc: '2.0', id: null, error: { code: -32000, message: 'Method not allowed. This server is stateless: send JSON-RPC messages with POST.' } }, 405, { Allow: 'POST, OPTIONS' });
@@ -73,20 +113,23 @@ export async function handleMcpRequest(request: Request, o: HttpOptions): Promis
     version: o.version,
     apiKey,
     baseUrl: o.apiBaseUrl,
-    endUserId: request.headers.get('Daapi-End-User-Id') ?? url.searchParams.get('end_user_id') ?? undefined,
+    endUserId: o.endUserId ?? request.headers.get('Daapi-End-User-Id') ?? url.searchParams.get('end_user_id') ?? undefined,
     // Conductor's read-only MCP header (Stainless client permissions, documented as
     // {"allow_http_gets":true}) is honored so a copied Conductor config stays read-only. Fail
     // closed: the header's presence alone means read-only, whatever its value or read_only.
-    readOnly: request.headers.has('x-stainless-mcp-client-permissions') ? true : url.searchParams.has('read_only') ? truthy(url.searchParams.get('read_only')) : undefined,
+    readOnly: o.readOnly === true ? true : ((request.headers.has('x-stainless-mcp-client-permissions') ? true : url.searchParams.has('read_only') ? truthy(url.searchParams.get('read_only')) : undefined) ?? o.readOnly),
     resources,
     docsUrl: o.docsUrl,
-    fetch: o.fetch,
+    // Sign-ins: at most SIGN_IN_API_CONCURRENCY API calls at once for this request. Keys unchanged.
+    fetch: o.signIn ? bounded(o.fetch ?? fetch, SIGN_IN_API_CONCURRENCY) : o.fetch,
     docsFetch: o.docsFetch,
     apiHeaders: o.apiHeaders,
     userAgent: `desktopaccountingapi-mcp/${o.version} (hosted)`,
+    ...(o.signIn ? { signIn: o.signIn } : {}),
   });
   if (Array.isArray(body)) {
     if (!body.length) return rpcError(400, -32600, 'Invalid Request: empty batch');
+    if (o.signIn && body.length > SIGN_IN_MAX_BATCH) return rpcError(400, -32600, `Invalid Request: a batch may contain at most ${SIGN_IN_MAX_BATCH} messages with an AI tool sign-in. Send fewer at a time.`);
     const out = (await Promise.all(body.map((m) => server.handle(m)))).filter((r): r is JsonRpcMessage => r !== null);
     return out.length ? json(out) : new Response(null, { status: 202, headers: CORS });
   }

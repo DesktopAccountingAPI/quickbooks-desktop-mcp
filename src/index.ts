@@ -5,4 +5,4 @@ export { buildCatalog, defsFor, type Catalog, type CatalogEndpoint, type Catalog
 export { handleMcpRequest, type HttpOptions } from './http.ts';
 export { isValidSecretKey, maskKey } from './key.ts';
 export { McpServer, PROTOCOL_VERSIONS, type JsonRpcMessage } from './server.ts';
-export { endpointArgsSchema, project, SERVER_NAME, splitDocs, toolName, Tools, type Tool, type ToolOptions, type ToolResult } from './tools.ts';
+export { endpointArgsSchema, project, SERVER_NAME, splitDocs, toolName, Tools, type SignInOptions, type Tool, type ToolOptions, type ToolResult } from './tools.ts';

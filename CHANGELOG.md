@@ -2,6 +2,10 @@
 
 ## Unreleased
 
+## 0.11.1 (2026-11-17)
+
+- No functional change for package users. The shared server code gained optional settings that only the hosted server uses for AI tool sign-ins; the stdio server never sets them, and secret keys behave as before.
+
 ## 0.11.0 (2026-11-10)
 
 - A list page too large for one tool result comes in parts, and no row is skipped. For a QuickBooks list, `nextCursor` first holds an MCP cursor (`mcp1.`) that returns the rest of the same page from its stored request result; the API's own `nextCursor` comes with the page's last rows. A platform list (end users, requests, webhooks) is read again with a smaller `limit`, so its `nextCursor` continues right after the last row shown. The note under the result says how many rows of the page remain and how to get them.

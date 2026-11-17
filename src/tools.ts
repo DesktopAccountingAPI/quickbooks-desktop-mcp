@@ -13,7 +13,9 @@
 //
 // Safety: the API enforces read-only keys server-side (403 API_KEY_READ_ONLY). `readOnly` here
 // also hides and refuses writes before they reach the API; when it is not set explicitly, the
-// server asks the API whether the key is read-only and, if so, behaves as read_only=true. Writes
+// server asks the API whether the key is read-only and, if so, behaves as read_only=true. The hosted
+// server's AI tool sign-ins (`signIn`) come with their scope, and also hide and refuse the
+// operations a sign-in can never call (the API refuses them too). Writes
 // always carry an Idempotency-Key; nothing is retried automatically, and an unknown outcome is
 // reported, never resent. Data that came from QuickBooks (or anything a third party can edit) is
 // returned inside <untrusted-data> tags with a note telling the model not to follow instructions
@@ -51,6 +53,18 @@ export interface ToolOptions {
   /** Largest tool result in characters before lists are cut. */
   maxResultChars?: number | undefined;
   userAgent?: string | undefined;
+  /**
+   * Hosted server only (apps/mcp): `apiKey` is an AI tool sign-in token, not a secret key. Never
+   * set for a secret key or by the stdio entry.
+   */
+  signIn?: SignInOptions | undefined;
+}
+
+export interface SignInOptions {
+  /** Whether a sign-in may call the operation at all; the others are hidden and refused. */
+  mayCall: (operation: string) => boolean;
+  /** Told after a read-only sign-in meets a write, for example how to connect with write access. */
+  readOnlyAdvice: string;
 }
 
 export interface Tool {
@@ -75,6 +89,10 @@ const RESERVED = new Set(['end_user_id', 'idempotency_key', 'fields', 'body']);
 const CONTINUATION = { type: 'string', description: 'Only to get the rest of a page this tool returned in parts: pass the nextCursor from that result (it starts with mcp1.).' };
 
 const text = (t: string, isError = false): ToolResult => ({ content: [{ type: 'text', text: t }], ...(isError ? { isError: true } : {}) });
+
+/** An operation an AI tool sign-in can never call (the API refuses it too). */
+const signInRefused = (endpoint: string) =>
+  `${endpoint} cannot be used with an AI tool sign-in. Webhooks, change feeds, end users and setup links are managed with an API key or in the dashboard. Tell the user, and do not try other ways to do it.`;
 
 /** Told to the model before every block of data that third parties can write (prompt-injection boundary). */
 export const UNTRUSTED_NOTE =
@@ -186,6 +204,7 @@ export class Tools {
     for (const e of this.opts.catalog.endpoints) {
       // A batch stays available read-only: it may then contain reads only (checked when invoked).
       if (this.opts.readOnly && e.write && !e.batch) continue;
+      if (this.opts.signIn && !this.opts.signIn.mayCall(e.name)) continue;
       this.byName.set(e.name, e);
       if (wanted.includes('all') || wanted.includes(slug(e.tag)) || wanted.includes(slug(e.group))) this.perEndpoint.set(toolName(e.name), e);
     }
@@ -204,7 +223,8 @@ export class Tools {
   }
 
   private async detectScope(): Promise<void> {
-    if (this.opts.readOnly !== undefined || this.keyProblem()) return;
+    // A sign-in's scope comes with it (and its probe would be a refused operation).
+    if (this.opts.readOnly !== undefined || this.opts.signIn || this.keyProblem()) return;
     const id = await keyId(this.opts.apiKey!);
     const hit = scopeCache.get(id);
     let readOnly: boolean | undefined = hit && hit.expires > Date.now() ? hit.readOnly : undefined;
@@ -229,7 +249,7 @@ export class Tools {
       {
         name: 'list_end_users',
         title: 'List end users',
-        description: 'Lists the end users (your customers, each with one QuickBooks Desktop company file) in the project this secret key belongs to, with their connection status and company name. QuickBooks operations need an end user ID (eu_...): call this first, then pass `end_user_id`.',
+        description: `Lists the end users (your customers, each with one QuickBooks Desktop company file) in the project this ${this.opts.signIn ? 'sign-in' : 'secret key'} belongs to, with their connection status and company name. QuickBooks operations need an end user ID (eu_...): call this first, then pass \`end_user_id\`.`,
         inputSchema: {
           type: 'object',
           properties: {
@@ -328,6 +348,8 @@ export class Tools {
     const e = this.byName.get(endpoint) ?? this.byName.get(endpoint.replace(/_/g, '.')) ?? [...this.byName.values()].find((x) => toolName(x.name) === endpoint);
     if (e) return e;
     const hidden = this.opts.catalog.endpoints.find((x) => x.name === endpoint);
+    if (hidden && this.opts.signIn && !this.opts.signIn.mayCall(hidden.name)) return signInRefused(endpoint);
+    if (hidden && this.opts.signIn) return `${endpoint} changes data, and this sign-in is read-only. ${this.opts.signIn.readOnlyAdvice}`;
     if (hidden) return `${endpoint} changes data, and this MCP connection is read-only. Ask the user to make this change themselves, or to connect with a full-access key and without read_only.`;
     const close = [...this.byName.keys()].filter((n) => n.includes(endpoint.split('.').pop() ?? endpoint)).slice(0, 8);
     return `Unknown endpoint "${endpoint}".${close.length ? ` Did you mean: ${close.join(', ')}?` : ' Use list_api_endpoints to find it.'}`;
@@ -397,6 +419,8 @@ export class Tools {
 
   private keyProblem(): string | null {
     const k = this.opts.apiKey;
+    // A sign-in token is checked by the API, not here.
+    if (this.opts.signIn && k) return null;
     if (!k) return 'No secret key reached the MCP server. Send `Authorization: Bearer sk_...` (hosted server) or set DAAPI_SECRET_KEY (local server). Create keys in the dashboard under API keys.';
     if (!isValidSecretKey(k)) return `The secret key ${maskKey(k)} is malformed (wrong prefix, length or checksum). Copy it again from the dashboard; secret keys look like sk_live_ or sk_test_ followed by 40 letters and digits.`;
     return null;
@@ -462,7 +486,7 @@ export class Tools {
     if (e.batch) {
       const problem = this.batchProblem(e, args.body);
       if (problem) return text(problem, true);
-    } else if (this.opts.readOnly && e.write) return text(`${e.name} changes data, and this MCP connection is read-only.`, true);
+    } else if (this.opts.readOnly && e.write) return text(this.opts.signIn ? `${e.name} changes data, and this sign-in is read-only. ${this.opts.signIn.readOnlyAdvice}` : `${e.name} changes data, and this MCP connection is read-only.`, true);
     const problem = this.keyProblem();
     if (problem) return text(problem, true);
     let path = e.path;
@@ -643,6 +667,7 @@ export class Tools {
       if (typeof id !== 'string' || !allowed.has(id)) return `requests[${i}].operationId must be a typed QuickBooks Desktop operation (list_api_endpoints shows them); got ${JSON.stringify(id)}.`;
       if (this.opts.catalog.endpoints.find((x) => x.name === id)?.write) writes.push(`requests[${i}] (${id})`);
     }
+    if (this.opts.readOnly && writes.length && this.opts.signIn) return `This sign-in is read-only, so a batch may contain reads only; ${writes.join(', ')} changes data. ${this.opts.signIn.readOnlyAdvice}`;
     if (this.opts.readOnly && writes.length) return `This MCP connection is read-only, so a batch may contain reads only; ${writes.join(', ')} changes data.`;
     return null;
   }
@@ -680,7 +705,9 @@ export class Tools {
     const pendingId = typeof details.requestId === 'string' ? details.requestId : null;
     const retrieve = (id: string, wait: boolean) => `invoke_api_endpoint endpoint "requests.retrieve" with args {"id": "${id}"${wait ? ', "waitSeconds": 60' : ''}}`;
     const sameKey = idempotencyKey ? ` Only ever repeat this call with idempotency_key "${idempotencyKey}"; that returns the original request instead of a second write.` : '';
-    if (err.code === 'API_KEY_READ_ONLY') guidance.push('This secret key is read-only. Do not try other ways to make the change; tell the user it needs a full-access key.');
+    if (err.code === 'API_KEY_READ_ONLY' && this.opts.signIn) guidance.push(`This sign-in is read-only. Do not try other ways to make the change; tell the user: ${this.opts.signIn.readOnlyAdvice}`);
+    else if (err.code === 'PERMISSION_DENIED' && this.opts.signIn) guidance.push('AI tool sign-ins cannot do this. Do not try other ways; tell the user it must be done with an API key or in the dashboard.');
+    else if (err.code === 'API_KEY_READ_ONLY') guidance.push('This secret key is read-only. Do not try other ways to make the change; tell the user it needs a full-access key.');
     else if (outcome === 'pending') {
       guidance.push(`QuickBooks is still processing this write${pendingId ? ` (request ${pendingId})` : ''}. Do not send it again.${pendingId ? ` Wait for its result with ${retrieve(pendingId, true)}.` : ''}${sameKey}`);
     } else if (outcome === 'unknown') {
