@@ -2,6 +2,11 @@
 
 ## Unreleased
 
+## 0.12.1 (2026-11-21)
+
+- The server also speaks MCP 2026-07-28, next to 2025-11-25 and earlier, which work as before. A request whose `params._meta` names `io.modelcontextprotocol/protocolVersion` `2026-07-28` (with `io.modelcontextprotocol/clientCapabilities`) is answered without `initialize`: `server/discover` returns the supported versions, capabilities and instructions; results carry `resultType` `complete` and the server's name and version in `_meta`, and `server/discover` and `tools/list` carry `ttlMs` and `cacheScope` `private`. Over Streamable HTTP, the `MCP-Protocol-Version`, `Mcp-Method` and, for `tools/call`, `Mcp-Name` headers must match the body (`400`, `-32020` otherwise), and an unknown method of such a request answers `404`. A JSON-RPC batch naming 2026-07-28 in any message is refused whole (`-32600`). An unsupported version, in the header or in `_meta`, answers `-32022` with `data.supported` listing every version and the request's `id` (over HTTP still `400`; the code was `-32000`). Over stdio, a request cancelled with `notifications/cancelled` gets no response.
+- On QuickBooks lists, tool descriptions of `updatedAfter` and `updatedBefore` (1970-01-02 to 2037-12-31), `transactionDateFrom` (up to 2037-12-31) and `transactionDateTo` (from 1970-01-01) state these limits and that the start must not be after the end. A date filter QuickBooks Desktop refuses still returns `422 QBD_REQUEST_ERROR`; when the filters sent explain it, its message, `param` and `details.reason` name the filter. See the API changelog.
+
 ## 0.12.0 (2026-11-21)
 
 - End user and connection results include `simulated`: `true` for the hosted sample company, which answers from recordings of real QuickBooks Desktop; `false` for a company file connected through the Web Connector.

@@ -2005,7 +2005,7 @@
     {
      "name": "updatedAfter",
      "required": false,
-     "description": "Return accounts changed on or after this date or date-time (QuickBooks local time unless an offset is given). QuickBooks matches an account when its last edit or its last change falls in the range. Cannot be combined with ids, fullNames.",
+     "description": "Return accounts changed on or after this date or date-time (QuickBooks local time unless an offset is given). QuickBooks matches an account when its last edit or its last change falls in the range. Use 1970-01-02 to 2037-12-31. Not after `updatedBefore`. Cannot be combined with ids, fullNames.",
      "schema": {
       "type": "string",
       "pattern": "^\\d{4}-\\d{2}-\\d{2}(T\\d{2}:\\d{2}(:\\d{2}(\\.\\d{1,9})?)?(Z|[+-]\\d{2}:\\d{2})?)?$",
@@ -2016,7 +2016,7 @@
     {
      "name": "updatedBefore",
      "required": false,
-     "description": "Return accounts changed on or before this date or date-time (QuickBooks local time unless an offset is given). QuickBooks matches an account when its last edit or its last change falls in the range, so this can return accounts whose `updatedAt` is later. Cannot be combined with ids, fullNames.",
+     "description": "Return accounts changed on or before this date or date-time (QuickBooks local time unless an offset is given). QuickBooks matches an account when its last edit or its last change falls in the range, so this can return accounts whose `updatedAt` is later. Use 1970-01-02 to 2037-12-31. Not before `updatedAfter`. Cannot be combined with ids, fullNames.",
      "schema": {
       "type": "string",
       "pattern": "^\\d{4}-\\d{2}-\\d{2}(T\\d{2}:\\d{2}(:\\d{2}(\\.\\d{1,9})?)?(Z|[+-]\\d{2}:\\d{2})?)?$",
@@ -2339,7 +2339,7 @@
     {
      "name": "updatedAfter",
      "required": false,
-     "description": "Return bill check payments changed on or after this date or date-time (QuickBooks local time unless an offset is given). Cannot be combined with ids, refNumbers, transactionDateFrom, transactionDateTo, transactionDateMacro.",
+     "description": "Return bill check payments changed on or after this date or date-time (QuickBooks local time unless an offset is given). Use 1970-01-02 to 2037-12-31. Not after `updatedBefore`. Cannot be combined with ids, refNumbers, transactionDateFrom, transactionDateTo, transactionDateMacro.",
      "schema": {
       "type": "string",
       "pattern": "^\\d{4}-\\d{2}-\\d{2}(T\\d{2}:\\d{2}(:\\d{2}(\\.\\d{1,9})?)?(Z|[+-]\\d{2}:\\d{2})?)?$",
@@ -2350,7 +2350,7 @@
     {
      "name": "updatedBefore",
      "required": false,
-     "description": "Return bill check payments changed on or before this date or date-time (QuickBooks local time unless an offset is given). Cannot be combined with ids, refNumbers, transactionDateFrom, transactionDateTo, transactionDateMacro.",
+     "description": "Return bill check payments changed on or before this date or date-time (QuickBooks local time unless an offset is given). Use 1970-01-02 to 2037-12-31. Not before `updatedAfter`. Cannot be combined with ids, refNumbers, transactionDateFrom, transactionDateTo, transactionDateMacro.",
      "schema": {
       "type": "string",
       "pattern": "^\\d{4}-\\d{2}-\\d{2}(T\\d{2}:\\d{2}(:\\d{2}(\\.\\d{1,9})?)?(Z|[+-]\\d{2}:\\d{2})?)?$",
@@ -2361,7 +2361,7 @@
     {
      "name": "transactionDateFrom",
      "required": false,
-     "description": "Return bill check payments dated on or after this date (YYYY-MM-DD). Cannot be combined with ids, refNumbers, updatedAfter, updatedBefore, transactionDateMacro.",
+     "description": "Return bill check payments dated on or after this date (YYYY-MM-DD). Not after 2037-12-31 or `transactionDateTo`. Cannot be combined with ids, refNumbers, updatedAfter, updatedBefore, transactionDateMacro.",
      "schema": {
       "type": "string",
       "format": "date"
@@ -2370,7 +2370,7 @@
     {
      "name": "transactionDateTo",
      "required": false,
-     "description": "Return bill check payments dated on or before this date (YYYY-MM-DD). Cannot be combined with ids, refNumbers, updatedAfter, updatedBefore, transactionDateMacro.",
+     "description": "Return bill check payments dated on or before this date (YYYY-MM-DD). Not before 1970-01-01 or `transactionDateFrom`. Cannot be combined with ids, refNumbers, updatedAfter, updatedBefore, transactionDateMacro.",
      "schema": {
       "type": "string",
       "format": "date"
@@ -2723,7 +2723,7 @@
     {
      "name": "updatedAfter",
      "required": false,
-     "description": "Return bill credit card payments changed on or after this date or date-time (QuickBooks local time unless an offset is given). Cannot be combined with ids, refNumbers, transactionDateFrom, transactionDateTo, transactionDateMacro.",
+     "description": "Return bill credit card payments changed on or after this date or date-time (QuickBooks local time unless an offset is given). Use 1970-01-02 to 2037-12-31. Not after `updatedBefore`. Cannot be combined with ids, refNumbers, transactionDateFrom, transactionDateTo, transactionDateMacro.",
      "schema": {
       "type": "string",
       "pattern": "^\\d{4}-\\d{2}-\\d{2}(T\\d{2}:\\d{2}(:\\d{2}(\\.\\d{1,9})?)?(Z|[+-]\\d{2}:\\d{2})?)?$",
@@ -2734,7 +2734,7 @@
     {
      "name": "updatedBefore",
      "required": false,
-     "description": "Return bill credit card payments changed on or before this date or date-time (QuickBooks local time unless an offset is given). Cannot be combined with ids, refNumbers, transactionDateFrom, transactionDateTo, transactionDateMacro.",
+     "description": "Return bill credit card payments changed on or before this date or date-time (QuickBooks local time unless an offset is given). Use 1970-01-02 to 2037-12-31. Not before `updatedAfter`. Cannot be combined with ids, refNumbers, transactionDateFrom, transactionDateTo, transactionDateMacro.",
      "schema": {
       "type": "string",
       "pattern": "^\\d{4}-\\d{2}-\\d{2}(T\\d{2}:\\d{2}(:\\d{2}(\\.\\d{1,9})?)?(Z|[+-]\\d{2}:\\d{2})?)?$",
@@ -2745,7 +2745,7 @@
     {
      "name": "transactionDateFrom",
      "required": false,
-     "description": "Return bill credit card payments dated on or after this date (YYYY-MM-DD). Cannot be combined with ids, refNumbers, updatedAfter, updatedBefore, transactionDateMacro.",
+     "description": "Return bill credit card payments dated on or after this date (YYYY-MM-DD). Not after 2037-12-31 or `transactionDateTo`. Cannot be combined with ids, refNumbers, updatedAfter, updatedBefore, transactionDateMacro.",
      "schema": {
       "type": "string",
       "format": "date"
@@ -2754,7 +2754,7 @@
     {
      "name": "transactionDateTo",
      "required": false,
-     "description": "Return bill credit card payments dated on or before this date (YYYY-MM-DD). Cannot be combined with ids, refNumbers, updatedAfter, updatedBefore, transactionDateMacro.",
+     "description": "Return bill credit card payments dated on or before this date (YYYY-MM-DD). Not before 1970-01-01 or `transactionDateFrom`. Cannot be combined with ids, refNumbers, updatedAfter, updatedBefore, transactionDateMacro.",
      "schema": {
       "type": "string",
       "format": "date"
@@ -3071,7 +3071,7 @@
     {
      "name": "updatedAfter",
      "required": false,
-     "description": "Return billing rates changed on or after this date or date-time (QuickBooks local time unless an offset is given). Cannot be combined with ids, names.",
+     "description": "Return billing rates changed on or after this date or date-time (QuickBooks local time unless an offset is given). Use 1970-01-02 to 2037-12-31. Not after `updatedBefore`. Cannot be combined with ids, names.",
      "schema": {
       "type": "string",
       "pattern": "^\\d{4}-\\d{2}-\\d{2}(T\\d{2}:\\d{2}(:\\d{2}(\\.\\d{1,9})?)?(Z|[+-]\\d{2}:\\d{2})?)?$",
@@ -3082,7 +3082,7 @@
     {
      "name": "updatedBefore",
      "required": false,
-     "description": "Return billing rates changed on or before this date or date-time (QuickBooks local time unless an offset is given). Cannot be combined with ids, names.",
+     "description": "Return billing rates changed on or before this date or date-time (QuickBooks local time unless an offset is given). Use 1970-01-02 to 2037-12-31. Not before `updatedAfter`. Cannot be combined with ids, names.",
      "schema": {
       "type": "string",
       "pattern": "^\\d{4}-\\d{2}-\\d{2}(T\\d{2}:\\d{2}(:\\d{2}(\\.\\d{1,9})?)?(Z|[+-]\\d{2}:\\d{2})?)?$",
@@ -3290,7 +3290,7 @@
     {
      "name": "updatedAfter",
      "required": false,
-     "description": "Return bills changed on or after this date or date-time (QuickBooks local time unless an offset is given). Cannot be combined with ids, refNumbers, transactionDateFrom, transactionDateTo, transactionDateMacro.",
+     "description": "Return bills changed on or after this date or date-time (QuickBooks local time unless an offset is given). Use 1970-01-02 to 2037-12-31. Not after `updatedBefore`. Cannot be combined with ids, refNumbers, transactionDateFrom, transactionDateTo, transactionDateMacro.",
      "schema": {
       "type": "string",
       "pattern": "^\\d{4}-\\d{2}-\\d{2}(T\\d{2}:\\d{2}(:\\d{2}(\\.\\d{1,9})?)?(Z|[+-]\\d{2}:\\d{2})?)?$",
@@ -3301,7 +3301,7 @@
     {
      "name": "updatedBefore",
      "required": false,
-     "description": "Return bills changed on or before this date or date-time (QuickBooks local time unless an offset is given). Cannot be combined with ids, refNumbers, transactionDateFrom, transactionDateTo, transactionDateMacro.",
+     "description": "Return bills changed on or before this date or date-time (QuickBooks local time unless an offset is given). Use 1970-01-02 to 2037-12-31. Not before `updatedAfter`. Cannot be combined with ids, refNumbers, transactionDateFrom, transactionDateTo, transactionDateMacro.",
      "schema": {
       "type": "string",
       "pattern": "^\\d{4}-\\d{2}-\\d{2}(T\\d{2}:\\d{2}(:\\d{2}(\\.\\d{1,9})?)?(Z|[+-]\\d{2}:\\d{2})?)?$",
@@ -3312,7 +3312,7 @@
     {
      "name": "transactionDateFrom",
      "required": false,
-     "description": "Return bills dated on or after this date (YYYY-MM-DD). Cannot be combined with ids, refNumbers, updatedAfter, updatedBefore, transactionDateMacro.",
+     "description": "Return bills dated on or after this date (YYYY-MM-DD). Not after 2037-12-31 or `transactionDateTo`. Cannot be combined with ids, refNumbers, updatedAfter, updatedBefore, transactionDateMacro.",
      "schema": {
       "type": "string",
       "format": "date"
@@ -3321,7 +3321,7 @@
     {
      "name": "transactionDateTo",
      "required": false,
-     "description": "Return bills dated on or before this date (YYYY-MM-DD). Cannot be combined with ids, refNumbers, updatedAfter, updatedBefore, transactionDateMacro.",
+     "description": "Return bills dated on or before this date (YYYY-MM-DD). Not before 1970-01-01 or `transactionDateFrom`. Cannot be combined with ids, refNumbers, updatedAfter, updatedBefore, transactionDateMacro.",
      "schema": {
       "type": "string",
       "format": "date"
@@ -3753,7 +3753,7 @@
     {
      "name": "updatedAfter",
      "required": false,
-     "description": "Return build assemblies changed on or after this date or date-time (QuickBooks local time unless an offset is given). Cannot be combined with ids, refNumbers, transactionDateFrom, transactionDateTo, transactionDateMacro.",
+     "description": "Return build assemblies changed on or after this date or date-time (QuickBooks local time unless an offset is given). Use 1970-01-02 to 2037-12-31. Not after `updatedBefore`. Cannot be combined with ids, refNumbers, transactionDateFrom, transactionDateTo, transactionDateMacro.",
      "schema": {
       "type": "string",
       "pattern": "^\\d{4}-\\d{2}-\\d{2}(T\\d{2}:\\d{2}(:\\d{2}(\\.\\d{1,9})?)?(Z|[+-]\\d{2}:\\d{2})?)?$",
@@ -3764,7 +3764,7 @@
     {
      "name": "updatedBefore",
      "required": false,
-     "description": "Return build assemblies changed on or before this date or date-time (QuickBooks local time unless an offset is given). Cannot be combined with ids, refNumbers, transactionDateFrom, transactionDateTo, transactionDateMacro.",
+     "description": "Return build assemblies changed on or before this date or date-time (QuickBooks local time unless an offset is given). Use 1970-01-02 to 2037-12-31. Not before `updatedAfter`. Cannot be combined with ids, refNumbers, transactionDateFrom, transactionDateTo, transactionDateMacro.",
      "schema": {
       "type": "string",
       "pattern": "^\\d{4}-\\d{2}-\\d{2}(T\\d{2}:\\d{2}(:\\d{2}(\\.\\d{1,9})?)?(Z|[+-]\\d{2}:\\d{2})?)?$",
@@ -3775,7 +3775,7 @@
     {
      "name": "transactionDateFrom",
      "required": false,
-     "description": "Return build assemblies dated on or after this date (YYYY-MM-DD). Cannot be combined with ids, refNumbers, updatedAfter, updatedBefore, transactionDateMacro.",
+     "description": "Return build assemblies dated on or after this date (YYYY-MM-DD). Not after 2037-12-31 or `transactionDateTo`. Cannot be combined with ids, refNumbers, updatedAfter, updatedBefore, transactionDateMacro.",
      "schema": {
       "type": "string",
       "format": "date"
@@ -3784,7 +3784,7 @@
     {
      "name": "transactionDateTo",
      "required": false,
-     "description": "Return build assemblies dated on or before this date (YYYY-MM-DD). Cannot be combined with ids, refNumbers, updatedAfter, updatedBefore, transactionDateMacro.",
+     "description": "Return build assemblies dated on or before this date (YYYY-MM-DD). Not before 1970-01-01 or `transactionDateFrom`. Cannot be combined with ids, refNumbers, updatedAfter, updatedBefore, transactionDateMacro.",
      "schema": {
       "type": "string",
       "format": "date"
@@ -4086,7 +4086,7 @@
     {
      "name": "updatedAfter",
      "required": false,
-     "description": "Return checks changed on or after this date or date-time (QuickBooks local time unless an offset is given). Cannot be combined with ids, refNumbers, transactionDateFrom, transactionDateTo, transactionDateMacro.",
+     "description": "Return checks changed on or after this date or date-time (QuickBooks local time unless an offset is given). Use 1970-01-02 to 2037-12-31. Not after `updatedBefore`. Cannot be combined with ids, refNumbers, transactionDateFrom, transactionDateTo, transactionDateMacro.",
      "schema": {
       "type": "string",
       "pattern": "^\\d{4}-\\d{2}-\\d{2}(T\\d{2}:\\d{2}(:\\d{2}(\\.\\d{1,9})?)?(Z|[+-]\\d{2}:\\d{2})?)?$",
@@ -4097,7 +4097,7 @@
     {
      "name": "updatedBefore",
      "required": false,
-     "description": "Return checks changed on or before this date or date-time (QuickBooks local time unless an offset is given). Cannot be combined with ids, refNumbers, transactionDateFrom, transactionDateTo, transactionDateMacro.",
+     "description": "Return checks changed on or before this date or date-time (QuickBooks local time unless an offset is given). Use 1970-01-02 to 2037-12-31. Not before `updatedAfter`. Cannot be combined with ids, refNumbers, transactionDateFrom, transactionDateTo, transactionDateMacro.",
      "schema": {
       "type": "string",
       "pattern": "^\\d{4}-\\d{2}-\\d{2}(T\\d{2}:\\d{2}(:\\d{2}(\\.\\d{1,9})?)?(Z|[+-]\\d{2}:\\d{2})?)?$",
@@ -4108,7 +4108,7 @@
     {
      "name": "transactionDateFrom",
      "required": false,
-     "description": "Return checks dated on or after this date (YYYY-MM-DD). Cannot be combined with ids, refNumbers, updatedAfter, updatedBefore, transactionDateMacro.",
+     "description": "Return checks dated on or after this date (YYYY-MM-DD). Not after 2037-12-31 or `transactionDateTo`. Cannot be combined with ids, refNumbers, updatedAfter, updatedBefore, transactionDateMacro.",
      "schema": {
       "type": "string",
       "format": "date"
@@ -4117,7 +4117,7 @@
     {
      "name": "transactionDateTo",
      "required": false,
-     "description": "Return checks dated on or before this date (YYYY-MM-DD). Cannot be combined with ids, refNumbers, updatedAfter, updatedBefore, transactionDateMacro.",
+     "description": "Return checks dated on or before this date (YYYY-MM-DD). Not before 1970-01-01 or `transactionDateFrom`. Cannot be combined with ids, refNumbers, updatedAfter, updatedBefore, transactionDateMacro.",
      "schema": {
       "type": "string",
       "format": "date"
@@ -4492,7 +4492,7 @@
     {
      "name": "updatedAfter",
      "required": false,
-     "description": "Return classes changed on or after this date or date-time (QuickBooks local time unless an offset is given). Cannot be combined with ids, fullNames.",
+     "description": "Return classes changed on or after this date or date-time (QuickBooks local time unless an offset is given). Use 1970-01-02 to 2037-12-31. Not after `updatedBefore`. Cannot be combined with ids, fullNames.",
      "schema": {
       "type": "string",
       "pattern": "^\\d{4}-\\d{2}-\\d{2}(T\\d{2}:\\d{2}(:\\d{2}(\\.\\d{1,9})?)?(Z|[+-]\\d{2}:\\d{2})?)?$",
@@ -4503,7 +4503,7 @@
     {
      "name": "updatedBefore",
      "required": false,
-     "description": "Return classes changed on or before this date or date-time (QuickBooks local time unless an offset is given). Cannot be combined with ids, fullNames.",
+     "description": "Return classes changed on or before this date or date-time (QuickBooks local time unless an offset is given). Use 1970-01-02 to 2037-12-31. Not before `updatedAfter`. Cannot be combined with ids, fullNames.",
      "schema": {
       "type": "string",
       "pattern": "^\\d{4}-\\d{2}-\\d{2}(T\\d{2}:\\d{2}(:\\d{2}(\\.\\d{1,9})?)?(Z|[+-]\\d{2}:\\d{2})?)?$",
@@ -4786,7 +4786,7 @@
     {
      "name": "updatedAfter",
      "required": false,
-     "description": "Return credit card charges changed on or after this date or date-time (QuickBooks local time unless an offset is given). Cannot be combined with ids, refNumbers, transactionDateFrom, transactionDateTo, transactionDateMacro.",
+     "description": "Return credit card charges changed on or after this date or date-time (QuickBooks local time unless an offset is given). Use 1970-01-02 to 2037-12-31. Not after `updatedBefore`. Cannot be combined with ids, refNumbers, transactionDateFrom, transactionDateTo, transactionDateMacro.",
      "schema": {
       "type": "string",
       "pattern": "^\\d{4}-\\d{2}-\\d{2}(T\\d{2}:\\d{2}(:\\d{2}(\\.\\d{1,9})?)?(Z|[+-]\\d{2}:\\d{2})?)?$",
@@ -4797,7 +4797,7 @@
     {
      "name": "updatedBefore",
      "required": false,
-     "description": "Return credit card charges changed on or before this date or date-time (QuickBooks local time unless an offset is given). Cannot be combined with ids, refNumbers, transactionDateFrom, transactionDateTo, transactionDateMacro.",
+     "description": "Return credit card charges changed on or before this date or date-time (QuickBooks local time unless an offset is given). Use 1970-01-02 to 2037-12-31. Not before `updatedAfter`. Cannot be combined with ids, refNumbers, transactionDateFrom, transactionDateTo, transactionDateMacro.",
      "schema": {
       "type": "string",
       "pattern": "^\\d{4}-\\d{2}-\\d{2}(T\\d{2}:\\d{2}(:\\d{2}(\\.\\d{1,9})?)?(Z|[+-]\\d{2}:\\d{2})?)?$",
@@ -4808,7 +4808,7 @@
     {
      "name": "transactionDateFrom",
      "required": false,
-     "description": "Return credit card charges dated on or after this date (YYYY-MM-DD). Cannot be combined with ids, refNumbers, updatedAfter, updatedBefore, transactionDateMacro.",
+     "description": "Return credit card charges dated on or after this date (YYYY-MM-DD). Not after 2037-12-31 or `transactionDateTo`. Cannot be combined with ids, refNumbers, updatedAfter, updatedBefore, transactionDateMacro.",
      "schema": {
       "type": "string",
       "format": "date"
@@ -4817,7 +4817,7 @@
     {
      "name": "transactionDateTo",
      "required": false,
-     "description": "Return credit card charges dated on or before this date (YYYY-MM-DD). Cannot be combined with ids, refNumbers, updatedAfter, updatedBefore, transactionDateMacro.",
+     "description": "Return credit card charges dated on or before this date (YYYY-MM-DD). Not before 1970-01-01 or `transactionDateFrom`. Cannot be combined with ids, refNumbers, updatedAfter, updatedBefore, transactionDateMacro.",
      "schema": {
       "type": "string",
       "format": "date"
@@ -5170,7 +5170,7 @@
     {
      "name": "updatedAfter",
      "required": false,
-     "description": "Return credit card credits changed on or after this date or date-time (QuickBooks local time unless an offset is given). Cannot be combined with ids, refNumbers, transactionDateFrom, transactionDateTo, transactionDateMacro.",
+     "description": "Return credit card credits changed on or after this date or date-time (QuickBooks local time unless an offset is given). Use 1970-01-02 to 2037-12-31. Not after `updatedBefore`. Cannot be combined with ids, refNumbers, transactionDateFrom, transactionDateTo, transactionDateMacro.",
      "schema": {
       "type": "string",
       "pattern": "^\\d{4}-\\d{2}-\\d{2}(T\\d{2}:\\d{2}(:\\d{2}(\\.\\d{1,9})?)?(Z|[+-]\\d{2}:\\d{2})?)?$",
@@ -5181,7 +5181,7 @@
     {
      "name": "updatedBefore",
      "required": false,
-     "description": "Return credit card credits changed on or before this date or date-time (QuickBooks local time unless an offset is given). Cannot be combined with ids, refNumbers, transactionDateFrom, transactionDateTo, transactionDateMacro.",
+     "description": "Return credit card credits changed on or before this date or date-time (QuickBooks local time unless an offset is given). Use 1970-01-02 to 2037-12-31. Not before `updatedAfter`. Cannot be combined with ids, refNumbers, transactionDateFrom, transactionDateTo, transactionDateMacro.",
      "schema": {
       "type": "string",
       "pattern": "^\\d{4}-\\d{2}-\\d{2}(T\\d{2}:\\d{2}(:\\d{2}(\\.\\d{1,9})?)?(Z|[+-]\\d{2}:\\d{2})?)?$",
@@ -5192,7 +5192,7 @@
     {
      "name": "transactionDateFrom",
      "required": false,
-     "description": "Return credit card credits dated on or after this date (YYYY-MM-DD). Cannot be combined with ids, refNumbers, updatedAfter, updatedBefore, transactionDateMacro.",
+     "description": "Return credit card credits dated on or after this date (YYYY-MM-DD). Not after 2037-12-31 or `transactionDateTo`. Cannot be combined with ids, refNumbers, updatedAfter, updatedBefore, transactionDateMacro.",
      "schema": {
       "type": "string",
       "format": "date"
@@ -5201,7 +5201,7 @@
     {
      "name": "transactionDateTo",
      "required": false,
-     "description": "Return credit card credits dated on or before this date (YYYY-MM-DD). Cannot be combined with ids, refNumbers, updatedAfter, updatedBefore, transactionDateMacro.",
+     "description": "Return credit card credits dated on or before this date (YYYY-MM-DD). Not before 1970-01-01 or `transactionDateFrom`. Cannot be combined with ids, refNumbers, updatedAfter, updatedBefore, transactionDateMacro.",
      "schema": {
       "type": "string",
       "format": "date"
@@ -5554,7 +5554,7 @@
     {
      "name": "updatedAfter",
      "required": false,
-     "description": "Return credit card refunds changed on or after this date or date-time (QuickBooks local time unless an offset is given). Cannot be combined with ids, refNumbers, transactionDateFrom, transactionDateTo, transactionDateMacro.",
+     "description": "Return credit card refunds changed on or after this date or date-time (QuickBooks local time unless an offset is given). Use 1970-01-02 to 2037-12-31. Not after `updatedBefore`. Cannot be combined with ids, refNumbers, transactionDateFrom, transactionDateTo, transactionDateMacro.",
      "schema": {
       "type": "string",
       "pattern": "^\\d{4}-\\d{2}-\\d{2}(T\\d{2}:\\d{2}(:\\d{2}(\\.\\d{1,9})?)?(Z|[+-]\\d{2}:\\d{2})?)?$",
@@ -5565,7 +5565,7 @@
     {
      "name": "updatedBefore",
      "required": false,
-     "description": "Return credit card refunds changed on or before this date or date-time (QuickBooks local time unless an offset is given). Cannot be combined with ids, refNumbers, transactionDateFrom, transactionDateTo, transactionDateMacro.",
+     "description": "Return credit card refunds changed on or before this date or date-time (QuickBooks local time unless an offset is given). Use 1970-01-02 to 2037-12-31. Not before `updatedAfter`. Cannot be combined with ids, refNumbers, transactionDateFrom, transactionDateTo, transactionDateMacro.",
      "schema": {
       "type": "string",
       "pattern": "^\\d{4}-\\d{2}-\\d{2}(T\\d{2}:\\d{2}(:\\d{2}(\\.\\d{1,9})?)?(Z|[+-]\\d{2}:\\d{2})?)?$",
@@ -5576,7 +5576,7 @@
     {
      "name": "transactionDateFrom",
      "required": false,
-     "description": "Return credit card refunds dated on or after this date (YYYY-MM-DD). Cannot be combined with ids, refNumbers, updatedAfter, updatedBefore, transactionDateMacro.",
+     "description": "Return credit card refunds dated on or after this date (YYYY-MM-DD). Not after 2037-12-31 or `transactionDateTo`. Cannot be combined with ids, refNumbers, updatedAfter, updatedBefore, transactionDateMacro.",
      "schema": {
       "type": "string",
       "format": "date"
@@ -5585,7 +5585,7 @@
     {
      "name": "transactionDateTo",
      "required": false,
-     "description": "Return credit card refunds dated on or before this date (YYYY-MM-DD). Cannot be combined with ids, refNumbers, updatedAfter, updatedBefore, transactionDateMacro.",
+     "description": "Return credit card refunds dated on or before this date (YYYY-MM-DD). Not before 1970-01-01 or `transactionDateFrom`. Cannot be combined with ids, refNumbers, updatedAfter, updatedBefore, transactionDateMacro.",
      "schema": {
       "type": "string",
       "format": "date"
@@ -5904,7 +5904,7 @@
     {
      "name": "updatedAfter",
      "required": false,
-     "description": "Return credit memos changed on or after this date or date-time (QuickBooks local time unless an offset is given). Cannot be combined with ids, refNumbers, transactionDateFrom, transactionDateTo, transactionDateMacro.",
+     "description": "Return credit memos changed on or after this date or date-time (QuickBooks local time unless an offset is given). Use 1970-01-02 to 2037-12-31. Not after `updatedBefore`. Cannot be combined with ids, refNumbers, transactionDateFrom, transactionDateTo, transactionDateMacro.",
      "schema": {
       "type": "string",
       "pattern": "^\\d{4}-\\d{2}-\\d{2}(T\\d{2}:\\d{2}(:\\d{2}(\\.\\d{1,9})?)?(Z|[+-]\\d{2}:\\d{2})?)?$",
@@ -5915,7 +5915,7 @@
     {
      "name": "updatedBefore",
      "required": false,
-     "description": "Return credit memos changed on or before this date or date-time (QuickBooks local time unless an offset is given). Cannot be combined with ids, refNumbers, transactionDateFrom, transactionDateTo, transactionDateMacro.",
+     "description": "Return credit memos changed on or before this date or date-time (QuickBooks local time unless an offset is given). Use 1970-01-02 to 2037-12-31. Not before `updatedAfter`. Cannot be combined with ids, refNumbers, transactionDateFrom, transactionDateTo, transactionDateMacro.",
      "schema": {
       "type": "string",
       "pattern": "^\\d{4}-\\d{2}-\\d{2}(T\\d{2}:\\d{2}(:\\d{2}(\\.\\d{1,9})?)?(Z|[+-]\\d{2}:\\d{2})?)?$",
@@ -5926,7 +5926,7 @@
     {
      "name": "transactionDateFrom",
      "required": false,
-     "description": "Return credit memos dated on or after this date (YYYY-MM-DD). Cannot be combined with ids, refNumbers, updatedAfter, updatedBefore, transactionDateMacro.",
+     "description": "Return credit memos dated on or after this date (YYYY-MM-DD). Not after 2037-12-31 or `transactionDateTo`. Cannot be combined with ids, refNumbers, updatedAfter, updatedBefore, transactionDateMacro.",
      "schema": {
       "type": "string",
       "format": "date"
@@ -5935,7 +5935,7 @@
     {
      "name": "transactionDateTo",
      "required": false,
-     "description": "Return credit memos dated on or before this date (YYYY-MM-DD). Cannot be combined with ids, refNumbers, updatedAfter, updatedBefore, transactionDateMacro.",
+     "description": "Return credit memos dated on or before this date (YYYY-MM-DD). Not before 1970-01-01 or `transactionDateFrom`. Cannot be combined with ids, refNumbers, updatedAfter, updatedBefore, transactionDateMacro.",
      "schema": {
       "type": "string",
       "format": "date"
@@ -6310,7 +6310,7 @@
     {
      "name": "updatedAfter",
      "required": false,
-     "description": "Return currencies changed on or after this date or date-time (QuickBooks local time unless an offset is given). Cannot be combined with ids, names.",
+     "description": "Return currencies changed on or after this date or date-time (QuickBooks local time unless an offset is given). Use 1970-01-02 to 2037-12-31. Not after `updatedBefore`. Cannot be combined with ids, names.",
      "schema": {
       "type": "string",
       "pattern": "^\\d{4}-\\d{2}-\\d{2}(T\\d{2}:\\d{2}(:\\d{2}(\\.\\d{1,9})?)?(Z|[+-]\\d{2}:\\d{2})?)?$",
@@ -6321,7 +6321,7 @@
     {
      "name": "updatedBefore",
      "required": false,
-     "description": "Return currencies changed on or before this date or date-time (QuickBooks local time unless an offset is given). Cannot be combined with ids, names.",
+     "description": "Return currencies changed on or before this date or date-time (QuickBooks local time unless an offset is given). Use 1970-01-02 to 2037-12-31. Not before `updatedAfter`. Cannot be combined with ids, names.",
      "schema": {
       "type": "string",
       "pattern": "^\\d{4}-\\d{2}-\\d{2}(T\\d{2}:\\d{2}(:\\d{2}(\\.\\d{1,9})?)?(Z|[+-]\\d{2}:\\d{2})?)?$",
@@ -6714,7 +6714,7 @@
     {
      "name": "updatedAfter",
      "required": false,
-     "description": "Return customer messages changed on or after this date or date-time (QuickBooks local time unless an offset is given). Cannot be combined with ids, names.",
+     "description": "Return customer messages changed on or after this date or date-time (QuickBooks local time unless an offset is given). Use 1970-01-02 to 2037-12-31. Not after `updatedBefore`. Cannot be combined with ids, names.",
      "schema": {
       "type": "string",
       "pattern": "^\\d{4}-\\d{2}-\\d{2}(T\\d{2}:\\d{2}(:\\d{2}(\\.\\d{1,9})?)?(Z|[+-]\\d{2}:\\d{2})?)?$",
@@ -6725,7 +6725,7 @@
     {
      "name": "updatedBefore",
      "required": false,
-     "description": "Return customer messages changed on or before this date or date-time (QuickBooks local time unless an offset is given). Cannot be combined with ids, names.",
+     "description": "Return customer messages changed on or before this date or date-time (QuickBooks local time unless an offset is given). Use 1970-01-02 to 2037-12-31. Not before `updatedAfter`. Cannot be combined with ids, names.",
      "schema": {
       "type": "string",
       "pattern": "^\\d{4}-\\d{2}-\\d{2}(T\\d{2}:\\d{2}(:\\d{2}(\\.\\d{1,9})?)?(Z|[+-]\\d{2}:\\d{2})?)?$",
@@ -6936,7 +6936,7 @@
     {
      "name": "updatedAfter",
      "required": false,
-     "description": "Return customer types changed on or after this date or date-time (QuickBooks local time unless an offset is given). Cannot be combined with ids, fullNames.",
+     "description": "Return customer types changed on or after this date or date-time (QuickBooks local time unless an offset is given). Use 1970-01-02 to 2037-12-31. Not after `updatedBefore`. Cannot be combined with ids, fullNames.",
      "schema": {
       "type": "string",
       "pattern": "^\\d{4}-\\d{2}-\\d{2}(T\\d{2}:\\d{2}(:\\d{2}(\\.\\d{1,9})?)?(Z|[+-]\\d{2}:\\d{2})?)?$",
@@ -6947,7 +6947,7 @@
     {
      "name": "updatedBefore",
      "required": false,
-     "description": "Return customer types changed on or before this date or date-time (QuickBooks local time unless an offset is given). Cannot be combined with ids, fullNames.",
+     "description": "Return customer types changed on or before this date or date-time (QuickBooks local time unless an offset is given). Use 1970-01-02 to 2037-12-31. Not before `updatedAfter`. Cannot be combined with ids, fullNames.",
      "schema": {
       "type": "string",
       "pattern": "^\\d{4}-\\d{2}-\\d{2}(T\\d{2}:\\d{2}(:\\d{2}(\\.\\d{1,9})?)?(Z|[+-]\\d{2}:\\d{2})?)?$",
@@ -7160,7 +7160,7 @@
     {
      "name": "updatedAfter",
      "required": false,
-     "description": "Return customers changed on or after this date or date-time (QuickBooks local time unless an offset is given). QuickBooks matches a customer when its last edit or its last change falls in the range. Cannot be combined with ids, fullNames.",
+     "description": "Return customers changed on or after this date or date-time (QuickBooks local time unless an offset is given). QuickBooks matches a customer when its last edit or its last change falls in the range. Use 1970-01-02 to 2037-12-31. Not after `updatedBefore`. Cannot be combined with ids, fullNames.",
      "schema": {
       "type": "string",
       "pattern": "^\\d{4}-\\d{2}-\\d{2}(T\\d{2}:\\d{2}(:\\d{2}(\\.\\d{1,9})?)?(Z|[+-]\\d{2}:\\d{2})?)?$",
@@ -7171,7 +7171,7 @@
     {
      "name": "updatedBefore",
      "required": false,
-     "description": "Return customers changed on or before this date or date-time (QuickBooks local time unless an offset is given). QuickBooks matches a customer when its last edit or its last change falls in the range, so this can return customers whose `updatedAt` is later. Cannot be combined with ids, fullNames.",
+     "description": "Return customers changed on or before this date or date-time (QuickBooks local time unless an offset is given). QuickBooks matches a customer when its last edit or its last change falls in the range, so this can return customers whose `updatedAt` is later. Use 1970-01-02 to 2037-12-31. Not before `updatedAfter`. Cannot be combined with ids, fullNames.",
      "schema": {
       "type": "string",
       "pattern": "^\\d{4}-\\d{2}-\\d{2}(T\\d{2}:\\d{2}(:\\d{2}(\\.\\d{1,9})?)?(Z|[+-]\\d{2}:\\d{2})?)?$",
@@ -7576,7 +7576,7 @@
     {
      "name": "updatedAfter",
      "required": false,
-     "description": "Return date-driven terms changed on or after this date or date-time (QuickBooks local time unless an offset is given). Cannot be combined with ids, names.",
+     "description": "Return date-driven terms changed on or after this date or date-time (QuickBooks local time unless an offset is given). Use 1970-01-02 to 2037-12-31. Not after `updatedBefore`. Cannot be combined with ids, names.",
      "schema": {
       "type": "string",
       "pattern": "^\\d{4}-\\d{2}-\\d{2}(T\\d{2}:\\d{2}(:\\d{2}(\\.\\d{1,9})?)?(Z|[+-]\\d{2}:\\d{2})?)?$",
@@ -7587,7 +7587,7 @@
     {
      "name": "updatedBefore",
      "required": false,
-     "description": "Return date-driven terms changed on or before this date or date-time (QuickBooks local time unless an offset is given). Cannot be combined with ids, names.",
+     "description": "Return date-driven terms changed on or before this date or date-time (QuickBooks local time unless an offset is given). Use 1970-01-02 to 2037-12-31. Not before `updatedAfter`. Cannot be combined with ids, names.",
      "schema": {
       "type": "string",
       "pattern": "^\\d{4}-\\d{2}-\\d{2}(T\\d{2}:\\d{2}(:\\d{2}(\\.\\d{1,9})?)?(Z|[+-]\\d{2}:\\d{2})?)?$",
@@ -7878,7 +7878,7 @@
     {
      "name": "updatedAfter",
      "required": false,
-     "description": "Return deposits changed on or after this date or date-time (QuickBooks local time unless an offset is given). Cannot be combined with ids, transactionDateFrom, transactionDateTo, transactionDateMacro.",
+     "description": "Return deposits changed on or after this date or date-time (QuickBooks local time unless an offset is given). Use 1970-01-02 to 2037-12-31. Not after `updatedBefore`. Cannot be combined with ids, transactionDateFrom, transactionDateTo, transactionDateMacro.",
      "schema": {
       "type": "string",
       "pattern": "^\\d{4}-\\d{2}-\\d{2}(T\\d{2}:\\d{2}(:\\d{2}(\\.\\d{1,9})?)?(Z|[+-]\\d{2}:\\d{2})?)?$",
@@ -7889,7 +7889,7 @@
     {
      "name": "updatedBefore",
      "required": false,
-     "description": "Return deposits changed on or before this date or date-time (QuickBooks local time unless an offset is given). Cannot be combined with ids, transactionDateFrom, transactionDateTo, transactionDateMacro.",
+     "description": "Return deposits changed on or before this date or date-time (QuickBooks local time unless an offset is given). Use 1970-01-02 to 2037-12-31. Not before `updatedAfter`. Cannot be combined with ids, transactionDateFrom, transactionDateTo, transactionDateMacro.",
      "schema": {
       "type": "string",
       "pattern": "^\\d{4}-\\d{2}-\\d{2}(T\\d{2}:\\d{2}(:\\d{2}(\\.\\d{1,9})?)?(Z|[+-]\\d{2}:\\d{2})?)?$",
@@ -7900,7 +7900,7 @@
     {
      "name": "transactionDateFrom",
      "required": false,
-     "description": "Return deposits dated on or after this date (YYYY-MM-DD). Cannot be combined with ids, updatedAfter, updatedBefore, transactionDateMacro.",
+     "description": "Return deposits dated on or after this date (YYYY-MM-DD). Not after 2037-12-31 or `transactionDateTo`. Cannot be combined with ids, updatedAfter, updatedBefore, transactionDateMacro.",
      "schema": {
       "type": "string",
       "format": "date"
@@ -7909,7 +7909,7 @@
     {
      "name": "transactionDateTo",
      "required": false,
-     "description": "Return deposits dated on or before this date (YYYY-MM-DD). Cannot be combined with ids, updatedAfter, updatedBefore, transactionDateMacro.",
+     "description": "Return deposits dated on or before this date (YYYY-MM-DD). Not before 1970-01-01 or `transactionDateFrom`. Cannot be combined with ids, updatedAfter, updatedBefore, transactionDateMacro.",
      "schema": {
       "type": "string",
       "format": "date"
@@ -8244,7 +8244,7 @@
     {
      "name": "updatedAfter",
      "required": false,
-     "description": "Return discount items changed on or after this date or date-time (QuickBooks local time unless an offset is given). Cannot be combined with ids, fullNames.",
+     "description": "Return discount items changed on or after this date or date-time (QuickBooks local time unless an offset is given). Use 1970-01-02 to 2037-12-31. Not after `updatedBefore`. Cannot be combined with ids, fullNames.",
      "schema": {
       "type": "string",
       "pattern": "^\\d{4}-\\d{2}-\\d{2}(T\\d{2}:\\d{2}(:\\d{2}(\\.\\d{1,9})?)?(Z|[+-]\\d{2}:\\d{2})?)?$",
@@ -8255,7 +8255,7 @@
     {
      "name": "updatedBefore",
      "required": false,
-     "description": "Return discount items changed on or before this date or date-time (QuickBooks local time unless an offset is given). Cannot be combined with ids, fullNames.",
+     "description": "Return discount items changed on or before this date or date-time (QuickBooks local time unless an offset is given). Use 1970-01-02 to 2037-12-31. Not before `updatedAfter`. Cannot be combined with ids, fullNames.",
      "schema": {
       "type": "string",
       "pattern": "^\\d{4}-\\d{2}-\\d{2}(T\\d{2}:\\d{2}(:\\d{2}(\\.\\d{1,9})?)?(Z|[+-]\\d{2}:\\d{2})?)?$",
@@ -8591,7 +8591,7 @@
     {
      "name": "updatedAfter",
      "required": false,
-     "description": "Return employees changed on or after this date or date-time (QuickBooks local time unless an offset is given). Cannot be combined with ids, names.",
+     "description": "Return employees changed on or after this date or date-time (QuickBooks local time unless an offset is given). Use 1970-01-02 to 2037-12-31. Not after `updatedBefore`. Cannot be combined with ids, names.",
      "schema": {
       "type": "string",
       "pattern": "^\\d{4}-\\d{2}-\\d{2}(T\\d{2}:\\d{2}(:\\d{2}(\\.\\d{1,9})?)?(Z|[+-]\\d{2}:\\d{2})?)?$",
@@ -8602,7 +8602,7 @@
     {
      "name": "updatedBefore",
      "required": false,
-     "description": "Return employees changed on or before this date or date-time (QuickBooks local time unless an offset is given). Cannot be combined with ids, names.",
+     "description": "Return employees changed on or before this date or date-time (QuickBooks local time unless an offset is given). Use 1970-01-02 to 2037-12-31. Not before `updatedAfter`. Cannot be combined with ids, names.",
      "schema": {
       "type": "string",
       "pattern": "^\\d{4}-\\d{2}-\\d{2}(T\\d{2}:\\d{2}(:\\d{2}(\\.\\d{1,9})?)?(Z|[+-]\\d{2}:\\d{2})?)?$",
@@ -8883,7 +8883,7 @@
     {
      "name": "updatedAfter",
      "required": false,
-     "description": "Return entities changed on or after this date or date-time (QuickBooks local time unless an offset is given). Cannot be combined with ids, fullNames.",
+     "description": "Return entities changed on or after this date or date-time (QuickBooks local time unless an offset is given). Use 1970-01-02 to 2037-12-31. Not after `updatedBefore`. Cannot be combined with ids, fullNames.",
      "schema": {
       "type": "string",
       "pattern": "^\\d{4}-\\d{2}-\\d{2}(T\\d{2}:\\d{2}(:\\d{2}(\\.\\d{1,9})?)?(Z|[+-]\\d{2}:\\d{2})?)?$",
@@ -8894,7 +8894,7 @@
     {
      "name": "updatedBefore",
      "required": false,
-     "description": "Return entities changed on or before this date or date-time (QuickBooks local time unless an offset is given). Cannot be combined with ids, fullNames.",
+     "description": "Return entities changed on or before this date or date-time (QuickBooks local time unless an offset is given). Use 1970-01-02 to 2037-12-31. Not before `updatedAfter`. Cannot be combined with ids, fullNames.",
      "schema": {
       "type": "string",
       "pattern": "^\\d{4}-\\d{2}-\\d{2}(T\\d{2}:\\d{2}(:\\d{2}(\\.\\d{1,9})?)?(Z|[+-]\\d{2}:\\d{2})?)?$",
@@ -9039,7 +9039,7 @@
     {
      "name": "updatedAfter",
      "required": false,
-     "description": "Return estimates changed on or after this date or date-time (QuickBooks local time unless an offset is given). Cannot be combined with ids, refNumbers, transactionDateFrom, transactionDateTo, transactionDateMacro.",
+     "description": "Return estimates changed on or after this date or date-time (QuickBooks local time unless an offset is given). Use 1970-01-02 to 2037-12-31. Not after `updatedBefore`. Cannot be combined with ids, refNumbers, transactionDateFrom, transactionDateTo, transactionDateMacro.",
      "schema": {
       "type": "string",
       "pattern": "^\\d{4}-\\d{2}-\\d{2}(T\\d{2}:\\d{2}(:\\d{2}(\\.\\d{1,9})?)?(Z|[+-]\\d{2}:\\d{2})?)?$",
@@ -9050,7 +9050,7 @@
     {
      "name": "updatedBefore",
      "required": false,
-     "description": "Return estimates changed on or before this date or date-time (QuickBooks local time unless an offset is given). Cannot be combined with ids, refNumbers, transactionDateFrom, transactionDateTo, transactionDateMacro.",
+     "description": "Return estimates changed on or before this date or date-time (QuickBooks local time unless an offset is given). Use 1970-01-02 to 2037-12-31. Not before `updatedAfter`. Cannot be combined with ids, refNumbers, transactionDateFrom, transactionDateTo, transactionDateMacro.",
      "schema": {
       "type": "string",
       "pattern": "^\\d{4}-\\d{2}-\\d{2}(T\\d{2}:\\d{2}(:\\d{2}(\\.\\d{1,9})?)?(Z|[+-]\\d{2}:\\d{2})?)?$",
@@ -9061,7 +9061,7 @@
     {
      "name": "transactionDateFrom",
      "required": false,
-     "description": "Return estimates dated on or after this date (YYYY-MM-DD). Cannot be combined with ids, refNumbers, updatedAfter, updatedBefore, transactionDateMacro.",
+     "description": "Return estimates dated on or after this date (YYYY-MM-DD). Not after 2037-12-31 or `transactionDateTo`. Cannot be combined with ids, refNumbers, updatedAfter, updatedBefore, transactionDateMacro.",
      "schema": {
       "type": "string",
       "format": "date"
@@ -9070,7 +9070,7 @@
     {
      "name": "transactionDateTo",
      "required": false,
-     "description": "Return estimates dated on or before this date (YYYY-MM-DD). Cannot be combined with ids, refNumbers, updatedAfter, updatedBefore, transactionDateMacro.",
+     "description": "Return estimates dated on or before this date (YYYY-MM-DD). Not before 1970-01-01 or `transactionDateFrom`. Cannot be combined with ids, refNumbers, updatedAfter, updatedBefore, transactionDateMacro.",
      "schema": {
       "type": "string",
       "format": "date"
@@ -9418,7 +9418,7 @@
     {
      "name": "updatedAfter",
      "required": false,
-     "description": "Return fixed asset items changed on or after this date or date-time (QuickBooks local time unless an offset is given). Cannot be combined with ids, names.",
+     "description": "Return fixed asset items changed on or after this date or date-time (QuickBooks local time unless an offset is given). Use 1970-01-02 to 2037-12-31. Not after `updatedBefore`. Cannot be combined with ids, names.",
      "schema": {
       "type": "string",
       "pattern": "^\\d{4}-\\d{2}-\\d{2}(T\\d{2}:\\d{2}(:\\d{2}(\\.\\d{1,9})?)?(Z|[+-]\\d{2}:\\d{2})?)?$",
@@ -9429,7 +9429,7 @@
     {
      "name": "updatedBefore",
      "required": false,
-     "description": "Return fixed asset items changed on or before this date or date-time (QuickBooks local time unless an offset is given). Cannot be combined with ids, names.",
+     "description": "Return fixed asset items changed on or before this date or date-time (QuickBooks local time unless an offset is given). Use 1970-01-02 to 2037-12-31. Not before `updatedAfter`. Cannot be combined with ids, names.",
      "schema": {
       "type": "string",
       "pattern": "^\\d{4}-\\d{2}-\\d{2}(T\\d{2}:\\d{2}(:\\d{2}(\\.\\d{1,9})?)?(Z|[+-]\\d{2}:\\d{2})?)?$",
@@ -9716,7 +9716,7 @@
     {
      "name": "updatedAfter",
      "required": false,
-     "description": "Return inventory adjustments changed on or after this date or date-time (QuickBooks local time unless an offset is given). Cannot be combined with ids, refNumbers, transactionDateFrom, transactionDateTo, transactionDateMacro.",
+     "description": "Return inventory adjustments changed on or after this date or date-time (QuickBooks local time unless an offset is given). Use 1970-01-02 to 2037-12-31. Not after `updatedBefore`. Cannot be combined with ids, refNumbers, transactionDateFrom, transactionDateTo, transactionDateMacro.",
      "schema": {
       "type": "string",
       "pattern": "^\\d{4}-\\d{2}-\\d{2}(T\\d{2}:\\d{2}(:\\d{2}(\\.\\d{1,9})?)?(Z|[+-]\\d{2}:\\d{2})?)?$",
@@ -9727,7 +9727,7 @@
     {
      "name": "updatedBefore",
      "required": false,
-     "description": "Return inventory adjustments changed on or before this date or date-time (QuickBooks local time unless an offset is given). Cannot be combined with ids, refNumbers, transactionDateFrom, transactionDateTo, transactionDateMacro.",
+     "description": "Return inventory adjustments changed on or before this date or date-time (QuickBooks local time unless an offset is given). Use 1970-01-02 to 2037-12-31. Not before `updatedAfter`. Cannot be combined with ids, refNumbers, transactionDateFrom, transactionDateTo, transactionDateMacro.",
      "schema": {
       "type": "string",
       "pattern": "^\\d{4}-\\d{2}-\\d{2}(T\\d{2}:\\d{2}(:\\d{2}(\\.\\d{1,9})?)?(Z|[+-]\\d{2}:\\d{2})?)?$",
@@ -9738,7 +9738,7 @@
     {
      "name": "transactionDateFrom",
      "required": false,
-     "description": "Return inventory adjustments dated on or after this date (YYYY-MM-DD). Cannot be combined with ids, refNumbers, updatedAfter, updatedBefore, transactionDateMacro.",
+     "description": "Return inventory adjustments dated on or after this date (YYYY-MM-DD). Not after 2037-12-31 or `transactionDateTo`. Cannot be combined with ids, refNumbers, updatedAfter, updatedBefore, transactionDateMacro.",
      "schema": {
       "type": "string",
       "format": "date"
@@ -9747,7 +9747,7 @@
     {
      "name": "transactionDateTo",
      "required": false,
-     "description": "Return inventory adjustments dated on or before this date (YYYY-MM-DD). Cannot be combined with ids, refNumbers, updatedAfter, updatedBefore, transactionDateMacro.",
+     "description": "Return inventory adjustments dated on or before this date (YYYY-MM-DD). Not before 1970-01-01 or `transactionDateFrom`. Cannot be combined with ids, refNumbers, updatedAfter, updatedBefore, transactionDateMacro.",
      "schema": {
       "type": "string",
       "format": "date"
@@ -10107,7 +10107,7 @@
     {
      "name": "updatedAfter",
      "required": false,
-     "description": "Return inventory assembly items changed on or after this date or date-time (QuickBooks local time unless an offset is given). Cannot be combined with ids, fullNames.",
+     "description": "Return inventory assembly items changed on or after this date or date-time (QuickBooks local time unless an offset is given). Use 1970-01-02 to 2037-12-31. Not after `updatedBefore`. Cannot be combined with ids, fullNames.",
      "schema": {
       "type": "string",
       "pattern": "^\\d{4}-\\d{2}-\\d{2}(T\\d{2}:\\d{2}(:\\d{2}(\\.\\d{1,9})?)?(Z|[+-]\\d{2}:\\d{2})?)?$",
@@ -10118,7 +10118,7 @@
     {
      "name": "updatedBefore",
      "required": false,
-     "description": "Return inventory assembly items changed on or before this date or date-time (QuickBooks local time unless an offset is given). Cannot be combined with ids, fullNames.",
+     "description": "Return inventory assembly items changed on or before this date or date-time (QuickBooks local time unless an offset is given). Use 1970-01-02 to 2037-12-31. Not before `updatedAfter`. Cannot be combined with ids, fullNames.",
      "schema": {
       "type": "string",
       "pattern": "^\\d{4}-\\d{2}-\\d{2}(T\\d{2}:\\d{2}(:\\d{2}(\\.\\d{1,9})?)?(Z|[+-]\\d{2}:\\d{2})?)?$",
@@ -10461,7 +10461,7 @@
     {
      "name": "updatedAfter",
      "required": false,
-     "description": "Return inventory items changed on or after this date or date-time (QuickBooks local time unless an offset is given). QuickBooks compares only the last edit, so a change from a posted transaction, such as quantity on hand, does not match. Cannot be combined with ids, fullNames.",
+     "description": "Return inventory items changed on or after this date or date-time (QuickBooks local time unless an offset is given). QuickBooks compares only the last edit, so a change from a posted transaction, such as quantity on hand, does not match. Use 1970-01-02 to 2037-12-31. Not after `updatedBefore`. Cannot be combined with ids, fullNames.",
      "schema": {
       "type": "string",
       "pattern": "^\\d{4}-\\d{2}-\\d{2}(T\\d{2}:\\d{2}(:\\d{2}(\\.\\d{1,9})?)?(Z|[+-]\\d{2}:\\d{2})?)?$",
@@ -10472,7 +10472,7 @@
     {
      "name": "updatedBefore",
      "required": false,
-     "description": "Return inventory items changed on or before this date or date-time (QuickBooks local time unless an offset is given). QuickBooks compares only the last edit, so this can return inventory items whose `updatedAt` is later. Cannot be combined with ids, fullNames.",
+     "description": "Return inventory items changed on or before this date or date-time (QuickBooks local time unless an offset is given). QuickBooks compares only the last edit, so this can return inventory items whose `updatedAt` is later. Use 1970-01-02 to 2037-12-31. Not before `updatedAfter`. Cannot be combined with ids, fullNames.",
      "schema": {
       "type": "string",
       "pattern": "^\\d{4}-\\d{2}-\\d{2}(T\\d{2}:\\d{2}(:\\d{2}(\\.\\d{1,9})?)?(Z|[+-]\\d{2}:\\d{2})?)?$",
@@ -10799,7 +10799,7 @@
     {
      "name": "updatedAfter",
      "required": false,
-     "description": "Return inventory sites changed on or after this date or date-time (QuickBooks local time unless an offset is given). Cannot be combined with ids, names.",
+     "description": "Return inventory sites changed on or after this date or date-time (QuickBooks local time unless an offset is given). Use 1970-01-02 to 2037-12-31. Not after `updatedBefore`. Cannot be combined with ids, names.",
      "schema": {
       "type": "string",
       "pattern": "^\\d{4}-\\d{2}-\\d{2}(T\\d{2}:\\d{2}(:\\d{2}(\\.\\d{1,9})?)?(Z|[+-]\\d{2}:\\d{2})?)?$",
@@ -10810,7 +10810,7 @@
     {
      "name": "updatedBefore",
      "required": false,
-     "description": "Return inventory sites changed on or before this date or date-time (QuickBooks local time unless an offset is given). Cannot be combined with ids, names.",
+     "description": "Return inventory sites changed on or before this date or date-time (QuickBooks local time unless an offset is given). Use 1970-01-02 to 2037-12-31. Not before `updatedAfter`. Cannot be combined with ids, names.",
      "schema": {
       "type": "string",
       "pattern": "^\\d{4}-\\d{2}-\\d{2}(T\\d{2}:\\d{2}(:\\d{2}(\\.\\d{1,9})?)?(Z|[+-]\\d{2}:\\d{2})?)?$",
@@ -11042,7 +11042,7 @@
     {
      "name": "updatedAfter",
      "required": false,
-     "description": "Return inventory transfers changed on or after this date or date-time (QuickBooks local time unless an offset is given). Cannot be combined with ids, refNumbers, transactionDateFrom, transactionDateTo, transactionDateMacro, siteIds.",
+     "description": "Return inventory transfers changed on or after this date or date-time (QuickBooks local time unless an offset is given). Use 1970-01-02 to 2037-12-31. Not after `updatedBefore`. Cannot be combined with ids, refNumbers, transactionDateFrom, transactionDateTo, transactionDateMacro, siteIds.",
      "schema": {
       "type": "string",
       "pattern": "^\\d{4}-\\d{2}-\\d{2}(T\\d{2}:\\d{2}(:\\d{2}(\\.\\d{1,9})?)?(Z|[+-]\\d{2}:\\d{2})?)?$",
@@ -11053,7 +11053,7 @@
     {
      "name": "updatedBefore",
      "required": false,
-     "description": "Return inventory transfers changed on or before this date or date-time (QuickBooks local time unless an offset is given). Cannot be combined with ids, refNumbers, transactionDateFrom, transactionDateTo, transactionDateMacro, siteIds.",
+     "description": "Return inventory transfers changed on or before this date or date-time (QuickBooks local time unless an offset is given). Use 1970-01-02 to 2037-12-31. Not before `updatedAfter`. Cannot be combined with ids, refNumbers, transactionDateFrom, transactionDateTo, transactionDateMacro, siteIds.",
      "schema": {
       "type": "string",
       "pattern": "^\\d{4}-\\d{2}-\\d{2}(T\\d{2}:\\d{2}(:\\d{2}(\\.\\d{1,9})?)?(Z|[+-]\\d{2}:\\d{2})?)?$",
@@ -11064,7 +11064,7 @@
     {
      "name": "transactionDateFrom",
      "required": false,
-     "description": "Return inventory transfers dated on or after this date (YYYY-MM-DD). Cannot be combined with ids, refNumbers, updatedAfter, updatedBefore, transactionDateMacro, siteIds.",
+     "description": "Return inventory transfers dated on or after this date (YYYY-MM-DD). Not after 2037-12-31 or `transactionDateTo`. Cannot be combined with ids, refNumbers, updatedAfter, updatedBefore, transactionDateMacro, siteIds.",
      "schema": {
       "type": "string",
       "format": "date"
@@ -11073,7 +11073,7 @@
     {
      "name": "transactionDateTo",
      "required": false,
-     "description": "Return inventory transfers dated on or before this date (YYYY-MM-DD). Cannot be combined with ids, refNumbers, updatedAfter, updatedBefore, transactionDateMacro, siteIds.",
+     "description": "Return inventory transfers dated on or before this date (YYYY-MM-DD). Not before 1970-01-01 or `transactionDateFrom`. Cannot be combined with ids, refNumbers, updatedAfter, updatedBefore, transactionDateMacro, siteIds.",
      "schema": {
       "type": "string",
       "format": "date"
@@ -11370,7 +11370,7 @@
     {
      "name": "updatedAfter",
      "required": false,
-     "description": "Return invoices changed on or after this date or date-time (QuickBooks local time unless an offset is given). Cannot be combined with ids, refNumbers, transactionDateFrom, transactionDateTo, transactionDateMacro.",
+     "description": "Return invoices changed on or after this date or date-time (QuickBooks local time unless an offset is given). Use 1970-01-02 to 2037-12-31. Not after `updatedBefore`. Cannot be combined with ids, refNumbers, transactionDateFrom, transactionDateTo, transactionDateMacro.",
      "schema": {
       "type": "string",
       "pattern": "^\\d{4}-\\d{2}-\\d{2}(T\\d{2}:\\d{2}(:\\d{2}(\\.\\d{1,9})?)?(Z|[+-]\\d{2}:\\d{2})?)?$",
@@ -11381,7 +11381,7 @@
     {
      "name": "updatedBefore",
      "required": false,
-     "description": "Return invoices changed on or before this date or date-time (QuickBooks local time unless an offset is given). Cannot be combined with ids, refNumbers, transactionDateFrom, transactionDateTo, transactionDateMacro.",
+     "description": "Return invoices changed on or before this date or date-time (QuickBooks local time unless an offset is given). Use 1970-01-02 to 2037-12-31. Not before `updatedAfter`. Cannot be combined with ids, refNumbers, transactionDateFrom, transactionDateTo, transactionDateMacro.",
      "schema": {
       "type": "string",
       "pattern": "^\\d{4}-\\d{2}-\\d{2}(T\\d{2}:\\d{2}(:\\d{2}(\\.\\d{1,9})?)?(Z|[+-]\\d{2}:\\d{2})?)?$",
@@ -11392,7 +11392,7 @@
     {
      "name": "transactionDateFrom",
      "required": false,
-     "description": "Return invoices dated on or after this date (YYYY-MM-DD). Cannot be combined with ids, refNumbers, updatedAfter, updatedBefore, transactionDateMacro.",
+     "description": "Return invoices dated on or after this date (YYYY-MM-DD). Not after 2037-12-31 or `transactionDateTo`. Cannot be combined with ids, refNumbers, updatedAfter, updatedBefore, transactionDateMacro.",
      "schema": {
       "type": "string",
       "format": "date"
@@ -11401,7 +11401,7 @@
     {
      "name": "transactionDateTo",
      "required": false,
-     "description": "Return invoices dated on or before this date (YYYY-MM-DD). Cannot be combined with ids, refNumbers, updatedAfter, updatedBefore, transactionDateMacro.",
+     "description": "Return invoices dated on or before this date (YYYY-MM-DD). Not before 1970-01-01 or `transactionDateFrom`. Cannot be combined with ids, refNumbers, updatedAfter, updatedBefore, transactionDateMacro.",
      "schema": {
       "type": "string",
       "format": "date"
@@ -11793,7 +11793,7 @@
     {
      "name": "updatedAfter",
      "required": false,
-     "description": "Return item groups changed on or after this date or date-time (QuickBooks local time unless an offset is given). Cannot be combined with ids, names.",
+     "description": "Return item groups changed on or after this date or date-time (QuickBooks local time unless an offset is given). Use 1970-01-02 to 2037-12-31. Not after `updatedBefore`. Cannot be combined with ids, names.",
      "schema": {
       "type": "string",
       "pattern": "^\\d{4}-\\d{2}-\\d{2}(T\\d{2}:\\d{2}(:\\d{2}(\\.\\d{1,9})?)?(Z|[+-]\\d{2}:\\d{2})?)?$",
@@ -11804,7 +11804,7 @@
     {
      "name": "updatedBefore",
      "required": false,
-     "description": "Return item groups changed on or before this date or date-time (QuickBooks local time unless an offset is given). Cannot be combined with ids, names.",
+     "description": "Return item groups changed on or before this date or date-time (QuickBooks local time unless an offset is given). Use 1970-01-02 to 2037-12-31. Not before `updatedAfter`. Cannot be combined with ids, names.",
      "schema": {
       "type": "string",
       "pattern": "^\\d{4}-\\d{2}-\\d{2}(T\\d{2}:\\d{2}(:\\d{2}(\\.\\d{1,9})?)?(Z|[+-]\\d{2}:\\d{2})?)?$",
@@ -12112,7 +12112,7 @@
     {
      "name": "updatedAfter",
      "required": false,
-     "description": "Return item receipts changed on or after this date or date-time (QuickBooks local time unless an offset is given). Cannot be combined with ids, refNumbers, transactionDateFrom, transactionDateTo, transactionDateMacro.",
+     "description": "Return item receipts changed on or after this date or date-time (QuickBooks local time unless an offset is given). Use 1970-01-02 to 2037-12-31. Not after `updatedBefore`. Cannot be combined with ids, refNumbers, transactionDateFrom, transactionDateTo, transactionDateMacro.",
      "schema": {
       "type": "string",
       "pattern": "^\\d{4}-\\d{2}-\\d{2}(T\\d{2}:\\d{2}(:\\d{2}(\\.\\d{1,9})?)?(Z|[+-]\\d{2}:\\d{2})?)?$",
@@ -12123,7 +12123,7 @@
     {
      "name": "updatedBefore",
      "required": false,
-     "description": "Return item receipts changed on or before this date or date-time (QuickBooks local time unless an offset is given). Cannot be combined with ids, refNumbers, transactionDateFrom, transactionDateTo, transactionDateMacro.",
+     "description": "Return item receipts changed on or before this date or date-time (QuickBooks local time unless an offset is given). Use 1970-01-02 to 2037-12-31. Not before `updatedAfter`. Cannot be combined with ids, refNumbers, transactionDateFrom, transactionDateTo, transactionDateMacro.",
      "schema": {
       "type": "string",
       "pattern": "^\\d{4}-\\d{2}-\\d{2}(T\\d{2}:\\d{2}(:\\d{2}(\\.\\d{1,9})?)?(Z|[+-]\\d{2}:\\d{2})?)?$",
@@ -12134,7 +12134,7 @@
     {
      "name": "transactionDateFrom",
      "required": false,
-     "description": "Return item receipts dated on or after this date (YYYY-MM-DD). Cannot be combined with ids, refNumbers, updatedAfter, updatedBefore, transactionDateMacro.",
+     "description": "Return item receipts dated on or after this date (YYYY-MM-DD). Not after 2037-12-31 or `transactionDateTo`. Cannot be combined with ids, refNumbers, updatedAfter, updatedBefore, transactionDateMacro.",
      "schema": {
       "type": "string",
       "format": "date"
@@ -12143,7 +12143,7 @@
     {
      "name": "transactionDateTo",
      "required": false,
-     "description": "Return item receipts dated on or before this date (YYYY-MM-DD). Cannot be combined with ids, refNumbers, updatedAfter, updatedBefore, transactionDateMacro.",
+     "description": "Return item receipts dated on or before this date (YYYY-MM-DD). Not before 1970-01-01 or `transactionDateFrom`. Cannot be combined with ids, refNumbers, updatedAfter, updatedBefore, transactionDateMacro.",
      "schema": {
       "type": "string",
       "format": "date"
@@ -12654,7 +12654,7 @@
     {
      "name": "updatedAfter",
      "required": false,
-     "description": "Return items changed on or after this date or date-time (QuickBooks local time unless an offset is given). QuickBooks matches an item when its last edit or its last change falls in the range. Cannot be combined with ids, fullNames.",
+     "description": "Return items changed on or after this date or date-time (QuickBooks local time unless an offset is given). QuickBooks matches an item when its last edit or its last change falls in the range. Use 1970-01-02 to 2037-12-31. Not after `updatedBefore`. Cannot be combined with ids, fullNames.",
      "schema": {
       "type": "string",
       "pattern": "^\\d{4}-\\d{2}-\\d{2}(T\\d{2}:\\d{2}(:\\d{2}(\\.\\d{1,9})?)?(Z|[+-]\\d{2}:\\d{2})?)?$",
@@ -12665,7 +12665,7 @@
     {
      "name": "updatedBefore",
      "required": false,
-     "description": "Return items changed on or before this date or date-time (QuickBooks local time unless an offset is given). QuickBooks matches an item when its last edit or its last change falls in the range, so this can return items whose `updatedAt` is later. Cannot be combined with ids, fullNames.",
+     "description": "Return items changed on or before this date or date-time (QuickBooks local time unless an offset is given). QuickBooks matches an item when its last edit or its last change falls in the range, so this can return items whose `updatedAt` is later. Use 1970-01-02 to 2037-12-31. Not before `updatedAfter`. Cannot be combined with ids, fullNames.",
      "schema": {
       "type": "string",
       "pattern": "^\\d{4}-\\d{2}-\\d{2}(T\\d{2}:\\d{2}(:\\d{2}(\\.\\d{1,9})?)?(Z|[+-]\\d{2}:\\d{2})?)?$",
@@ -12823,7 +12823,7 @@
     {
      "name": "updatedAfter",
      "required": false,
-     "description": "Return job types changed on or after this date or date-time (QuickBooks local time unless an offset is given). Cannot be combined with ids, fullNames.",
+     "description": "Return job types changed on or after this date or date-time (QuickBooks local time unless an offset is given). Use 1970-01-02 to 2037-12-31. Not after `updatedBefore`. Cannot be combined with ids, fullNames.",
      "schema": {
       "type": "string",
       "pattern": "^\\d{4}-\\d{2}-\\d{2}(T\\d{2}:\\d{2}(:\\d{2}(\\.\\d{1,9})?)?(Z|[+-]\\d{2}:\\d{2})?)?$",
@@ -12834,7 +12834,7 @@
     {
      "name": "updatedBefore",
      "required": false,
-     "description": "Return job types changed on or before this date or date-time (QuickBooks local time unless an offset is given). Cannot be combined with ids, fullNames.",
+     "description": "Return job types changed on or before this date or date-time (QuickBooks local time unless an offset is given). Use 1970-01-02 to 2037-12-31. Not before `updatedAfter`. Cannot be combined with ids, fullNames.",
      "schema": {
       "type": "string",
       "pattern": "^\\d{4}-\\d{2}-\\d{2}(T\\d{2}:\\d{2}(:\\d{2}(\\.\\d{1,9})?)?(Z|[+-]\\d{2}:\\d{2})?)?$",
@@ -13032,7 +13032,7 @@
     {
      "name": "updatedAfter",
      "required": false,
-     "description": "Return journal entries changed on or after this date or date-time (QuickBooks local time unless an offset is given). Cannot be combined with ids, refNumbers, transactionDateFrom, transactionDateTo, transactionDateMacro.",
+     "description": "Return journal entries changed on or after this date or date-time (QuickBooks local time unless an offset is given). Use 1970-01-02 to 2037-12-31. Not after `updatedBefore`. Cannot be combined with ids, refNumbers, transactionDateFrom, transactionDateTo, transactionDateMacro.",
      "schema": {
       "type": "string",
       "pattern": "^\\d{4}-\\d{2}-\\d{2}(T\\d{2}:\\d{2}(:\\d{2}(\\.\\d{1,9})?)?(Z|[+-]\\d{2}:\\d{2})?)?$",
@@ -13043,7 +13043,7 @@
     {
      "name": "updatedBefore",
      "required": false,
-     "description": "Return journal entries changed on or before this date or date-time (QuickBooks local time unless an offset is given). Cannot be combined with ids, refNumbers, transactionDateFrom, transactionDateTo, transactionDateMacro.",
+     "description": "Return journal entries changed on or before this date or date-time (QuickBooks local time unless an offset is given). Use 1970-01-02 to 2037-12-31. Not before `updatedAfter`. Cannot be combined with ids, refNumbers, transactionDateFrom, transactionDateTo, transactionDateMacro.",
      "schema": {
       "type": "string",
       "pattern": "^\\d{4}-\\d{2}-\\d{2}(T\\d{2}:\\d{2}(:\\d{2}(\\.\\d{1,9})?)?(Z|[+-]\\d{2}:\\d{2})?)?$",
@@ -13054,7 +13054,7 @@
     {
      "name": "transactionDateFrom",
      "required": false,
-     "description": "Return journal entries dated on or after this date (YYYY-MM-DD). Cannot be combined with ids, refNumbers, updatedAfter, updatedBefore, transactionDateMacro.",
+     "description": "Return journal entries dated on or after this date (YYYY-MM-DD). Not after 2037-12-31 or `transactionDateTo`. Cannot be combined with ids, refNumbers, updatedAfter, updatedBefore, transactionDateMacro.",
      "schema": {
       "type": "string",
       "format": "date"
@@ -13063,7 +13063,7 @@
     {
      "name": "transactionDateTo",
      "required": false,
-     "description": "Return journal entries dated on or before this date (YYYY-MM-DD). Cannot be combined with ids, refNumbers, updatedAfter, updatedBefore, transactionDateMacro.",
+     "description": "Return journal entries dated on or before this date (YYYY-MM-DD). Not before 1970-01-01 or `transactionDateFrom`. Cannot be combined with ids, refNumbers, updatedAfter, updatedBefore, transactionDateMacro.",
      "schema": {
       "type": "string",
       "format": "date"
@@ -13416,7 +13416,7 @@
     {
      "name": "updatedAfter",
      "required": false,
-     "description": "Return leads changed on or after this date or date-time (QuickBooks local time unless an offset is given). Cannot be combined with ids, names.",
+     "description": "Return leads changed on or after this date or date-time (QuickBooks local time unless an offset is given). Use 1970-01-02 to 2037-12-31. Not after `updatedBefore`. Cannot be combined with ids, names.",
      "schema": {
       "type": "string",
       "pattern": "^\\d{4}-\\d{2}-\\d{2}(T\\d{2}:\\d{2}(:\\d{2}(\\.\\d{1,9})?)?(Z|[+-]\\d{2}:\\d{2})?)?$",
@@ -13427,7 +13427,7 @@
     {
      "name": "updatedBefore",
      "required": false,
-     "description": "Return leads changed on or before this date or date-time (QuickBooks local time unless an offset is given). Cannot be combined with ids, names.",
+     "description": "Return leads changed on or before this date or date-time (QuickBooks local time unless an offset is given). Use 1970-01-02 to 2037-12-31. Not before `updatedAfter`. Cannot be combined with ids, names.",
      "schema": {
       "type": "string",
       "pattern": "^\\d{4}-\\d{2}-\\d{2}(T\\d{2}:\\d{2}(:\\d{2}(\\.\\d{1,9})?)?(Z|[+-]\\d{2}:\\d{2})?)?$",
@@ -13643,7 +13643,7 @@
     {
      "name": "updatedAfter",
      "required": false,
-     "description": "Return non-inventory items changed on or after this date or date-time (QuickBooks local time unless an offset is given). Cannot be combined with ids, fullNames.",
+     "description": "Return non-inventory items changed on or after this date or date-time (QuickBooks local time unless an offset is given). Use 1970-01-02 to 2037-12-31. Not after `updatedBefore`. Cannot be combined with ids, fullNames.",
      "schema": {
       "type": "string",
       "pattern": "^\\d{4}-\\d{2}-\\d{2}(T\\d{2}:\\d{2}(:\\d{2}(\\.\\d{1,9})?)?(Z|[+-]\\d{2}:\\d{2})?)?$",
@@ -13654,7 +13654,7 @@
     {
      "name": "updatedBefore",
      "required": false,
-     "description": "Return non-inventory items changed on or before this date or date-time (QuickBooks local time unless an offset is given). Cannot be combined with ids, fullNames.",
+     "description": "Return non-inventory items changed on or before this date or date-time (QuickBooks local time unless an offset is given). Use 1970-01-02 to 2037-12-31. Not before `updatedAfter`. Cannot be combined with ids, fullNames.",
      "schema": {
       "type": "string",
       "pattern": "^\\d{4}-\\d{2}-\\d{2}(T\\d{2}:\\d{2}(:\\d{2}(\\.\\d{1,9})?)?(Z|[+-]\\d{2}:\\d{2})?)?$",
@@ -13992,7 +13992,7 @@
     {
      "name": "updatedAfter",
      "required": false,
-     "description": "Return other charge items changed on or after this date or date-time (QuickBooks local time unless an offset is given). Cannot be combined with ids, fullNames.",
+     "description": "Return other charge items changed on or after this date or date-time (QuickBooks local time unless an offset is given). Use 1970-01-02 to 2037-12-31. Not after `updatedBefore`. Cannot be combined with ids, fullNames.",
      "schema": {
       "type": "string",
       "pattern": "^\\d{4}-\\d{2}-\\d{2}(T\\d{2}:\\d{2}(:\\d{2}(\\.\\d{1,9})?)?(Z|[+-]\\d{2}:\\d{2})?)?$",
@@ -14003,7 +14003,7 @@
     {
      "name": "updatedBefore",
      "required": false,
-     "description": "Return other charge items changed on or before this date or date-time (QuickBooks local time unless an offset is given). Cannot be combined with ids, fullNames.",
+     "description": "Return other charge items changed on or before this date or date-time (QuickBooks local time unless an offset is given). Use 1970-01-02 to 2037-12-31. Not before `updatedAfter`. Cannot be combined with ids, fullNames.",
      "schema": {
       "type": "string",
       "pattern": "^\\d{4}-\\d{2}-\\d{2}(T\\d{2}:\\d{2}(:\\d{2}(\\.\\d{1,9})?)?(Z|[+-]\\d{2}:\\d{2})?)?$",
@@ -14339,7 +14339,7 @@
     {
      "name": "updatedAfter",
      "required": false,
-     "description": "Return other names changed on or after this date or date-time (QuickBooks local time unless an offset is given). Cannot be combined with ids, names.",
+     "description": "Return other names changed on or after this date or date-time (QuickBooks local time unless an offset is given). Use 1970-01-02 to 2037-12-31. Not after `updatedBefore`. Cannot be combined with ids, names.",
      "schema": {
       "type": "string",
       "pattern": "^\\d{4}-\\d{2}-\\d{2}(T\\d{2}:\\d{2}(:\\d{2}(\\.\\d{1,9})?)?(Z|[+-]\\d{2}:\\d{2})?)?$",
@@ -14350,7 +14350,7 @@
     {
      "name": "updatedBefore",
      "required": false,
-     "description": "Return other names changed on or before this date or date-time (QuickBooks local time unless an offset is given). Cannot be combined with ids, names.",
+     "description": "Return other names changed on or before this date or date-time (QuickBooks local time unless an offset is given). Use 1970-01-02 to 2037-12-31. Not before `updatedAfter`. Cannot be combined with ids, names.",
      "schema": {
       "type": "string",
       "pattern": "^\\d{4}-\\d{2}-\\d{2}(T\\d{2}:\\d{2}(:\\d{2}(\\.\\d{1,9})?)?(Z|[+-]\\d{2}:\\d{2})?)?$",
@@ -14631,7 +14631,7 @@
     {
      "name": "updatedAfter",
      "required": false,
-     "description": "Return payment items changed on or after this date or date-time (QuickBooks local time unless an offset is given). Cannot be combined with ids, names.",
+     "description": "Return payment items changed on or after this date or date-time (QuickBooks local time unless an offset is given). Use 1970-01-02 to 2037-12-31. Not after `updatedBefore`. Cannot be combined with ids, names.",
      "schema": {
       "type": "string",
       "pattern": "^\\d{4}-\\d{2}-\\d{2}(T\\d{2}:\\d{2}(:\\d{2}(\\.\\d{1,9})?)?(Z|[+-]\\d{2}:\\d{2})?)?$",
@@ -14642,7 +14642,7 @@
     {
      "name": "updatedBefore",
      "required": false,
-     "description": "Return payment items changed on or before this date or date-time (QuickBooks local time unless an offset is given). Cannot be combined with ids, names.",
+     "description": "Return payment items changed on or before this date or date-time (QuickBooks local time unless an offset is given). Use 1970-01-02 to 2037-12-31. Not before `updatedAfter`. Cannot be combined with ids, names.",
      "schema": {
       "type": "string",
       "pattern": "^\\d{4}-\\d{2}-\\d{2}(T\\d{2}:\\d{2}(:\\d{2}(\\.\\d{1,9})?)?(Z|[+-]\\d{2}:\\d{2})?)?$",
@@ -14978,7 +14978,7 @@
     {
      "name": "updatedAfter",
      "required": false,
-     "description": "Return payment methods changed on or after this date or date-time (QuickBooks local time unless an offset is given). Cannot be combined with ids, names.",
+     "description": "Return payment methods changed on or after this date or date-time (QuickBooks local time unless an offset is given). Use 1970-01-02 to 2037-12-31. Not after `updatedBefore`. Cannot be combined with ids, names.",
      "schema": {
       "type": "string",
       "pattern": "^\\d{4}-\\d{2}-\\d{2}(T\\d{2}:\\d{2}(:\\d{2}(\\.\\d{1,9})?)?(Z|[+-]\\d{2}:\\d{2})?)?$",
@@ -14989,7 +14989,7 @@
     {
      "name": "updatedBefore",
      "required": false,
-     "description": "Return payment methods changed on or before this date or date-time (QuickBooks local time unless an offset is given). Cannot be combined with ids, names.",
+     "description": "Return payment methods changed on or before this date or date-time (QuickBooks local time unless an offset is given). Use 1970-01-02 to 2037-12-31. Not before `updatedAfter`. Cannot be combined with ids, names.",
      "schema": {
       "type": "string",
       "pattern": "^\\d{4}-\\d{2}-\\d{2}(T\\d{2}:\\d{2}(:\\d{2}(\\.\\d{1,9})?)?(Z|[+-]\\d{2}:\\d{2})?)?$",
@@ -15293,7 +15293,7 @@
     {
      "name": "updatedAfter",
      "required": false,
-     "description": "Return payroll non-wage items changed on or after this date or date-time (QuickBooks local time unless an offset is given). Cannot be combined with ids, names.",
+     "description": "Return payroll non-wage items changed on or after this date or date-time (QuickBooks local time unless an offset is given). Use 1970-01-02 to 2037-12-31. Not after `updatedBefore`. Cannot be combined with ids, names.",
      "schema": {
       "type": "string",
       "pattern": "^\\d{4}-\\d{2}-\\d{2}(T\\d{2}:\\d{2}(:\\d{2}(\\.\\d{1,9})?)?(Z|[+-]\\d{2}:\\d{2})?)?$",
@@ -15304,7 +15304,7 @@
     {
      "name": "updatedBefore",
      "required": false,
-     "description": "Return payroll non-wage items changed on or before this date or date-time (QuickBooks local time unless an offset is given). Cannot be combined with ids, names.",
+     "description": "Return payroll non-wage items changed on or before this date or date-time (QuickBooks local time unless an offset is given). Use 1970-01-02 to 2037-12-31. Not before `updatedAfter`. Cannot be combined with ids, names.",
      "schema": {
       "type": "string",
       "pattern": "^\\d{4}-\\d{2}-\\d{2}(T\\d{2}:\\d{2}(:\\d{2}(\\.\\d{1,9})?)?(Z|[+-]\\d{2}:\\d{2})?)?$",
@@ -15425,7 +15425,7 @@
     {
      "name": "updatedAfter",
      "required": false,
-     "description": "Return payroll wage items changed on or after this date or date-time (QuickBooks local time unless an offset is given). Cannot be combined with ids, names.",
+     "description": "Return payroll wage items changed on or after this date or date-time (QuickBooks local time unless an offset is given). Use 1970-01-02 to 2037-12-31. Not after `updatedBefore`. Cannot be combined with ids, names.",
      "schema": {
       "type": "string",
       "pattern": "^\\d{4}-\\d{2}-\\d{2}(T\\d{2}:\\d{2}(:\\d{2}(\\.\\d{1,9})?)?(Z|[+-]\\d{2}:\\d{2})?)?$",
@@ -15436,7 +15436,7 @@
     {
      "name": "updatedBefore",
      "required": false,
-     "description": "Return payroll wage items changed on or before this date or date-time (QuickBooks local time unless an offset is given). Cannot be combined with ids, names.",
+     "description": "Return payroll wage items changed on or before this date or date-time (QuickBooks local time unless an offset is given). Use 1970-01-02 to 2037-12-31. Not before `updatedAfter`. Cannot be combined with ids, names.",
      "schema": {
       "type": "string",
       "pattern": "^\\d{4}-\\d{2}-\\d{2}(T\\d{2}:\\d{2}(:\\d{2}(\\.\\d{1,9})?)?(Z|[+-]\\d{2}:\\d{2})?)?$",
@@ -15706,7 +15706,7 @@
     {
      "name": "updatedAfter",
      "required": false,
-     "description": "Return price levels changed on or after this date or date-time (QuickBooks local time unless an offset is given). Cannot be combined with ids, names.",
+     "description": "Return price levels changed on or after this date or date-time (QuickBooks local time unless an offset is given). Use 1970-01-02 to 2037-12-31. Not after `updatedBefore`. Cannot be combined with ids, names.",
      "schema": {
       "type": "string",
       "pattern": "^\\d{4}-\\d{2}-\\d{2}(T\\d{2}:\\d{2}(:\\d{2}(\\.\\d{1,9})?)?(Z|[+-]\\d{2}:\\d{2})?)?$",
@@ -15717,7 +15717,7 @@
     {
      "name": "updatedBefore",
      "required": false,
-     "description": "Return price levels changed on or before this date or date-time (QuickBooks local time unless an offset is given). Cannot be combined with ids, names.",
+     "description": "Return price levels changed on or before this date or date-time (QuickBooks local time unless an offset is given). Use 1970-01-02 to 2037-12-31. Not before `updatedAfter`. Cannot be combined with ids, names.",
      "schema": {
       "type": "string",
       "pattern": "^\\d{4}-\\d{2}-\\d{2}(T\\d{2}:\\d{2}(:\\d{2}(\\.\\d{1,9})?)?(Z|[+-]\\d{2}:\\d{2})?)?$",
@@ -15984,7 +15984,7 @@
     {
      "name": "updatedAfter",
      "required": false,
-     "description": "Return purchase orders changed on or after this date or date-time (QuickBooks local time unless an offset is given). Cannot be combined with ids, refNumbers, transactionDateFrom, transactionDateTo, transactionDateMacro.",
+     "description": "Return purchase orders changed on or after this date or date-time (QuickBooks local time unless an offset is given). Use 1970-01-02 to 2037-12-31. Not after `updatedBefore`. Cannot be combined with ids, refNumbers, transactionDateFrom, transactionDateTo, transactionDateMacro.",
      "schema": {
       "type": "string",
       "pattern": "^\\d{4}-\\d{2}-\\d{2}(T\\d{2}:\\d{2}(:\\d{2}(\\.\\d{1,9})?)?(Z|[+-]\\d{2}:\\d{2})?)?$",
@@ -15995,7 +15995,7 @@
     {
      "name": "updatedBefore",
      "required": false,
-     "description": "Return purchase orders changed on or before this date or date-time (QuickBooks local time unless an offset is given). Cannot be combined with ids, refNumbers, transactionDateFrom, transactionDateTo, transactionDateMacro.",
+     "description": "Return purchase orders changed on or before this date or date-time (QuickBooks local time unless an offset is given). Use 1970-01-02 to 2037-12-31. Not before `updatedAfter`. Cannot be combined with ids, refNumbers, transactionDateFrom, transactionDateTo, transactionDateMacro.",
      "schema": {
       "type": "string",
       "pattern": "^\\d{4}-\\d{2}-\\d{2}(T\\d{2}:\\d{2}(:\\d{2}(\\.\\d{1,9})?)?(Z|[+-]\\d{2}:\\d{2})?)?$",
@@ -16006,7 +16006,7 @@
     {
      "name": "transactionDateFrom",
      "required": false,
-     "description": "Return purchase orders dated on or after this date (YYYY-MM-DD). Cannot be combined with ids, refNumbers, updatedAfter, updatedBefore, transactionDateMacro.",
+     "description": "Return purchase orders dated on or after this date (YYYY-MM-DD). Not after 2037-12-31 or `transactionDateTo`. Cannot be combined with ids, refNumbers, updatedAfter, updatedBefore, transactionDateMacro.",
      "schema": {
       "type": "string",
       "format": "date"
@@ -16015,7 +16015,7 @@
     {
      "name": "transactionDateTo",
      "required": false,
-     "description": "Return purchase orders dated on or before this date (YYYY-MM-DD). Cannot be combined with ids, refNumbers, updatedAfter, updatedBefore, transactionDateMacro.",
+     "description": "Return purchase orders dated on or before this date (YYYY-MM-DD). Not before 1970-01-01 or `transactionDateFrom`. Cannot be combined with ids, refNumbers, updatedAfter, updatedBefore, transactionDateMacro.",
      "schema": {
       "type": "string",
       "format": "date"
@@ -16348,7 +16348,7 @@
     {
      "name": "updatedAfter",
      "required": false,
-     "description": "Return received payments changed on or after this date or date-time (QuickBooks local time unless an offset is given). Cannot be combined with ids, refNumbers, transactionDateFrom, transactionDateTo, transactionDateMacro.",
+     "description": "Return received payments changed on or after this date or date-time (QuickBooks local time unless an offset is given). Use 1970-01-02 to 2037-12-31. Not after `updatedBefore`. Cannot be combined with ids, refNumbers, transactionDateFrom, transactionDateTo, transactionDateMacro.",
      "schema": {
       "type": "string",
       "pattern": "^\\d{4}-\\d{2}-\\d{2}(T\\d{2}:\\d{2}(:\\d{2}(\\.\\d{1,9})?)?(Z|[+-]\\d{2}:\\d{2})?)?$",
@@ -16359,7 +16359,7 @@
     {
      "name": "updatedBefore",
      "required": false,
-     "description": "Return received payments changed on or before this date or date-time (QuickBooks local time unless an offset is given). Cannot be combined with ids, refNumbers, transactionDateFrom, transactionDateTo, transactionDateMacro.",
+     "description": "Return received payments changed on or before this date or date-time (QuickBooks local time unless an offset is given). Use 1970-01-02 to 2037-12-31. Not before `updatedAfter`. Cannot be combined with ids, refNumbers, transactionDateFrom, transactionDateTo, transactionDateMacro.",
      "schema": {
       "type": "string",
       "pattern": "^\\d{4}-\\d{2}-\\d{2}(T\\d{2}:\\d{2}(:\\d{2}(\\.\\d{1,9})?)?(Z|[+-]\\d{2}:\\d{2})?)?$",
@@ -16370,7 +16370,7 @@
     {
      "name": "transactionDateFrom",
      "required": false,
-     "description": "Return received payments dated on or after this date (YYYY-MM-DD). Cannot be combined with ids, refNumbers, updatedAfter, updatedBefore, transactionDateMacro.",
+     "description": "Return received payments dated on or after this date (YYYY-MM-DD). Not after 2037-12-31 or `transactionDateTo`. Cannot be combined with ids, refNumbers, updatedAfter, updatedBefore, transactionDateMacro.",
      "schema": {
       "type": "string",
       "format": "date"
@@ -16379,7 +16379,7 @@
     {
      "name": "transactionDateTo",
      "required": false,
-     "description": "Return received payments dated on or before this date (YYYY-MM-DD). Cannot be combined with ids, refNumbers, updatedAfter, updatedBefore, transactionDateMacro.",
+     "description": "Return received payments dated on or before this date (YYYY-MM-DD). Not before 1970-01-01 or `transactionDateFrom`. Cannot be combined with ids, refNumbers, updatedAfter, updatedBefore, transactionDateMacro.",
      "schema": {
       "type": "string",
       "format": "date"
@@ -19493,7 +19493,7 @@
     {
      "name": "updatedAfter",
      "required": false,
-     "description": "Return sales orders changed on or after this date or date-time (QuickBooks local time unless an offset is given). Cannot be combined with ids, refNumbers, transactionDateFrom, transactionDateTo, transactionDateMacro.",
+     "description": "Return sales orders changed on or after this date or date-time (QuickBooks local time unless an offset is given). Use 1970-01-02 to 2037-12-31. Not after `updatedBefore`. Cannot be combined with ids, refNumbers, transactionDateFrom, transactionDateTo, transactionDateMacro.",
      "schema": {
       "type": "string",
       "pattern": "^\\d{4}-\\d{2}-\\d{2}(T\\d{2}:\\d{2}(:\\d{2}(\\.\\d{1,9})?)?(Z|[+-]\\d{2}:\\d{2})?)?$",
@@ -19504,7 +19504,7 @@
     {
      "name": "updatedBefore",
      "required": false,
-     "description": "Return sales orders changed on or before this date or date-time (QuickBooks local time unless an offset is given). Cannot be combined with ids, refNumbers, transactionDateFrom, transactionDateTo, transactionDateMacro.",
+     "description": "Return sales orders changed on or before this date or date-time (QuickBooks local time unless an offset is given). Use 1970-01-02 to 2037-12-31. Not before `updatedAfter`. Cannot be combined with ids, refNumbers, transactionDateFrom, transactionDateTo, transactionDateMacro.",
      "schema": {
       "type": "string",
       "pattern": "^\\d{4}-\\d{2}-\\d{2}(T\\d{2}:\\d{2}(:\\d{2}(\\.\\d{1,9})?)?(Z|[+-]\\d{2}:\\d{2})?)?$",
@@ -19515,7 +19515,7 @@
     {
      "name": "transactionDateFrom",
      "required": false,
-     "description": "Return sales orders dated on or after this date (YYYY-MM-DD). Cannot be combined with ids, refNumbers, updatedAfter, updatedBefore, transactionDateMacro.",
+     "description": "Return sales orders dated on or after this date (YYYY-MM-DD). Not after 2037-12-31 or `transactionDateTo`. Cannot be combined with ids, refNumbers, updatedAfter, updatedBefore, transactionDateMacro.",
      "schema": {
       "type": "string",
       "format": "date"
@@ -19524,7 +19524,7 @@
     {
      "name": "transactionDateTo",
      "required": false,
-     "description": "Return sales orders dated on or before this date (YYYY-MM-DD). Cannot be combined with ids, refNumbers, updatedAfter, updatedBefore, transactionDateMacro.",
+     "description": "Return sales orders dated on or before this date (YYYY-MM-DD). Not before 1970-01-01 or `transactionDateFrom`. Cannot be combined with ids, refNumbers, updatedAfter, updatedBefore, transactionDateMacro.",
      "schema": {
       "type": "string",
       "format": "date"
@@ -19842,7 +19842,7 @@
     {
      "name": "updatedAfter",
      "required": false,
-     "description": "Return sales receipts changed on or after this date or date-time (QuickBooks local time unless an offset is given). Cannot be combined with ids, refNumbers, transactionDateFrom, transactionDateTo, transactionDateMacro.",
+     "description": "Return sales receipts changed on or after this date or date-time (QuickBooks local time unless an offset is given). Use 1970-01-02 to 2037-12-31. Not after `updatedBefore`. Cannot be combined with ids, refNumbers, transactionDateFrom, transactionDateTo, transactionDateMacro.",
      "schema": {
       "type": "string",
       "pattern": "^\\d{4}-\\d{2}-\\d{2}(T\\d{2}:\\d{2}(:\\d{2}(\\.\\d{1,9})?)?(Z|[+-]\\d{2}:\\d{2})?)?$",
@@ -19853,7 +19853,7 @@
     {
      "name": "updatedBefore",
      "required": false,
-     "description": "Return sales receipts changed on or before this date or date-time (QuickBooks local time unless an offset is given). Cannot be combined with ids, refNumbers, transactionDateFrom, transactionDateTo, transactionDateMacro.",
+     "description": "Return sales receipts changed on or before this date or date-time (QuickBooks local time unless an offset is given). Use 1970-01-02 to 2037-12-31. Not before `updatedAfter`. Cannot be combined with ids, refNumbers, transactionDateFrom, transactionDateTo, transactionDateMacro.",
      "schema": {
       "type": "string",
       "pattern": "^\\d{4}-\\d{2}-\\d{2}(T\\d{2}:\\d{2}(:\\d{2}(\\.\\d{1,9})?)?(Z|[+-]\\d{2}:\\d{2})?)?$",
@@ -19864,7 +19864,7 @@
     {
      "name": "transactionDateFrom",
      "required": false,
-     "description": "Return sales receipts dated on or after this date (YYYY-MM-DD). Cannot be combined with ids, refNumbers, updatedAfter, updatedBefore, transactionDateMacro.",
+     "description": "Return sales receipts dated on or after this date (YYYY-MM-DD). Not after 2037-12-31 or `transactionDateTo`. Cannot be combined with ids, refNumbers, updatedAfter, updatedBefore, transactionDateMacro.",
      "schema": {
       "type": "string",
       "format": "date"
@@ -19873,7 +19873,7 @@
     {
      "name": "transactionDateTo",
      "required": false,
-     "description": "Return sales receipts dated on or before this date (YYYY-MM-DD). Cannot be combined with ids, refNumbers, updatedAfter, updatedBefore, transactionDateMacro.",
+     "description": "Return sales receipts dated on or before this date (YYYY-MM-DD). Not before 1970-01-01 or `transactionDateFrom`. Cannot be combined with ids, refNumbers, updatedAfter, updatedBefore, transactionDateMacro.",
      "schema": {
       "type": "string",
       "format": "date"
@@ -20239,7 +20239,7 @@
     {
      "name": "updatedAfter",
      "required": false,
-     "description": "Return sales representatives changed on or after this date or date-time (QuickBooks local time unless an offset is given). Cannot be combined with ids, names.",
+     "description": "Return sales representatives changed on or after this date or date-time (QuickBooks local time unless an offset is given). Use 1970-01-02 to 2037-12-31. Not after `updatedBefore`. Cannot be combined with ids, names.",
      "schema": {
       "type": "string",
       "pattern": "^\\d{4}-\\d{2}-\\d{2}(T\\d{2}:\\d{2}(:\\d{2}(\\.\\d{1,9})?)?(Z|[+-]\\d{2}:\\d{2})?)?$",
@@ -20250,7 +20250,7 @@
     {
      "name": "updatedBefore",
      "required": false,
-     "description": "Return sales representatives changed on or before this date or date-time (QuickBooks local time unless an offset is given). Cannot be combined with ids, names.",
+     "description": "Return sales representatives changed on or before this date or date-time (QuickBooks local time unless an offset is given). Use 1970-01-02 to 2037-12-31. Not before `updatedAfter`. Cannot be combined with ids, names.",
      "schema": {
       "type": "string",
       "pattern": "^\\d{4}-\\d{2}-\\d{2}(T\\d{2}:\\d{2}(:\\d{2}(\\.\\d{1,9})?)?(Z|[+-]\\d{2}:\\d{2})?)?$",
@@ -20495,7 +20495,7 @@
     {
      "name": "updatedAfter",
      "required": false,
-     "description": "Return sales tax codes changed on or after this date or date-time (QuickBooks local time unless an offset is given). Cannot be combined with ids, names.",
+     "description": "Return sales tax codes changed on or after this date or date-time (QuickBooks local time unless an offset is given). Use 1970-01-02 to 2037-12-31. Not after `updatedBefore`. Cannot be combined with ids, names.",
      "schema": {
       "type": "string",
       "pattern": "^\\d{4}-\\d{2}-\\d{2}(T\\d{2}:\\d{2}(:\\d{2}(\\.\\d{1,9})?)?(Z|[+-]\\d{2}:\\d{2})?)?$",
@@ -20506,7 +20506,7 @@
     {
      "name": "updatedBefore",
      "required": false,
-     "description": "Return sales tax codes changed on or before this date or date-time (QuickBooks local time unless an offset is given). Cannot be combined with ids, names.",
+     "description": "Return sales tax codes changed on or before this date or date-time (QuickBooks local time unless an offset is given). Use 1970-01-02 to 2037-12-31. Not before `updatedAfter`. Cannot be combined with ids, names.",
      "schema": {
       "type": "string",
       "pattern": "^\\d{4}-\\d{2}-\\d{2}(T\\d{2}:\\d{2}(:\\d{2}(\\.\\d{1,9})?)?(Z|[+-]\\d{2}:\\d{2})?)?$",
@@ -20753,7 +20753,7 @@
     {
      "name": "updatedAfter",
      "required": false,
-     "description": "Return sales tax group items changed on or after this date or date-time (QuickBooks local time unless an offset is given). Cannot be combined with ids, names.",
+     "description": "Return sales tax group items changed on or after this date or date-time (QuickBooks local time unless an offset is given). Use 1970-01-02 to 2037-12-31. Not after `updatedBefore`. Cannot be combined with ids, names.",
      "schema": {
       "type": "string",
       "pattern": "^\\d{4}-\\d{2}-\\d{2}(T\\d{2}:\\d{2}(:\\d{2}(\\.\\d{1,9})?)?(Z|[+-]\\d{2}:\\d{2})?)?$",
@@ -20764,7 +20764,7 @@
     {
      "name": "updatedBefore",
      "required": false,
-     "description": "Return sales tax group items changed on or before this date or date-time (QuickBooks local time unless an offset is given). Cannot be combined with ids, names.",
+     "description": "Return sales tax group items changed on or before this date or date-time (QuickBooks local time unless an offset is given). Use 1970-01-02 to 2037-12-31. Not before `updatedAfter`. Cannot be combined with ids, names.",
      "schema": {
       "type": "string",
       "pattern": "^\\d{4}-\\d{2}-\\d{2}(T\\d{2}:\\d{2}(:\\d{2}(\\.\\d{1,9})?)?(Z|[+-]\\d{2}:\\d{2})?)?$",
@@ -21087,7 +21087,7 @@
     {
      "name": "updatedAfter",
      "required": false,
-     "description": "Return sales tax items changed on or after this date or date-time (QuickBooks local time unless an offset is given). Cannot be combined with ids, names.",
+     "description": "Return sales tax items changed on or after this date or date-time (QuickBooks local time unless an offset is given). Use 1970-01-02 to 2037-12-31. Not after `updatedBefore`. Cannot be combined with ids, names.",
      "schema": {
       "type": "string",
       "pattern": "^\\d{4}-\\d{2}-\\d{2}(T\\d{2}:\\d{2}(:\\d{2}(\\.\\d{1,9})?)?(Z|[+-]\\d{2}:\\d{2})?)?$",
@@ -21098,7 +21098,7 @@
     {
      "name": "updatedBefore",
      "required": false,
-     "description": "Return sales tax items changed on or before this date or date-time (QuickBooks local time unless an offset is given). Cannot be combined with ids, names.",
+     "description": "Return sales tax items changed on or before this date or date-time (QuickBooks local time unless an offset is given). Use 1970-01-02 to 2037-12-31. Not before `updatedAfter`. Cannot be combined with ids, names.",
      "schema": {
       "type": "string",
       "pattern": "^\\d{4}-\\d{2}-\\d{2}(T\\d{2}:\\d{2}(:\\d{2}(\\.\\d{1,9})?)?(Z|[+-]\\d{2}:\\d{2})?)?$",
@@ -21421,7 +21421,7 @@
     {
      "name": "updatedAfter",
      "required": false,
-     "description": "Return sales tax payment checks changed on or after this date or date-time (QuickBooks local time unless an offset is given). Cannot be combined with ids, refNumbers, transactionDateFrom, transactionDateTo, transactionDateMacro.",
+     "description": "Return sales tax payment checks changed on or after this date or date-time (QuickBooks local time unless an offset is given). Use 1970-01-02 to 2037-12-31. Not after `updatedBefore`. Cannot be combined with ids, refNumbers, transactionDateFrom, transactionDateTo, transactionDateMacro.",
      "schema": {
       "type": "string",
       "pattern": "^\\d{4}-\\d{2}-\\d{2}(T\\d{2}:\\d{2}(:\\d{2}(\\.\\d{1,9})?)?(Z|[+-]\\d{2}:\\d{2})?)?$",
@@ -21432,7 +21432,7 @@
     {
      "name": "updatedBefore",
      "required": false,
-     "description": "Return sales tax payment checks changed on or before this date or date-time (QuickBooks local time unless an offset is given). Cannot be combined with ids, refNumbers, transactionDateFrom, transactionDateTo, transactionDateMacro.",
+     "description": "Return sales tax payment checks changed on or before this date or date-time (QuickBooks local time unless an offset is given). Use 1970-01-02 to 2037-12-31. Not before `updatedAfter`. Cannot be combined with ids, refNumbers, transactionDateFrom, transactionDateTo, transactionDateMacro.",
      "schema": {
       "type": "string",
       "pattern": "^\\d{4}-\\d{2}-\\d{2}(T\\d{2}:\\d{2}(:\\d{2}(\\.\\d{1,9})?)?(Z|[+-]\\d{2}:\\d{2})?)?$",
@@ -21443,7 +21443,7 @@
     {
      "name": "transactionDateFrom",
      "required": false,
-     "description": "Return sales tax payment checks dated on or after this date (YYYY-MM-DD). Cannot be combined with ids, refNumbers, updatedAfter, updatedBefore, transactionDateMacro.",
+     "description": "Return sales tax payment checks dated on or after this date (YYYY-MM-DD). Not after 2037-12-31 or `transactionDateTo`. Cannot be combined with ids, refNumbers, updatedAfter, updatedBefore, transactionDateMacro.",
      "schema": {
       "type": "string",
       "format": "date"
@@ -21452,7 +21452,7 @@
     {
      "name": "transactionDateTo",
      "required": false,
-     "description": "Return sales tax payment checks dated on or before this date (YYYY-MM-DD). Cannot be combined with ids, refNumbers, updatedAfter, updatedBefore, transactionDateMacro.",
+     "description": "Return sales tax payment checks dated on or before this date (YYYY-MM-DD). Not before 1970-01-01 or `transactionDateFrom`. Cannot be combined with ids, refNumbers, updatedAfter, updatedBefore, transactionDateMacro.",
      "schema": {
       "type": "string",
       "format": "date"
@@ -21791,7 +21791,7 @@
     {
      "name": "updatedAfter",
      "required": false,
-     "description": "Return service items changed on or after this date or date-time (QuickBooks local time unless an offset is given). Cannot be combined with ids, fullNames.",
+     "description": "Return service items changed on or after this date or date-time (QuickBooks local time unless an offset is given). Use 1970-01-02 to 2037-12-31. Not after `updatedBefore`. Cannot be combined with ids, fullNames.",
      "schema": {
       "type": "string",
       "pattern": "^\\d{4}-\\d{2}-\\d{2}(T\\d{2}:\\d{2}(:\\d{2}(\\.\\d{1,9})?)?(Z|[+-]\\d{2}:\\d{2})?)?$",
@@ -21802,7 +21802,7 @@
     {
      "name": "updatedBefore",
      "required": false,
-     "description": "Return service items changed on or before this date or date-time (QuickBooks local time unless an offset is given). Cannot be combined with ids, fullNames.",
+     "description": "Return service items changed on or before this date or date-time (QuickBooks local time unless an offset is given). Use 1970-01-02 to 2037-12-31. Not before `updatedAfter`. Cannot be combined with ids, fullNames.",
      "schema": {
       "type": "string",
       "pattern": "^\\d{4}-\\d{2}-\\d{2}(T\\d{2}:\\d{2}(:\\d{2}(\\.\\d{1,9})?)?(Z|[+-]\\d{2}:\\d{2})?)?$",
@@ -22138,7 +22138,7 @@
     {
      "name": "updatedAfter",
      "required": false,
-     "description": "Return shipping methods changed on or after this date or date-time (QuickBooks local time unless an offset is given). Cannot be combined with ids, names.",
+     "description": "Return shipping methods changed on or after this date or date-time (QuickBooks local time unless an offset is given). Use 1970-01-02 to 2037-12-31. Not after `updatedBefore`. Cannot be combined with ids, names.",
      "schema": {
       "type": "string",
       "pattern": "^\\d{4}-\\d{2}-\\d{2}(T\\d{2}:\\d{2}(:\\d{2}(\\.\\d{1,9})?)?(Z|[+-]\\d{2}:\\d{2})?)?$",
@@ -22149,7 +22149,7 @@
     {
      "name": "updatedBefore",
      "required": false,
-     "description": "Return shipping methods changed on or before this date or date-time (QuickBooks local time unless an offset is given). Cannot be combined with ids, names.",
+     "description": "Return shipping methods changed on or before this date or date-time (QuickBooks local time unless an offset is given). Use 1970-01-02 to 2037-12-31. Not before `updatedAfter`. Cannot be combined with ids, names.",
      "schema": {
       "type": "string",
       "pattern": "^\\d{4}-\\d{2}-\\d{2}(T\\d{2}:\\d{2}(:\\d{2}(\\.\\d{1,9})?)?(Z|[+-]\\d{2}:\\d{2})?)?$",
@@ -22360,7 +22360,7 @@
     {
      "name": "updatedAfter",
      "required": false,
-     "description": "Return standard terms changed on or after this date or date-time (QuickBooks local time unless an offset is given). Cannot be combined with ids, names.",
+     "description": "Return standard terms changed on or after this date or date-time (QuickBooks local time unless an offset is given). Use 1970-01-02 to 2037-12-31. Not after `updatedBefore`. Cannot be combined with ids, names.",
      "schema": {
       "type": "string",
       "pattern": "^\\d{4}-\\d{2}-\\d{2}(T\\d{2}:\\d{2}(:\\d{2}(\\.\\d{1,9})?)?(Z|[+-]\\d{2}:\\d{2})?)?$",
@@ -22371,7 +22371,7 @@
     {
      "name": "updatedBefore",
      "required": false,
-     "description": "Return standard terms changed on or before this date or date-time (QuickBooks local time unless an offset is given). Cannot be combined with ids, names.",
+     "description": "Return standard terms changed on or before this date or date-time (QuickBooks local time unless an offset is given). Use 1970-01-02 to 2037-12-31. Not before `updatedAfter`. Cannot be combined with ids, names.",
      "schema": {
       "type": "string",
       "pattern": "^\\d{4}-\\d{2}-\\d{2}(T\\d{2}:\\d{2}(:\\d{2}(\\.\\d{1,9})?)?(Z|[+-]\\d{2}:\\d{2})?)?$",
@@ -22569,7 +22569,7 @@
     {
      "name": "updatedAfter",
      "required": false,
-     "description": "Return statement charges changed on or after this date or date-time (QuickBooks local time unless an offset is given). Cannot be combined with ids, refNumbers, transactionDateFrom, transactionDateTo, transactionDateMacro.",
+     "description": "Return statement charges changed on or after this date or date-time (QuickBooks local time unless an offset is given). Use 1970-01-02 to 2037-12-31. Not after `updatedBefore`. Cannot be combined with ids, refNumbers, transactionDateFrom, transactionDateTo, transactionDateMacro.",
      "schema": {
       "type": "string",
       "pattern": "^\\d{4}-\\d{2}-\\d{2}(T\\d{2}:\\d{2}(:\\d{2}(\\.\\d{1,9})?)?(Z|[+-]\\d{2}:\\d{2})?)?$",
@@ -22580,7 +22580,7 @@
     {
      "name": "updatedBefore",
      "required": false,
-     "description": "Return statement charges changed on or before this date or date-time (QuickBooks local time unless an offset is given). Cannot be combined with ids, refNumbers, transactionDateFrom, transactionDateTo, transactionDateMacro.",
+     "description": "Return statement charges changed on or before this date or date-time (QuickBooks local time unless an offset is given). Use 1970-01-02 to 2037-12-31. Not before `updatedAfter`. Cannot be combined with ids, refNumbers, transactionDateFrom, transactionDateTo, transactionDateMacro.",
      "schema": {
       "type": "string",
       "pattern": "^\\d{4}-\\d{2}-\\d{2}(T\\d{2}:\\d{2}(:\\d{2}(\\.\\d{1,9})?)?(Z|[+-]\\d{2}:\\d{2})?)?$",
@@ -22591,7 +22591,7 @@
     {
      "name": "transactionDateFrom",
      "required": false,
-     "description": "Return statement charges dated on or after this date (YYYY-MM-DD). Cannot be combined with ids, refNumbers, updatedAfter, updatedBefore, transactionDateMacro.",
+     "description": "Return statement charges dated on or after this date (YYYY-MM-DD). Not after 2037-12-31 or `transactionDateTo`. Cannot be combined with ids, refNumbers, updatedAfter, updatedBefore, transactionDateMacro.",
      "schema": {
       "type": "string",
       "format": "date"
@@ -22600,7 +22600,7 @@
     {
      "name": "transactionDateTo",
      "required": false,
-     "description": "Return statement charges dated on or before this date (YYYY-MM-DD). Cannot be combined with ids, refNumbers, updatedAfter, updatedBefore, transactionDateMacro.",
+     "description": "Return statement charges dated on or before this date (YYYY-MM-DD). Not before 1970-01-01 or `transactionDateFrom`. Cannot be combined with ids, refNumbers, updatedAfter, updatedBefore, transactionDateMacro.",
      "schema": {
       "type": "string",
       "format": "date"
@@ -22968,7 +22968,7 @@
     {
      "name": "updatedAfter",
      "required": false,
-     "description": "Return subtotal items changed on or after this date or date-time (QuickBooks local time unless an offset is given). Cannot be combined with ids, names.",
+     "description": "Return subtotal items changed on or after this date or date-time (QuickBooks local time unless an offset is given). Use 1970-01-02 to 2037-12-31. Not after `updatedBefore`. Cannot be combined with ids, names.",
      "schema": {
       "type": "string",
       "pattern": "^\\d{4}-\\d{2}-\\d{2}(T\\d{2}:\\d{2}(:\\d{2}(\\.\\d{1,9})?)?(Z|[+-]\\d{2}:\\d{2})?)?$",
@@ -22979,7 +22979,7 @@
     {
      "name": "updatedBefore",
      "required": false,
-     "description": "Return subtotal items changed on or before this date or date-time (QuickBooks local time unless an offset is given). Cannot be combined with ids, names.",
+     "description": "Return subtotal items changed on or before this date or date-time (QuickBooks local time unless an offset is given). Use 1970-01-02 to 2037-12-31. Not before `updatedAfter`. Cannot be combined with ids, names.",
      "schema": {
       "type": "string",
       "pattern": "^\\d{4}-\\d{2}-\\d{2}(T\\d{2}:\\d{2}(:\\d{2}(\\.\\d{1,9})?)?(Z|[+-]\\d{2}:\\d{2})?)?$",
@@ -23291,7 +23291,7 @@
     {
      "name": "updatedAfter",
      "required": false,
-     "description": "Return time tracking activities changed on or after this date or date-time (QuickBooks local time unless an offset is given). Cannot be combined with ids, transactionDateFrom, transactionDateTo, transactionDateMacro.",
+     "description": "Return time tracking activities changed on or after this date or date-time (QuickBooks local time unless an offset is given). Use 1970-01-02 to 2037-12-31. Not after `updatedBefore`. Cannot be combined with ids, transactionDateFrom, transactionDateTo, transactionDateMacro.",
      "schema": {
       "type": "string",
       "pattern": "^\\d{4}-\\d{2}-\\d{2}(T\\d{2}:\\d{2}(:\\d{2}(\\.\\d{1,9})?)?(Z|[+-]\\d{2}:\\d{2})?)?$",
@@ -23302,7 +23302,7 @@
     {
      "name": "updatedBefore",
      "required": false,
-     "description": "Return time tracking activities changed on or before this date or date-time (QuickBooks local time unless an offset is given). Cannot be combined with ids, transactionDateFrom, transactionDateTo, transactionDateMacro.",
+     "description": "Return time tracking activities changed on or before this date or date-time (QuickBooks local time unless an offset is given). Use 1970-01-02 to 2037-12-31. Not before `updatedAfter`. Cannot be combined with ids, transactionDateFrom, transactionDateTo, transactionDateMacro.",
      "schema": {
       "type": "string",
       "pattern": "^\\d{4}-\\d{2}-\\d{2}(T\\d{2}:\\d{2}(:\\d{2}(\\.\\d{1,9})?)?(Z|[+-]\\d{2}:\\d{2})?)?$",
@@ -23313,7 +23313,7 @@
     {
      "name": "transactionDateFrom",
      "required": false,
-     "description": "Return time tracking activities dated on or after this date (YYYY-MM-DD). Cannot be combined with ids, updatedAfter, updatedBefore, transactionDateMacro.",
+     "description": "Return time tracking activities dated on or after this date (YYYY-MM-DD). Not after 2037-12-31 or `transactionDateTo`. Cannot be combined with ids, updatedAfter, updatedBefore, transactionDateMacro.",
      "schema": {
       "type": "string",
       "format": "date"
@@ -23322,7 +23322,7 @@
     {
      "name": "transactionDateTo",
      "required": false,
-     "description": "Return time tracking activities dated on or before this date (YYYY-MM-DD). Cannot be combined with ids, updatedAfter, updatedBefore, transactionDateMacro.",
+     "description": "Return time tracking activities dated on or before this date (YYYY-MM-DD). Not before 1970-01-01 or `transactionDateFrom`. Cannot be combined with ids, updatedAfter, updatedBefore, transactionDateMacro.",
      "schema": {
       "type": "string",
       "format": "date"
@@ -23540,7 +23540,7 @@
     {
      "name": "updatedAfter",
      "required": false,
-     "description": "Return to-dos changed on or after this date or date-time (QuickBooks local time unless an offset is given). Cannot be combined with ids.",
+     "description": "Return to-dos changed on or after this date or date-time (QuickBooks local time unless an offset is given). Use 1970-01-02 to 2037-12-31. Not after `updatedBefore`. Cannot be combined with ids.",
      "schema": {
       "type": "string",
       "pattern": "^\\d{4}-\\d{2}-\\d{2}(T\\d{2}:\\d{2}(:\\d{2}(\\.\\d{1,9})?)?(Z|[+-]\\d{2}:\\d{2})?)?$",
@@ -23551,7 +23551,7 @@
     {
      "name": "updatedBefore",
      "required": false,
-     "description": "Return to-dos changed on or before this date or date-time (QuickBooks local time unless an offset is given). Cannot be combined with ids.",
+     "description": "Return to-dos changed on or before this date or date-time (QuickBooks local time unless an offset is given). Use 1970-01-02 to 2037-12-31. Not before `updatedAfter`. Cannot be combined with ids.",
      "schema": {
       "type": "string",
       "pattern": "^\\d{4}-\\d{2}-\\d{2}(T\\d{2}:\\d{2}(:\\d{2}(\\.\\d{1,9})?)?(Z|[+-]\\d{2}:\\d{2})?)?$",
@@ -23791,7 +23791,7 @@
     {
      "name": "updatedAfter",
      "required": false,
-     "description": "Return transactions changed on or after this date or date-time (QuickBooks local time unless an offset is given). Cannot be combined with ids, updatedDateMacro.",
+     "description": "Return transactions changed on or after this date or date-time (QuickBooks local time unless an offset is given). Use 1970-01-02 to 2037-12-31. Not after `updatedBefore`. Cannot be combined with ids, updatedDateMacro.",
      "schema": {
       "type": "string",
       "pattern": "^\\d{4}-\\d{2}-\\d{2}(T\\d{2}:\\d{2}(:\\d{2}(\\.\\d{1,9})?)?(Z|[+-]\\d{2}:\\d{2})?)?$",
@@ -23802,7 +23802,7 @@
     {
      "name": "updatedBefore",
      "required": false,
-     "description": "Return transactions changed on or before this date or date-time (QuickBooks local time unless an offset is given). Cannot be combined with ids, updatedDateMacro.",
+     "description": "Return transactions changed on or before this date or date-time (QuickBooks local time unless an offset is given). Use 1970-01-02 to 2037-12-31. Not before `updatedAfter`. Cannot be combined with ids, updatedDateMacro.",
      "schema": {
       "type": "string",
       "pattern": "^\\d{4}-\\d{2}-\\d{2}(T\\d{2}:\\d{2}(:\\d{2}(\\.\\d{1,9})?)?(Z|[+-]\\d{2}:\\d{2})?)?$",
@@ -23828,7 +23828,7 @@
     {
      "name": "transactionDateFrom",
      "required": false,
-     "description": "Return transactions dated on or after this date (YYYY-MM-DD). Cannot be combined with ids, transactionDateMacro.",
+     "description": "Return transactions dated on or after this date (YYYY-MM-DD). Not after 2037-12-31 or `transactionDateTo`. Cannot be combined with ids, transactionDateMacro.",
      "schema": {
       "type": "string",
       "format": "date"
@@ -23837,7 +23837,7 @@
     {
      "name": "transactionDateTo",
      "required": false,
-     "description": "Return transactions dated on or before this date (YYYY-MM-DD). Cannot be combined with ids, transactionDateMacro.",
+     "description": "Return transactions dated on or before this date (YYYY-MM-DD). Not before 1970-01-01 or `transactionDateFrom`. Cannot be combined with ids, transactionDateMacro.",
      "schema": {
       "type": "string",
       "format": "date"
@@ -24141,7 +24141,7 @@
     {
      "name": "updatedAfter",
      "required": false,
-     "description": "Return transfers changed on or after this date or date-time (QuickBooks local time unless an offset is given). Cannot be combined with ids, transactionDateFrom, transactionDateTo, transactionDateMacro.",
+     "description": "Return transfers changed on or after this date or date-time (QuickBooks local time unless an offset is given). Use 1970-01-02 to 2037-12-31. Not after `updatedBefore`. Cannot be combined with ids, transactionDateFrom, transactionDateTo, transactionDateMacro.",
      "schema": {
       "type": "string",
       "pattern": "^\\d{4}-\\d{2}-\\d{2}(T\\d{2}:\\d{2}(:\\d{2}(\\.\\d{1,9})?)?(Z|[+-]\\d{2}:\\d{2})?)?$",
@@ -24152,7 +24152,7 @@
     {
      "name": "updatedBefore",
      "required": false,
-     "description": "Return transfers changed on or before this date or date-time (QuickBooks local time unless an offset is given). Cannot be combined with ids, transactionDateFrom, transactionDateTo, transactionDateMacro.",
+     "description": "Return transfers changed on or before this date or date-time (QuickBooks local time unless an offset is given). Use 1970-01-02 to 2037-12-31. Not before `updatedAfter`. Cannot be combined with ids, transactionDateFrom, transactionDateTo, transactionDateMacro.",
      "schema": {
       "type": "string",
       "pattern": "^\\d{4}-\\d{2}-\\d{2}(T\\d{2}:\\d{2}(:\\d{2}(\\.\\d{1,9})?)?(Z|[+-]\\d{2}:\\d{2})?)?$",
@@ -24163,7 +24163,7 @@
     {
      "name": "transactionDateFrom",
      "required": false,
-     "description": "Return transfers dated on or after this date (YYYY-MM-DD). Cannot be combined with ids, updatedAfter, updatedBefore, transactionDateMacro.",
+     "description": "Return transfers dated on or after this date (YYYY-MM-DD). Not after 2037-12-31 or `transactionDateTo`. Cannot be combined with ids, updatedAfter, updatedBefore, transactionDateMacro.",
      "schema": {
       "type": "string",
       "format": "date"
@@ -24172,7 +24172,7 @@
     {
      "name": "transactionDateTo",
      "required": false,
-     "description": "Return transfers dated on or before this date (YYYY-MM-DD). Cannot be combined with ids, updatedAfter, updatedBefore, transactionDateMacro.",
+     "description": "Return transfers dated on or before this date (YYYY-MM-DD). Not before 1970-01-01 or `transactionDateFrom`. Cannot be combined with ids, updatedAfter, updatedBefore, transactionDateMacro.",
      "schema": {
       "type": "string",
       "format": "date"
@@ -24359,7 +24359,7 @@
     {
      "name": "updatedAfter",
      "required": false,
-     "description": "Return unit of measure sets changed on or after this date or date-time (QuickBooks local time unless an offset is given). Cannot be combined with ids, names.",
+     "description": "Return unit of measure sets changed on or after this date or date-time (QuickBooks local time unless an offset is given). Use 1970-01-02 to 2037-12-31. Not after `updatedBefore`. Cannot be combined with ids, names.",
      "schema": {
       "type": "string",
       "pattern": "^\\d{4}-\\d{2}-\\d{2}(T\\d{2}:\\d{2}(:\\d{2}(\\.\\d{1,9})?)?(Z|[+-]\\d{2}:\\d{2})?)?$",
@@ -24370,7 +24370,7 @@
     {
      "name": "updatedBefore",
      "required": false,
-     "description": "Return unit of measure sets changed on or before this date or date-time (QuickBooks local time unless an offset is given). Cannot be combined with ids, names.",
+     "description": "Return unit of measure sets changed on or before this date or date-time (QuickBooks local time unless an offset is given). Use 1970-01-02 to 2037-12-31. Not before `updatedAfter`. Cannot be combined with ids, names.",
      "schema": {
       "type": "string",
       "pattern": "^\\d{4}-\\d{2}-\\d{2}(T\\d{2}:\\d{2}(:\\d{2}(\\.\\d{1,9})?)?(Z|[+-]\\d{2}:\\d{2})?)?$",
@@ -24516,7 +24516,7 @@
     {
      "name": "updatedAfter",
      "required": false,
-     "description": "Return vehicle mileage entries changed on or after this date or date-time (QuickBooks local time unless an offset is given). Cannot be combined with ids, transactionDateFrom, transactionDateTo, transactionDateMacro.",
+     "description": "Return vehicle mileage entries changed on or after this date or date-time (QuickBooks local time unless an offset is given). Use 1970-01-02 to 2037-12-31. Not after `updatedBefore`. Cannot be combined with ids, transactionDateFrom, transactionDateTo, transactionDateMacro.",
      "schema": {
       "type": "string",
       "pattern": "^\\d{4}-\\d{2}-\\d{2}(T\\d{2}:\\d{2}(:\\d{2}(\\.\\d{1,9})?)?(Z|[+-]\\d{2}:\\d{2})?)?$",
@@ -24527,7 +24527,7 @@
     {
      "name": "updatedBefore",
      "required": false,
-     "description": "Return vehicle mileage entries changed on or before this date or date-time (QuickBooks local time unless an offset is given). Cannot be combined with ids, transactionDateFrom, transactionDateTo, transactionDateMacro.",
+     "description": "Return vehicle mileage entries changed on or before this date or date-time (QuickBooks local time unless an offset is given). Use 1970-01-02 to 2037-12-31. Not before `updatedAfter`. Cannot be combined with ids, transactionDateFrom, transactionDateTo, transactionDateMacro.",
      "schema": {
       "type": "string",
       "pattern": "^\\d{4}-\\d{2}-\\d{2}(T\\d{2}:\\d{2}(:\\d{2}(\\.\\d{1,9})?)?(Z|[+-]\\d{2}:\\d{2})?)?$",
@@ -24538,7 +24538,7 @@
     {
      "name": "transactionDateFrom",
      "required": false,
-     "description": "Return vehicle mileage entries dated on or after this date (YYYY-MM-DD). Cannot be combined with ids, updatedAfter, updatedBefore, transactionDateMacro.",
+     "description": "Return vehicle mileage entries dated on or after this date (YYYY-MM-DD). Not after 2037-12-31 or `transactionDateTo`. Cannot be combined with ids, updatedAfter, updatedBefore, transactionDateMacro.",
      "schema": {
       "type": "string",
       "format": "date"
@@ -24547,7 +24547,7 @@
     {
      "name": "transactionDateTo",
      "required": false,
-     "description": "Return vehicle mileage entries dated on or before this date (YYYY-MM-DD). Cannot be combined with ids, updatedAfter, updatedBefore, transactionDateMacro.",
+     "description": "Return vehicle mileage entries dated on or before this date (YYYY-MM-DD). Not before 1970-01-01 or `transactionDateFrom`. Cannot be combined with ids, updatedAfter, updatedBefore, transactionDateMacro.",
      "schema": {
       "type": "string",
       "format": "date"
@@ -24729,7 +24729,7 @@
     {
      "name": "updatedAfter",
      "required": false,
-     "description": "Return vehicles changed on or after this date or date-time (QuickBooks local time unless an offset is given). Cannot be combined with ids, names.",
+     "description": "Return vehicles changed on or after this date or date-time (QuickBooks local time unless an offset is given). Use 1970-01-02 to 2037-12-31. Not after `updatedBefore`. Cannot be combined with ids, names.",
      "schema": {
       "type": "string",
       "pattern": "^\\d{4}-\\d{2}-\\d{2}(T\\d{2}:\\d{2}(:\\d{2}(\\.\\d{1,9})?)?(Z|[+-]\\d{2}:\\d{2})?)?$",
@@ -24740,7 +24740,7 @@
     {
      "name": "updatedBefore",
      "required": false,
-     "description": "Return vehicles changed on or before this date or date-time (QuickBooks local time unless an offset is given). Cannot be combined with ids, names.",
+     "description": "Return vehicles changed on or before this date or date-time (QuickBooks local time unless an offset is given). Use 1970-01-02 to 2037-12-31. Not before `updatedAfter`. Cannot be combined with ids, names.",
      "schema": {
       "type": "string",
       "pattern": "^\\d{4}-\\d{2}-\\d{2}(T\\d{2}:\\d{2}(:\\d{2}(\\.\\d{1,9})?)?(Z|[+-]\\d{2}:\\d{2})?)?$",
@@ -24972,7 +24972,7 @@
     {
      "name": "updatedAfter",
      "required": false,
-     "description": "Return vendor credits changed on or after this date or date-time (QuickBooks local time unless an offset is given). Cannot be combined with ids, refNumbers, transactionDateFrom, transactionDateTo, transactionDateMacro.",
+     "description": "Return vendor credits changed on or after this date or date-time (QuickBooks local time unless an offset is given). Use 1970-01-02 to 2037-12-31. Not after `updatedBefore`. Cannot be combined with ids, refNumbers, transactionDateFrom, transactionDateTo, transactionDateMacro.",
      "schema": {
       "type": "string",
       "pattern": "^\\d{4}-\\d{2}-\\d{2}(T\\d{2}:\\d{2}(:\\d{2}(\\.\\d{1,9})?)?(Z|[+-]\\d{2}:\\d{2})?)?$",
@@ -24983,7 +24983,7 @@
     {
      "name": "updatedBefore",
      "required": false,
-     "description": "Return vendor credits changed on or before this date or date-time (QuickBooks local time unless an offset is given). Cannot be combined with ids, refNumbers, transactionDateFrom, transactionDateTo, transactionDateMacro.",
+     "description": "Return vendor credits changed on or before this date or date-time (QuickBooks local time unless an offset is given). Use 1970-01-02 to 2037-12-31. Not before `updatedAfter`. Cannot be combined with ids, refNumbers, transactionDateFrom, transactionDateTo, transactionDateMacro.",
      "schema": {
       "type": "string",
       "pattern": "^\\d{4}-\\d{2}-\\d{2}(T\\d{2}:\\d{2}(:\\d{2}(\\.\\d{1,9})?)?(Z|[+-]\\d{2}:\\d{2})?)?$",
@@ -24994,7 +24994,7 @@
     {
      "name": "transactionDateFrom",
      "required": false,
-     "description": "Return vendor credits dated on or after this date (YYYY-MM-DD). Cannot be combined with ids, refNumbers, updatedAfter, updatedBefore, transactionDateMacro.",
+     "description": "Return vendor credits dated on or after this date (YYYY-MM-DD). Not after 2037-12-31 or `transactionDateTo`. Cannot be combined with ids, refNumbers, updatedAfter, updatedBefore, transactionDateMacro.",
      "schema": {
       "type": "string",
       "format": "date"
@@ -25003,7 +25003,7 @@
     {
      "name": "transactionDateTo",
      "required": false,
-     "description": "Return vendor credits dated on or before this date (YYYY-MM-DD). Cannot be combined with ids, refNumbers, updatedAfter, updatedBefore, transactionDateMacro.",
+     "description": "Return vendor credits dated on or before this date (YYYY-MM-DD). Not before 1970-01-01 or `transactionDateFrom`. Cannot be combined with ids, refNumbers, updatedAfter, updatedBefore, transactionDateMacro.",
      "schema": {
       "type": "string",
       "format": "date"
@@ -25378,7 +25378,7 @@
     {
      "name": "updatedAfter",
      "required": false,
-     "description": "Return vendor types changed on or after this date or date-time (QuickBooks local time unless an offset is given). Cannot be combined with ids, fullNames.",
+     "description": "Return vendor types changed on or after this date or date-time (QuickBooks local time unless an offset is given). Use 1970-01-02 to 2037-12-31. Not after `updatedBefore`. Cannot be combined with ids, fullNames.",
      "schema": {
       "type": "string",
       "pattern": "^\\d{4}-\\d{2}-\\d{2}(T\\d{2}:\\d{2}(:\\d{2}(\\.\\d{1,9})?)?(Z|[+-]\\d{2}:\\d{2})?)?$",
@@ -25389,7 +25389,7 @@
     {
      "name": "updatedBefore",
      "required": false,
-     "description": "Return vendor types changed on or before this date or date-time (QuickBooks local time unless an offset is given). Cannot be combined with ids, fullNames.",
+     "description": "Return vendor types changed on or before this date or date-time (QuickBooks local time unless an offset is given). Use 1970-01-02 to 2037-12-31. Not before `updatedAfter`. Cannot be combined with ids, fullNames.",
      "schema": {
       "type": "string",
       "pattern": "^\\d{4}-\\d{2}-\\d{2}(T\\d{2}:\\d{2}(:\\d{2}(\\.\\d{1,9})?)?(Z|[+-]\\d{2}:\\d{2})?)?$",
@@ -25602,7 +25602,7 @@
     {
      "name": "updatedAfter",
      "required": false,
-     "description": "Return vendors changed on or after this date or date-time (QuickBooks local time unless an offset is given). QuickBooks matches a vendor when its last edit or its last change falls in the range. Cannot be combined with ids, names.",
+     "description": "Return vendors changed on or after this date or date-time (QuickBooks local time unless an offset is given). QuickBooks matches a vendor when its last edit or its last change falls in the range. Use 1970-01-02 to 2037-12-31. Not after `updatedBefore`. Cannot be combined with ids, names.",
      "schema": {
       "type": "string",
       "pattern": "^\\d{4}-\\d{2}-\\d{2}(T\\d{2}:\\d{2}(:\\d{2}(\\.\\d{1,9})?)?(Z|[+-]\\d{2}:\\d{2})?)?$",
@@ -25613,7 +25613,7 @@
     {
      "name": "updatedBefore",
      "required": false,
-     "description": "Return vendors changed on or before this date or date-time (QuickBooks local time unless an offset is given). QuickBooks matches a vendor when its last edit or its last change falls in the range, so this can return vendors whose `updatedAt` is later. Cannot be combined with ids, names.",
+     "description": "Return vendors changed on or before this date or date-time (QuickBooks local time unless an offset is given). QuickBooks matches a vendor when its last edit or its last change falls in the range, so this can return vendors whose `updatedAt` is later. Use 1970-01-02 to 2037-12-31. Not before `updatedAfter`. Cannot be combined with ids, names.",
      "schema": {
       "type": "string",
       "pattern": "^\\d{4}-\\d{2}-\\d{2}(T\\d{2}:\\d{2}(:\\d{2}(\\.\\d{1,9})?)?(Z|[+-]\\d{2}:\\d{2})?)?$",
@@ -26009,7 +26009,7 @@
     {
      "name": "updatedAfter",
      "required": false,
-     "description": "Return workers' compensation codes changed on or after this date or date-time (QuickBooks local time unless an offset is given). Cannot be combined with ids, names.",
+     "description": "Return workers' compensation codes changed on or after this date or date-time (QuickBooks local time unless an offset is given). Use 1970-01-02 to 2037-12-31. Not after `updatedBefore`. Cannot be combined with ids, names.",
      "schema": {
       "type": "string",
       "pattern": "^\\d{4}-\\d{2}-\\d{2}(T\\d{2}:\\d{2}(:\\d{2}(\\.\\d{1,9})?)?(Z|[+-]\\d{2}:\\d{2})?)?$",
@@ -26020,7 +26020,7 @@
     {
      "name": "updatedBefore",
      "required": false,
-     "description": "Return workers' compensation codes changed on or before this date or date-time (QuickBooks local time unless an offset is given). Cannot be combined with ids, names.",
+     "description": "Return workers' compensation codes changed on or before this date or date-time (QuickBooks local time unless an offset is given). Use 1970-01-02 to 2037-12-31. Not before `updatedAfter`. Cannot be combined with ids, names.",
      "schema": {
       "type": "string",
       "pattern": "^\\d{4}-\\d{2}-\\d{2}(T\\d{2}:\\d{2}(:\\d{2}(\\.\\d{1,9})?)?(Z|[+-]\\d{2}:\\d{2})?)?$",
