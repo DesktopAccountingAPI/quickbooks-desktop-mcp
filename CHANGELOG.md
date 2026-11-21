@@ -2,6 +2,12 @@
 
 ## Unreleased
 
+## 0.12.0 (2026-11-21)
+
+- End user and connection results include `simulated`: `true` for the hosted sample company, which answers from recordings of real QuickBooks Desktop; `false` for a company file connected through the Web Connector.
+- Tools pass on the new error code `SAMPLE_COMPANY_UNSUPPORTED` (422): the sample company has no recorded answer for the request. `details.element` names the qbXML element, and `details.detail` says what works, when the request has a working alternative. The message often says what works. Nothing changes. See the API changelog.
+- Tool descriptions correct three QuickBooks behaviors: a bill's `openAmount` is the vendor's open balance and `amountDue` the bill's total; `updatedAfter` and `updatedBefore` on customers, vendors, accounts and items match a record's last edit or last change; inventory items compare the last edit only.
+
 ## 0.11.1 (2026-11-17)
 
 - No functional change for package users. The shared server code gained optional settings that only the hosted server uses for AI tool sign-ins; the stdio server never sets them, and secret keys behave as before.

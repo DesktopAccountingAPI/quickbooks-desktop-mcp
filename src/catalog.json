@@ -2005,7 +2005,7 @@
     {
      "name": "updatedAfter",
      "required": false,
-     "description": "Return accounts changed on or after this date or date-time (QuickBooks local time unless an offset is given). Cannot be combined with ids, fullNames.",
+     "description": "Return accounts changed on or after this date or date-time (QuickBooks local time unless an offset is given). QuickBooks matches an account when its last edit or its last change falls in the range. Cannot be combined with ids, fullNames.",
      "schema": {
       "type": "string",
       "pattern": "^\\d{4}-\\d{2}-\\d{2}(T\\d{2}:\\d{2}(:\\d{2}(\\.\\d{1,9})?)?(Z|[+-]\\d{2}:\\d{2})?)?$",
@@ -2016,7 +2016,7 @@
     {
      "name": "updatedBefore",
      "required": false,
-     "description": "Return accounts changed on or before this date or date-time (QuickBooks local time unless an offset is given). Cannot be combined with ids, fullNames.",
+     "description": "Return accounts changed on or before this date or date-time (QuickBooks local time unless an offset is given). QuickBooks matches an account when its last edit or its last change falls in the range, so this can return accounts whose `updatedAt` is later. Cannot be combined with ids, fullNames.",
      "schema": {
       "type": "string",
       "pattern": "^\\d{4}-\\d{2}-\\d{2}(T\\d{2}:\\d{2}(:\\d{2}(\\.\\d{1,9})?)?(Z|[+-]\\d{2}:\\d{2})?)?$",
@@ -7160,7 +7160,7 @@
     {
      "name": "updatedAfter",
      "required": false,
-     "description": "Return customers changed on or after this date or date-time (QuickBooks local time unless an offset is given). Cannot be combined with ids, fullNames.",
+     "description": "Return customers changed on or after this date or date-time (QuickBooks local time unless an offset is given). QuickBooks matches a customer when its last edit or its last change falls in the range. Cannot be combined with ids, fullNames.",
      "schema": {
       "type": "string",
       "pattern": "^\\d{4}-\\d{2}-\\d{2}(T\\d{2}:\\d{2}(:\\d{2}(\\.\\d{1,9})?)?(Z|[+-]\\d{2}:\\d{2})?)?$",
@@ -7171,7 +7171,7 @@
     {
      "name": "updatedBefore",
      "required": false,
-     "description": "Return customers changed on or before this date or date-time (QuickBooks local time unless an offset is given). Cannot be combined with ids, fullNames.",
+     "description": "Return customers changed on or before this date or date-time (QuickBooks local time unless an offset is given). QuickBooks matches a customer when its last edit or its last change falls in the range, so this can return customers whose `updatedAt` is later. Cannot be combined with ids, fullNames.",
      "schema": {
       "type": "string",
       "pattern": "^\\d{4}-\\d{2}-\\d{2}(T\\d{2}:\\d{2}(:\\d{2}(\\.\\d{1,9})?)?(Z|[+-]\\d{2}:\\d{2})?)?$",
@@ -10461,7 +10461,7 @@
     {
      "name": "updatedAfter",
      "required": false,
-     "description": "Return inventory items changed on or after this date or date-time (QuickBooks local time unless an offset is given). Cannot be combined with ids, fullNames.",
+     "description": "Return inventory items changed on or after this date or date-time (QuickBooks local time unless an offset is given). QuickBooks compares only the last edit, so a change from a posted transaction, such as quantity on hand, does not match. Cannot be combined with ids, fullNames.",
      "schema": {
       "type": "string",
       "pattern": "^\\d{4}-\\d{2}-\\d{2}(T\\d{2}:\\d{2}(:\\d{2}(\\.\\d{1,9})?)?(Z|[+-]\\d{2}:\\d{2})?)?$",
@@ -10472,7 +10472,7 @@
     {
      "name": "updatedBefore",
      "required": false,
-     "description": "Return inventory items changed on or before this date or date-time (QuickBooks local time unless an offset is given). Cannot be combined with ids, fullNames.",
+     "description": "Return inventory items changed on or before this date or date-time (QuickBooks local time unless an offset is given). QuickBooks compares only the last edit, so this can return inventory items whose `updatedAt` is later. Cannot be combined with ids, fullNames.",
      "schema": {
       "type": "string",
       "pattern": "^\\d{4}-\\d{2}-\\d{2}(T\\d{2}:\\d{2}(:\\d{2}(\\.\\d{1,9})?)?(Z|[+-]\\d{2}:\\d{2})?)?$",
@@ -12654,7 +12654,7 @@
     {
      "name": "updatedAfter",
      "required": false,
-     "description": "Return items changed on or after this date or date-time (QuickBooks local time unless an offset is given). Cannot be combined with ids, fullNames.",
+     "description": "Return items changed on or after this date or date-time (QuickBooks local time unless an offset is given). QuickBooks matches an item when its last edit or its last change falls in the range. Cannot be combined with ids, fullNames.",
      "schema": {
       "type": "string",
       "pattern": "^\\d{4}-\\d{2}-\\d{2}(T\\d{2}:\\d{2}(:\\d{2}(\\.\\d{1,9})?)?(Z|[+-]\\d{2}:\\d{2})?)?$",
@@ -12665,7 +12665,7 @@
     {
      "name": "updatedBefore",
      "required": false,
-     "description": "Return items changed on or before this date or date-time (QuickBooks local time unless an offset is given). Cannot be combined with ids, fullNames.",
+     "description": "Return items changed on or before this date or date-time (QuickBooks local time unless an offset is given). QuickBooks matches an item when its last edit or its last change falls in the range, so this can return items whose `updatedAt` is later. Cannot be combined with ids, fullNames.",
      "schema": {
       "type": "string",
       "pattern": "^\\d{4}-\\d{2}-\\d{2}(T\\d{2}:\\d{2}(:\\d{2}(\\.\\d{1,9})?)?(Z|[+-]\\d{2}:\\d{2})?)?$",
@@ -25602,7 +25602,7 @@
     {
      "name": "updatedAfter",
      "required": false,
-     "description": "Return vendors changed on or after this date or date-time (QuickBooks local time unless an offset is given). Cannot be combined with ids, names.",
+     "description": "Return vendors changed on or after this date or date-time (QuickBooks local time unless an offset is given). QuickBooks matches a vendor when its last edit or its last change falls in the range. Cannot be combined with ids, names.",
      "schema": {
       "type": "string",
       "pattern": "^\\d{4}-\\d{2}-\\d{2}(T\\d{2}:\\d{2}(:\\d{2}(\\.\\d{1,9})?)?(Z|[+-]\\d{2}:\\d{2})?)?$",
@@ -25613,7 +25613,7 @@
     {
      "name": "updatedBefore",
      "required": false,
-     "description": "Return vendors changed on or before this date or date-time (QuickBooks local time unless an offset is given). Cannot be combined with ids, names.",
+     "description": "Return vendors changed on or before this date or date-time (QuickBooks local time unless an offset is given). QuickBooks matches a vendor when its last edit or its last change falls in the range, so this can return vendors whose `updatedAt` is later. Cannot be combined with ids, names.",
      "schema": {
       "type": "string",
       "pattern": "^\\d{4}-\\d{2}-\\d{2}(T\\d{2}:\\d{2}(:\\d{2}(\\.\\d{1,9})?)?(Z|[+-]\\d{2}:\\d{2})?)?$",
