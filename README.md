@@ -6,7 +6,7 @@ Connect an AI client with a read-only key to inspect a company's QuickBooks reco
 - Writes carry an idempotency key and are never retried blindly. Read-only keys are enforced by the API itself.
 - Runs over stdio with Node.js 20 or later on Windows, macOS and Linux, with no runtime dependencies.
 
-The current version is **0.12.1**. [MCP guide](https://www.desktopaccountingapi.com/docs/guides/mcp/) · [Documentation](https://www.desktopaccountingapi.com/docs/) · [Changelog](CHANGELOG.md) · [Status](https://status.desktopaccountingapi.com)
+The current version is **0.12.2**. [MCP guide](https://www.desktopaccountingapi.com/docs/guides/mcp/) · [Documentation](https://www.desktopaccountingapi.com/docs/) · [Changelog](CHANGELOG.md) · [Status](https://status.desktopaccountingapi.com)
 
 ## Hosted server or local package
 
@@ -67,14 +67,14 @@ Open **Settings > Developer > Edit Config** (`claude_desktop_config.json`) and a
   "mcpServers": {
     "quickbooks-desktop": {
       "command": "npx",
-      "args": ["-y", "@desktopaccountingapi/quickbooks-desktop-mcp@0.12.1"],
+      "args": ["-y", "@desktopaccountingapi/quickbooks-desktop-mcp@0.12.2"],
       "env": { "DAAPI_SECRET_KEY": "sk_live_..." }
     }
   }
 }
 ```
 
-Keep your existing server definitions. Insert a new `quickbooks-desktop` property under `mcpServers`, using the object shown above, then restart Claude Desktop to load the updated configuration. Drop `@0.12.1` from the package name to always run the latest version.
+Keep your existing server definitions. Insert a new `quickbooks-desktop` property under `mcpServers`, using the object shown above, then restart Claude Desktop to load the updated configuration. Drop `@0.12.2` from the package name to always run the latest version.
 
 
 #### Claude Code

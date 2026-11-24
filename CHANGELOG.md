@@ -2,6 +2,10 @@
 
 ## Unreleased
 
+## 0.12.2 (2026-11-24)
+
+- Released in lockstep with the other Desktop Accounting API packages; no entries for this package.
+
 ## 0.12.1 (2026-11-21)
 
 - The server also speaks MCP 2026-07-28, next to 2025-11-25 and earlier, which work as before. A request whose `params._meta` names `io.modelcontextprotocol/protocolVersion` `2026-07-28` (with `io.modelcontextprotocol/clientCapabilities`) is answered without `initialize`: `server/discover` returns the supported versions, capabilities and instructions; results carry `resultType` `complete` and the server's name and version in `_meta`, and `server/discover` and `tools/list` carry `ttlMs` and `cacheScope` `private`. Over Streamable HTTP, the `MCP-Protocol-Version`, `Mcp-Method` and, for `tools/call`, `Mcp-Name` headers must match the body (`400`, `-32020` otherwise), and an unknown method of such a request answers `404`. A JSON-RPC batch naming 2026-07-28 in any message is refused whole (`-32600`). An unsupported version, in the header or in `_meta`, answers `-32022` with `data.supported` listing every version and the request's `id` (over HTTP still `400`; the code was `-32000`). Over stdio, a request cancelled with `notifications/cancelled` gets no response.
